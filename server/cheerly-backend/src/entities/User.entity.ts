@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('varchar', { length: 50 })
+  @PrimaryGeneratedColumn()
   id: string;
 
   @Column('varchar', { length: 50 })
