@@ -1,0 +1,16 @@
+/* 우선순위대로 사용하기 인라인 스타일 = 1000점 / id = 100점 / 클래스 , 수도클래스 = 10점 / 태그선택자 , 수도엘리먼트 = 1점 */
+
+#custom-div {
+  position: absolute;
+  left: 200px;
+  top: 20px;
+  /* width: 200px; */
+  color: blue;
+  border: transparent;
+  font-size: 1.5rem;
+  z-index: 99;
+}
+
+/* #custom-div .custom-color {
+  color: blue;
+} */

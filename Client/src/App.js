@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import Group from "./Pages/Group";
 import Signup from "./components/Signup";
