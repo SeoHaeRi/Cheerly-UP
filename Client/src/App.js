@@ -10,10 +10,12 @@ import Nav from "./components/Nav";
 import Study from "./Pages/Study";
 import Board from "./Pages/Board";
 
+
 function App() {
   return (
     <>
-
+      <NavBoot/>
+        <Board/>
     </>
   );
 }

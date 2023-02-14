@@ -1,6 +1,6 @@
 import {Component} from 'react'
 
-// import '../static/Stopwatch.css'
+import '../static/Stopwatch.css'
 
 class Stopwatch extends Component {
   state = {
@@ -53,14 +53,7 @@ class Stopwatch extends Component {
     return minutes
   }
 
-  recordsTime() {
-    let time = new Date(this.state.curTime).toISOString().substr(11, 8) + "." + this.state.curTime%1000;
-    this.setState({
-      records: this.state.records.concat({id:this.state.recordsId, time: time})
-    }, ()=>{
-      this.setState({recordsId: this.state.recordsId+1});
-    });
-  }
+ 
 
   resetTime() {
     this.setState({records: [], curTime: 0, curTimeStr: '00:00:00'})
@@ -73,7 +66,7 @@ class Stopwatch extends Component {
     return (
       <div className="app-container">
         <div className="stopwatch-container">
-          <h1 className="stopwatch">Stopwatch</h1>
+          {/* <h1 className="stopwatch">Stopwatch</h1> */}
           <div className="timer-container">
             <div className="timer">
               <img
@@ -106,13 +99,6 @@ class Stopwatch extends Component {
                 onClick={this.onResetTimer}
               >
                 Reset
-              </button>
-              <button
-                type="button"
-                className="reset-button button"
-                onClick={this.recordsTime}
-              >
-                Records
               </button>
             </div>
           </div>
