@@ -5,12 +5,17 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import styled from "styled-components";
+import logo from "../assets/garo_logo.svg";
+
+import "../static/NavBoot.css";
 
 const Mydiv = styled.div`
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
+  color: transparent;
+
   /* height: 20rem; */
 `;
 
@@ -30,13 +35,15 @@ export default function NavBoot() {
       <Mydiv>
         <Navbar
           collapseOnSelect
-          expand="lg"
-          bg="light"
+          expand="xl"
+          bg="transparent"
           variant="light"
           sticky="top"
         >
-          <Container>
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Container id="custom-div">
+            <Navbar.Brand href="#home">
+              <img src={logo} />
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto">
