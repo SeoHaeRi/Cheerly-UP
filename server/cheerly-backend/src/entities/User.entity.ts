@@ -1,4 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -14,8 +19,8 @@ export class User {
   @Column({ type: 'date' })
   birthday: string;
 
-  @Column({ type: 'date' })
-  createdate: string;
+  @CreateDateColumn()
+  created_at: Date;
 
   @Column('varchar', { length: 50 })
   job: string;
