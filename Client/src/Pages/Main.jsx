@@ -1,13 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import hired from "../Img/Hired.svg";
+import hired from "../assets/Hired.svg";
 
 const Maindiv = styled.div`
   background-color: white;
 `;
 const Earlydiv = styled.div`
   background-color: white;
+  /* position: absolute; */
   position: absolute;
+  left: 40px;
+  top: 10px;
 `;
 const Mainp = styled.p`
   position: relative;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import elect from "../Img/elect.svg";
+import elect from "../assets/elect.svg";
 
 const Maindiv = styled.div`
   background-color: white;
