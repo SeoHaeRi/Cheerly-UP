@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeORMConfig } from './config/typeorm.config';
 import { UserModule } from './user/user.module';
 import { ScrapperModule } from './scrapper/scrapper.module';
+import { BoardModule } from './board/board.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ScrapperModule } from './scrapper/scrapper.module';
     }),
     UserModule,
     ScrapperModule,
+    BoardModule,
   ],
 })
 export class AppModule {}
