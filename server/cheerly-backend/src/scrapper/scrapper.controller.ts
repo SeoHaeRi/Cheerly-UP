@@ -1,13 +1,15 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req, Res } from '@nestjs/common';
 import { ScrapperService } from './scrapper.service';
 
 //도메인
-@Controller('scrapper')
+@Controller('studygroup')
 export class ScrapperController {
   constructor(private scrapperService: ScrapperService) {}
 
   @Get()
-  scrapperController() {
-    return this.scrapperService.getDataViaPuppeteer();
+  async scrapperController(@Req() req, @Res() res) {
+    const result = await this.scrapperService.getDataViaPuppeteer();
+
+    res.send(result);
   }
 }

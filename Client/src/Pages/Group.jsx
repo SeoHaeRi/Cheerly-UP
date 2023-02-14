@@ -1,6 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import elect from "../assets/elect.svg";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import elect from '../assets/elect.svg';
+import axios from 'axios';
 
 const Maindiv = styled.div`
   background-color: white;
@@ -39,16 +40,32 @@ const Imgdiv = styled.img`
 `;
 
 export default function Group() {
+  const [groups, setGroups] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3030/studygroup').then((res) => {
+      setGroups(res.data);
+    });
+  }, []);
+
   return (
     <Maindiv>
       {/* nav바는 컴포넌트를 이용해서 구현할수도 있고 부트스트랩도 가능 */}
       {/* <MyNav>{logo}</MyNav> */}
       <Earlydiv>
-        <Titlediv></Titlediv>
-        <Titlediv></Titlediv>
-        <Titlediv></Titlediv>
-        <Titlediv></Titlediv>
-        <Titlediv></Titlediv>
+        {groups.map((group, index) => {
+          return (
+            <Titlediv key={index}>
+              <h6 style={{ color: 'white' }}>{group.badge}</h6>
+
+              <h4 style={{ color: 'white' }}>{group.title}</h4>
+
+              <a style={{ color: 'white' }} href={group.url} target="_blank">
+                Inflearn
+              </a>
+            </Titlediv>
+          );
+        })}
       </Earlydiv>
       <Imgdiv src={elect} />
     </Maindiv>

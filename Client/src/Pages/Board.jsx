@@ -1,6 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import board from "../assets/board.svg";
+import React from 'react';
+import styled from 'styled-components';
+import board from '../assets/board.svg';
+import axios from 'axios';
 
 const Maindiv = styled.div`
   background-color: white;
@@ -24,23 +25,23 @@ const Titlediv = styled.div`
   align-content: center;
   /* justify-content: center; */
   margin: 50px;
-  padding: 60px; 
+  padding: 60px;
   width: 30rem;
   height: 6rem;
   border-radius: 20px;
 `;
 
 const Titlediv2 = styled.div`
-background-color: #1363df;
-display: flex;
-align-content: center;
-/* justify-content: center; */
-margin: 50px;
-padding: 60px; 
-width: 30rem;
-height: 6rem;
-border-radius: 20px;
-`
+  background-color: #1363df;
+  display: flex;
+  align-content: center;
+  /* justify-content: center; */
+  margin: 50px;
+  padding: 60px;
+  width: 30rem;
+  height: 6rem;
+  border-radius: 20px;
+`;
 
 const Imgdiv = styled.img`
   position: absolute;
@@ -50,16 +51,18 @@ const Imgdiv = styled.img`
   height: 50rem;
 `;
 
-export default function Group() {
+export default function Board() {
   return (
-    <Maindiv>
-      {/* nav바는 컴포넌트를 이용해서 구현할수도 있고 부트스트랩도 가능 */}
-      {/* <MyNav>{logo}</MyNav> */}
-      <Earlydiv>
-      <Titlediv></Titlediv>
-      <Titlediv2></Titlediv2>
-      </Earlydiv>
-      <Imgdiv src={board} />
-    </Maindiv>
+    <>
+      <Maindiv>
+        {/* nav바는 컴포넌트를 이용해서 구현할수도 있고 부트스트랩도 가능 */}
+        {/* <MyNav>{logo}</MyNav> */}
+        <Earlydiv>
+          <Titlediv></Titlediv>
+          <Titlediv2></Titlediv2>
+        </Earlydiv>
+        <Imgdiv src={board} />
+      </Maindiv>
+    </>
   );
 }
