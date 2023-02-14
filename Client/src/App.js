@@ -1,16 +1,19 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
 
 import Group from "./Pages/Group";
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
 import Main from "./Pages/Main";
+import NavBoot from "./components/NavBoot";
 import Nav from "./components/Nav";
 
 function App() {
   return (
     <>
-      <Nav />
+      {/* <NavBoot /> */}
+      <NavBoot />
+      {/* <NavLink /> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />} />
