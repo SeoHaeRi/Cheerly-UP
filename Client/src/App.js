@@ -7,21 +7,13 @@ import Signin from "./components/Signin";
 import Main from "./Pages/Main";
 import NavBoot from "./components/NavBoot";
 import Nav from "./components/Nav";
+import Study from "./Pages/Study";
+import Board from "./Pages/Board";
 
 function App() {
   return (
     <>
-      {/* <NavBoot /> */}
-      <NavBoot />
-      {/* <NavLink /> */}
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/group" element={<Group />} />
-          <Route path="/login" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
-      </BrowserRouter>
+
     </>
   );
 }
