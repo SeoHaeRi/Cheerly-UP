@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import hired from "../assets/Hired.svg";
+import NavBoot from "../components/NavBoot";
 
 const Maindiv = styled.div`
   background-color: white;
