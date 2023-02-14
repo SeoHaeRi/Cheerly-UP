@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Study  from '../assets/study.svg'
-import Stopwatch from "../components/stopwatch";
+import Study  from '../assets/study.svg';
+import Stopwatch from '../components/stopwatch';
 
 const Maindiv = styled.div`
   background-color: white;
@@ -46,6 +46,8 @@ export default function Group() {
       {/* <MyNav>{logo}</MyNav> */}
       <Earlydiv>
         <Stopwatch/>
+        <Titlediv/>
+        <Titlediv/>
       </Earlydiv>
     <Imgdiv src={Study}/>
     </Maindiv>
