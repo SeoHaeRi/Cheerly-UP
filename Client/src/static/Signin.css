@@ -1,0 +1,133 @@
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+#result {
+  margin-top: 20px;
+  color: red;
+  font-size: 11px;
+}
+
+body {
+  color: #1363DF;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.flex {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.scene {
+  position: relative;
+  height: 100vh;
+}
+
+.card {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: rgba(254, 254, 254, 0.075);
+  border: 1px solid rgba(254, 254, 254, 0.18);
+  border-radius: 15px;
+  box-shadow: 0 10px 35px 0 rgba(54, 33, 0, 0.65);
+  color: black;
+  max-width: 414px;
+  overflow: hidden;
+  margin: 60px 80px;
+  padding: 80px 80px 100px 90px;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+
+.card__heading {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.card__input {
+  background: rgba(254, 254, 254, 0.075);
+  border: 1px solid #1363DF;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #000000;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+}
+
+.card__input:focus,
+.card__input:active {
+  background: rgba(222, 237, 246, 0.525);
+  border: 1px solid #1363DF;
+  outline: none;
+}
+
+.card__button {
+  width: 100%;
+  background: #65B1F7;
+  border: none;
+  border-radius: 20px;
+  color: #ffffff;
+  margin: 15px auto 0 auto;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.card__button1 {
+  width: 100%;
+  background: #FFBF00;
+  border: none;
+  border-radius: 20px;
+  color: black;
+  margin: 15px auto 0 auto;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__button:focus,
+.card__button:active {
+  background: #1363DF;
+  outline: none;
+}
+
+.card__button:hover{
+  background: #1363DF;
+  cursor: pointer;
+}
+
+.card__button1:hover {
+  background-color: #f3da51;
+  cursor: pointer;
+}
+
+.p {
+  color: #1363DF;
+}
+
+button {
+  background: #FFBF00;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  margin: 10px auto 0 auto;
+  padding: 8px 20px;
+}
