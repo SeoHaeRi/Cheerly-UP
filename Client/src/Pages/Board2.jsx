@@ -51,7 +51,7 @@ const Imgdiv = styled.img`
   height: 50rem;
 `;
 
-export default function Board() {
+export default function Board2() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -73,6 +73,7 @@ export default function Board() {
                 <h6 style={{ color: 'white' }}>index: {post.post_id}</h6>
                 <h6 style={{ color: 'white' }}>content: {post.content}</h6>
                 <h6 style={{ color: 'white' }}>date: {post.date}</h6>
+                <h6 style={{ color: 'white' }}>userID: {post.userId}</h6>
               </Titlediv>
             );
           })}

@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PostsModule } from 'domain/posts/posts.module';
-import { ScrapperModule } from 'domain/scrapper/scrapper.module';
-import { UserModule } from 'domain/user/user.module';
-
+import { PostsModule } from './domain/posts/posts.module';
+import { ScrapperModule } from './domain/scrapper/scrapper.module';
+import { UserModule } from './domain/user/user.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
