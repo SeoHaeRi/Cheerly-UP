@@ -8,6 +8,7 @@ export default function Signin() {
       <section className="card">
         <h1 className="card__heading">
           <Logo />
+          <br/>
           <p>Sign up</p>
         </h1>
         <form className="card__form" id="form_login">

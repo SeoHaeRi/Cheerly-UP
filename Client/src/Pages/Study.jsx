@@ -12,13 +12,7 @@ const Earlydiv = styled.div`
   top: 15%;
   left: 5%;
 `;
-const Mainp = styled.p`
-  position: relative;
-  top: 15rem;
-  left: 15%;
-  color: #1363df;
-  font-size: 3.5rem;
-`;
+
 const Titlediv = styled.div`
   background-color: #1363df;
   display: flex;
