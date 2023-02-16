@@ -6,6 +6,8 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Req,
+  Res,
 } from '@nestjs/common';
 import { CreatePostDto } from './dtos/CreatePost.dto';
 import { PostsService } from './posts.service';
@@ -16,8 +18,9 @@ export class PostsController {
 
   //전체 게시글 불러오기
   @Get()
-  async getPosts() {
+  async getPosts(@Req() req, @Res() res) {
     const posts = await this.postsService.getPosts();
+    res.send(posts);
     return posts;
   }
 

@@ -1,3 +1,4 @@
+
 import React, { useState ,useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import axios from 'axios';
@@ -65,7 +66,4 @@ const Body = styled.div`
   padding: 11px;
   border-radius: 20px;
 `;
-
-
-
 
