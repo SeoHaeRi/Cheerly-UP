@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import elect from '../assets/elect.svg';
 import axios from 'axios';
 import inf from '../assets/inf.svg';
+import Paging from '../components/Paging';
 
 const Maindiv = styled.div`
   background-color: transparent;
@@ -90,12 +91,36 @@ const Infdiv = styled.img`
 
 export default function Group() {
   const [groups, setGroups] = useState([]);
+  //페이지네이션
+
+  const [count, setCount] = useState(0); //아이템 총 개수
+  const [currentpage, setCurrentpage] = useState(1); //현재페이지
+  const [postPerPage] = useState(5); //페이지당 아이템 개수
+
+  const [indexOfLastPost, setIndexOfLastPost] = useState(0); // 마지막 포스트
+  const [indexOfFirstPost, setIndexOfFirstPost] = useState(0); // 처음 포스트
+  const [currentPosts, setCurrentPosts] = useState(0); // 현재
+
+  // const [articles, setArticles] = useState(null); //api용
+  // const [loading, setLoading] = useState(null); //로딩
 
   useEffect(() => {
-    axios.get('http://localhost:3030/studygroup').then((res) => {
-      setGroups(res.data);
-    });
-  }, []);
+    axios
+      .get('http://localhost:3030/studygroup')
+      .then((res) => {
+        setGroups(res.data);
+      })
+      .then((groups) => {
+        setCount(groups?.length);
+        setIndexOfLastPost(currentpage * postPerPage);
+        setIndexOfFirstPost(indexOfLastPost - postPerPage);
+        setCurrentPosts(groups?.slice(indexOfFirstPost, indexOfLastPost));
+      });
+  }, [currentpage, indexOfLastPost, indexOfFirstPost, postPerPage]);
+
+  const setPage = (error) => {
+    setCurrentpage(error);
+  };
 
   return (
     <Maindiv>
@@ -107,8 +132,11 @@ export default function Group() {
               <Infdiv src={inf} />
               <Groupbadge>{group.badge}</Groupbadge>
               <br />
+              {/* <h6 style={{ color: 'white' }}>{group.badge}</h6> */}
               <Grouptitle>{group.title}</Grouptitle>
               <br />
+
+              {/* <h4 style={{ color: 'white' }}>{group.title}</h4> */}
               <Groupurl href={group.url} target="_blank">
                 Inflearn
               </Groupurl>
@@ -116,6 +144,8 @@ export default function Group() {
           );
         })}
       </Earlydiv>
+      <Paging page={currentpage} count={count} setPage={setPage} />
+
       <Imgdiv src={elect} />
     </Maindiv>
   );
