@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { ReactComponent as Light } from "../assets/light.svg";
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { ReactComponent as Light } from '../assets/light.svg';
 
-import { ReactComponent as Brand } from "../assets/garo_logo.svg";
-import "../static/Navbar.css";
+import { ReactComponent as Brand } from '../assets/garo_logo.svg';
+import '../static/Navbar.css';
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -17,17 +17,17 @@ const Navbar = () => {
       <div className="container">
         <div className="logo">
           <NavLink to="/">
-            {" "}
+            {' '}
             <Brand />
           </NavLink>
         </div>
         <div className="menu-icon" onClick={handleShowNavbar}>
           <Light />
         </div>
-        <div className={`nav-elements  ${showNavbar && "active"}`}>
+        <div className={`nav-elements  ${showNavbar && 'active'}`}>
           <ul>
             <li>
-              <NavLink to="/group">스터디</NavLink>
+              <NavLink to="/studygroup">스터디</NavLink>
             </li>
             <li>
               <NavLink to="/study">공부</NavLink>
