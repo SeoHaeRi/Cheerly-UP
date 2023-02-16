@@ -29,6 +29,6 @@ export class Board {
   user: User;
 }
 
-// 'varchar', { length: 50 }
+//'varchar',{ length: 50 }
 // nullable: true
 //{ default: new Date() }
