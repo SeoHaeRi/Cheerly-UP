@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 body {
   display: block;
   margin: auto;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #fcfcfc;
   z-index: 99;
 }
@@ -37,8 +37,8 @@ body {
 }
 
 .logo {
-  position: relative;
-  left: 0;
+  position: absolute;
+  left: 13%;
 }
 
 .menu-icon {
@@ -52,6 +52,7 @@ body {
 .nav-elements ul {
   display: flex;
   position: relative;
+  left: 10%;
   top: 10px;
   justify-content: space-between;
   list-style-type: none;
@@ -75,7 +76,7 @@ body {
 }
 
 .nav-elements ul a.active::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -4px;
   left: 0;

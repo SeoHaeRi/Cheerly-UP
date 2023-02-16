@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import hired from "../assets/Hired.svg";
-import NavBoot from "../components/NavBoot";
+import React from 'react';
+import styled from 'styled-components';
+import hired from '../assets/Hired.svg';
+import NavBoot from '../components/NavBoot';
 
 const Maindiv = styled.div`
   background-color: white;
@@ -15,8 +15,8 @@ const Earlydiv = styled.div`
 `;
 const Mainp = styled.p`
   position: relative;
-  top: 15rem;
-  left: 15%;
+  top: 19rem;
+  left: 30%;
   color: #1363df;
   font-size: 3.5rem;
 `;
@@ -24,8 +24,8 @@ const Mainbutton = styled.button`
   position: relative;
   background-color: #1363df;
   color: white;
-  top: 20rem;
-  left: 30%;
+  top: 22rem;
+  left: 44%;
   width: 15rem;
   height: 4rem;
   font-size: 1.25rem;
@@ -41,6 +41,10 @@ const Imgdiv = styled.img`
   height: 50rem;
 `;
 
+const MainImg = styled.img`
+  position: absolute;
+`;
+
 export default function Main() {
   return (
     <Maindiv>
@@ -53,9 +57,9 @@ export default function Main() {
         <Mainbutton>
           <img
             src="https://img.icons8.com/fluency-systems-filled/48/FFFFFF/play.png"
-            width={"20px;"}
-            height={"20px;"}
-          />{" "}
+            width={'20px;'}
+            height={'20px;'}
+          />{' '}
           Start
         </Mainbutton>
       </Earlydiv>
