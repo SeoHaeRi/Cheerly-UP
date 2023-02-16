@@ -4,7 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostsModule } from 'domain/posts/posts.module';
 import { ScrapperModule } from 'domain/scrapper/scrapper.module';
 import { UserModule } from 'domain/user/user.module';
-import { Board } from './entities/Post.entity';
 
 @Module({
   imports: [

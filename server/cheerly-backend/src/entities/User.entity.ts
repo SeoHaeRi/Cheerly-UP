@@ -6,7 +6,7 @@ import {
   OneToMany,
   JoinColumn,
 } from 'typeorm';
-import { Board } from './Post.entity';
+import { Post } from './Post.entity';
 
 @Entity({ name: 'User' })
 export class User {
@@ -34,6 +34,6 @@ export class User {
   @Column('varchar', { length: 100 })
   profile_img: string;
 
-  @OneToMany(() => Board, (post) => post.user)
-  posts: Board[];
+  @OneToMany(() => Post, (post) => post.user, { cascade: true })
+  posts: Post[];
 }
