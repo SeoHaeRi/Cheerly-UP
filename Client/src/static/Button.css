@@ -1,0 +1,15 @@
+.btn--primary {
+  color: red;
+}
+
+.btn--outline {
+  color: blue;
+}
+
+.btn--medium {
+  width: 50%;
+}
+
+.btn--large {
+  width: 100%;
+}

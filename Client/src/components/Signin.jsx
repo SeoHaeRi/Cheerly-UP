@@ -4,10 +4,10 @@ import { ReactComponent as Logo } from '../assets/logo.svg';
 
 export default function Signin() {
   return (
-    <div className="scene flex">
+    <div className='scene flex'>
       <section className="card">
         <h1 className="card__heading">
-          <Logo />
+          <Logo/>
           <p>Login</p>
         </h1>
         <form className="card__form" id="form_login">

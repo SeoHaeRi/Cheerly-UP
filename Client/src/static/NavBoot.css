@@ -2,14 +2,27 @@
 
 #custom-div {
   position: absolute;
+  display: block;
   left: 200px;
   top: 20px;
   /* width: 200px; */
-  color: blue;
   border: transparent;
   font-size: 1.5rem;
   z-index: 99;
 }
+
+/* .Nav.Link:hover {
+  color: #1363df;
+} */
+
+/*               style={{ color: "#1363df" }}
+ */
+
+/* #responsive-navbar-nav {
+  color: blue;
+}
+
+
 
 /* #custom-div .custom-color {
   color: blue;
