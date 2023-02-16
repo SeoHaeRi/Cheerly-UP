@@ -10,13 +10,19 @@ import NavBoot from "./components/NavBoot";
 import Nav from "./components/Nav";
 import Study from "./Pages/Study";
 import Board from "./Pages/Board";
-
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
-      <NavBoot/>
-        <Board/>
+      <BrowserRouter>
+        <Navbar />
+      </BrowserRouter>
+      {/* <Signin /> */}
+      {/* <Study /> */}
+      <Main />
+      {/* <NavBoot/>
+        <Board/> */}
     </>
   );
 }
