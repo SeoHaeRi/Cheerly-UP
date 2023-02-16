@@ -9,7 +9,7 @@ import {
 import { User } from './User.entity';
 
 @Entity({ name: 'Post' })
-export class Board {
+export class Post {
   @PrimaryGeneratedColumn('increment')
   post_id: number;
 
@@ -25,7 +25,11 @@ export class Board {
   @CreateDateColumn()
   date: Date;
 
+  @Column()
+  userId: string;
+
   @ManyToOne(() => User, (user) => user.posts)
+  @JoinColumn([{ name: 'userId', referencedColumnName: 'id' }])
   user: User;
 }
 
