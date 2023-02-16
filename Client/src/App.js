@@ -10,19 +10,24 @@ import NavBoot from "./components/NavBoot";
 import Nav from "./components/Nav";
 import Study from "./Pages/Study";
 import Board from "./Pages/Board";
-import Navbar from "./components/Navbar";
+
 
 function App() {
   return (
     <>
+      <NavBoot />
       <BrowserRouter>
-        <Navbar />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/board" element={<Board />} />
+          <Route path="/studygroup" element={<Group />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/study" element={<Study />} />
+          {/* 추후 에러 페이지 추가  + 마이페이지 추가, domain 은 수정 가능!*/}
+        </Routes>
       </BrowserRouter>
-      {/* <Signin /> */}
-      {/* <Study /> */}
-      <Main />
-      {/* <NavBoot/>
-        <Board/> */}
+      ;
     </>
   );
 }

@@ -6,8 +6,12 @@ export class ScrapperService {
   async getDataViaPuppeteer() {
     const URL = `https://www.inflearn.com/community/studies`;
 
+    //headless: true -> 개발 모드일 때만 false 새창이 뜨고,
+    //배포 모드일 때는 크롤링할 사이트가 뜨지 않는다.
     const browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
+      args: ['--fast-start', '--disable-extensions', '--no-sandbox'],
+      ignoreHTTPSErrors: true,
     });
 
     const page = await browser.newPage();
@@ -58,10 +62,8 @@ export class ScrapperService {
     //     }),
     // );
 
-    console.log(data);
-
     await page.close();
     await browser.close();
-    //return 'scrapper service working!';
+    return data;
   }
 }
