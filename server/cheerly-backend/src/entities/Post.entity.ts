@@ -1,19 +1,31 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { User } from './Study.entity';
 
-@Entity()
-export class User {
+@Entity({ name: 'Post' })
+export class Board {
   @PrimaryGeneratedColumn()
-  post_id: string;
+  post_id: number;
 
-  @Column('varchar', { length: 50 })
-  user_id: string;
+  // @Column({ unique: true })
+  // user_id: string;
 
-  @Column('varchar', { length: 128 })
+  @Column()
   title: string;
 
-  @Column({ type: 'date' })
+  @Column()
   content: string;
 
-  @Column({ type: 'date' })
-  date: string;
+  @CreateDateColumn()
+  date: Date;
 }
+
+// 'varchar', { length: 50 }
+// nullable: true
+//{ default: new Date() }

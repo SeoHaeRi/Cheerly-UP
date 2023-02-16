@@ -3,7 +3,10 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  OneToMany,
+  JoinColumn,
 } from 'typeorm';
+import { Board } from './Post.entity';
 
 @Entity()
 export class User {
