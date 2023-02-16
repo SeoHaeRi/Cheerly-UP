@@ -1,19 +1,38 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { User } from './User.entity';
 
-@Entity()
-export class User {
-  @PrimaryGeneratedColumn()
-  post_id: string;
+@Entity({ name: 'Post' })
+export class Post {
+  @PrimaryGeneratedColumn('increment')
+  post_id: number;
 
-  @Column('varchar', { length: 50 })
-  user_id: string;
+  // @Column({ unique: true })
+  // user_id: string;
 
-  @Column('varchar', { length: 128 })
+  @Column()
   title: string;
 
-  @Column({ type: 'date' })
+  @Column()
   content: string;
 
-  @Column({ type: 'date' })
-  date: string;
+  @CreateDateColumn()
+  date: Date;
+
+  @Column()
+  userId: string;
+
+  @ManyToOne(() => User, (user) => user.posts)
+  @JoinColumn([{ name: 'userId', referencedColumnName: 'id' }])
+  user: User;
 }
+
+//'varchar',{ length: 50 }
+// nullable: true
+//{ default: new Date() }

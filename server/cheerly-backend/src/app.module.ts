@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from './user/user.module';
-import { ScrapperModule } from './scrapper/scrapper.module';
-import { BoardModule } from './board/board.module';
+import { PostsModule } from 'domain/posts/posts.module';
+import { ScrapperModule } from 'domain/scrapper/scrapper.module';
+import { UserModule } from 'domain/user/user.module';
 
 @Module({
   imports: [
@@ -18,12 +18,12 @@ import { BoardModule } from './board/board.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWD,
       database: process.env.DB_DATABASE,
-      entities: ['entities/*.entity.{js,ts}'],
-      synchronize: true,
+      entities: [__dirname + '/entities/*.entity.js'],
+      logging: true,
     }),
     UserModule,
     ScrapperModule,
-    BoardModule,
+    PostsModule,
   ],
 })
 export class AppModule {}

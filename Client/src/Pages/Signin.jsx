@@ -13,7 +13,7 @@ export default function Signin() {
           <p>Login</p>
         </h1>
         <form class="card__form" id="form_login">
-          <label for="id" class="visually"></label>
+          <label for="id" class="visually"></label> 
           <div>
             <input id="id" class="card__input" type="text" name="id" required placeholder='ID' />
           </div>

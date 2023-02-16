@@ -3,9 +3,12 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  OneToMany,
+  JoinColumn,
 } from 'typeorm';
+import { Post } from './Post.entity';
 
-@Entity()
+@Entity({ name: 'User' })
 export class User {
   @PrimaryGeneratedColumn()
   id: string;
@@ -30,4 +33,7 @@ export class User {
 
   @Column('varchar', { length: 100 })
   profile_img: string;
+
+  @OneToMany(() => Post, (post) => post.user, { cascade: true })
+  posts: Post[];
 }

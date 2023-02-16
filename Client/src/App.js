@@ -3,6 +3,15 @@ import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Group from './Pages/Group';
+/*
+import Signup from './Pages/Signup';
+import Signin from './Pages/Signin';
+import Main from './Pages/Main';
+import NavBoot from './components/NavBoot';
+import Nav from './components/Nav';
+import Study from './Pages/Study';
+import Board from './Pages/Board';
+*/
 import Signup from './components/Signup';
 import Signin from './components/Signin';
 import Main from './Pages/Main';
@@ -10,6 +19,7 @@ import Study from './Pages/Study';
 import Board from './Pages/Board';
 import Navbar from './components/Navbar';
 import MyPage from './Pages/MyPage';
+
 
 function App() {
   return (
