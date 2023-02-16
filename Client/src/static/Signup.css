@@ -28,7 +28,6 @@ body {
 }
 
 .scene {
-  position: relative;
   height: 100vh;
 }
 
@@ -44,7 +43,7 @@ body {
   overflow: hidden;
   margin: 30px 40px;
   padding: 20px 30px 50px 30px;
-  position: relative;
+  /* position: absolute; */
   text-align: center;
   z-index: 1;
 }

@@ -18,6 +18,7 @@ import Main from './Pages/Main';
 import Study from './Pages/Study';
 import Board from './Pages/Board';
 import Navbar from './components/Navbar';
+import MyPage from './Pages/MyPage';
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
           {/* 추후 에러 페이지 추가  + 마이페이지 추가, domain 은 수정 가능!*/}
         </Routes>
       </BrowserRouter>
-      ;
+   
     </>
   );
 }
