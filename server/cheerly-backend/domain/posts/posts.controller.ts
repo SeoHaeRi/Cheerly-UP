@@ -14,9 +14,10 @@ import { PostsService } from './posts.service';
 export class PostsController {
   constructor(private postsService: PostsService) {}
 
+  //전체 게시글 불러오기
   @Get()
-  getPosts() {
-    // return this.postsService.getPosts();
+  async getPosts() {
+    return await this.postsService.getPosts();
   }
 
   //   @Post()

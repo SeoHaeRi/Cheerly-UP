@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from 'domain/user/user.module';
-import { ScrapperModule } from 'domain/scrapper/scrapper.module';
-
 import { PostsModule } from 'domain/posts/posts.module';
+import { ScrapperModule } from 'domain/scrapper/scrapper.module';
+import { UserModule } from 'domain/user/user.module';
+import { Board } from './entities/Post.entity';
 
 @Module({
   imports: [
@@ -19,8 +19,8 @@ import { PostsModule } from 'domain/posts/posts.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWD,
       database: process.env.DB_DATABASE,
-      entities: ['entities/*.js'],
-      synchronize: true,
+      entities: [__dirname + '/entities/*.entity.js'],
+      logging: true,
     }),
     UserModule,
     ScrapperModule,

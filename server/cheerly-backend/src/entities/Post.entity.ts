@@ -10,7 +10,7 @@ import { User } from './User.entity';
 
 @Entity({ name: 'Post' })
 export class Board {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   post_id: number;
 
   // @Column({ unique: true })

@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { Board } from './Post.entity';
 
-@Entity()
+@Entity({ name: 'User' })
 export class User {
   @PrimaryGeneratedColumn()
   id: string;

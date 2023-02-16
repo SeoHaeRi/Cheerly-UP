@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { Board } from 'src/entities/Post.entity';
-import { CreateDateColumn, Repository } from 'typeorm';
+import { User } from 'src/entities/User.entity';
+import { CreateDateColumn, DataSource, Repository } from 'typeorm';
 import { CreatePostDto } from './dtos/CreatePost.dto';
 
 import { CreatePostParams } from './utils/types';
@@ -12,8 +13,9 @@ export class PostsService {
     @InjectRepository(Board) private boardRepository: Repository<Board>,
   ) {}
 
-  getPosts() {
-    return this.boardRepository.find();
+  //전체 게시글 불러오기
+  async getPosts() {
+    return await this.boardRepository.find();
   }
 
   //   createPost(postDetails: CreatePostParams) {
