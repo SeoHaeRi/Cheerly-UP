@@ -33,4 +33,7 @@ export class User {
 
   @Column('varchar', { length: 100 })
   profile_img: string;
+
+  @OneToMany(() => Board, (post) => post.user)
+  posts: Board[];
 }

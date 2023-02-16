@@ -6,7 +6,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { User } from './Study.entity';
+import { User } from './User.entity';
 
 @Entity({ name: 'Post' })
 export class Board {
@@ -24,6 +24,9 @@ export class Board {
 
   @CreateDateColumn()
   date: Date;
+
+  @ManyToOne(() => User, (user) => user.posts)
+  user: User;
 }
 
 // 'varchar', { length: 50 }

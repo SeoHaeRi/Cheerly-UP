@@ -4,9 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from 'domain/user/user.module';
 import { ScrapperModule } from 'domain/scrapper/scrapper.module';
 
-import { Board } from './entities/Post.entity';
 import { PostsModule } from 'domain/posts/posts.module';
-import { User } from './entities/Study.entity';
 
 @Module({
   imports: [
@@ -21,7 +19,7 @@ import { User } from './entities/Study.entity';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWD,
       database: process.env.DB_DATABASE,
-      entities: [Board, User],
+      entities: ['entities/*.js'],
       synchronize: true,
     }),
     UserModule,
