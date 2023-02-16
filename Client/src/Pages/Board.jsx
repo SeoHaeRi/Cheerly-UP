@@ -1,68 +1,71 @@
-import React from 'react';
-import styled from 'styled-components';
-import board from '../assets/board.svg';
+import React, { useState ,useEffect } from "react";
+import styled, { createGlobalStyle } from "styled-components";
 import axios from 'axios';
 
-const Maindiv = styled.div`
-  background-color: white;
-`;
-const Earlydiv = styled.div`
-  background-color: white;
-  position: absolute;
-  top: 15%;
-  left: 5%;
-`;
-const Mainp = styled.p`
-  position: relative;
-  top: 15rem;
-  left: 15%;
-  color: #1363df;
-  font-size: 3.5rem;
-`;
-const Titlediv = styled.div`
-  background-color: #1363df;
-  display: flex;
-  align-content: center;
-  /* justify-content: center; */
-  margin: 50px;
-  padding: 60px;
-  width: 30rem;
-  height: 6rem;
-  border-radius: 20px;
-`;
-
-const Titlediv2 = styled.div`
-  background-color: #1363df;
-  display: flex;
-  align-content: center;
-  /* justify-content: center; */
-  margin: 50px;
-  padding: 60px;
-  width: 30rem;
-  height: 6rem;
-  border-radius: 20px;
-`;
-
-const Imgdiv = styled.img`
-  position: absolute;
-  top: 15%;
-  left: 55%;
-  width: 50rem;
-  height: 50rem;
-`;
-
-export default function Board() {
+function Board() {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    axios 
+    .get("https://jsonplaceholder.typicode.com/posts")
+    .then(({data}) => setPosts(data));
+  })
   return (
-    <>
-      <Maindiv>
-        {/* nav바는 컴포넌트를 이용해서 구현할수도 있고 부트스트랩도 가능 */}
-        {/* <MyNav>{logo}</MyNav> */}
-        <Earlydiv>
-          <Titlediv></Titlediv>
-          <Titlediv2></Titlediv2>
-        </Earlydiv>
-        <Imgdiv src={board} />
-      </Maindiv>
-    </>
-  );
+    <Container>
+    <GlobalStyle />
+    {posts.map((post, index) => (
+      <Post key={index}>
+        <Title>gd</Title>
+        <Body>gd</Body>
+      </Post>
+    ))}
+  </Container>
+  )
 }
+
+export default Board;
+
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+  }
+`;
+
+const Container = styled.div`
+  min-height: 100vh;
+  padding: 200px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  grid-template-rows: repeat(auto-fit, 300px);
+  grid-auto-rows: 300px;
+  grid-gap: 30px 20px;
+  justify-content: center;
+  background: white;
+  box-sizing: border-box;
+`;
+
+const Post = styled.div`
+  border: 1px solid black;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 10px 5px 5px #7f8fa6;
+`;
+
+const Title = styled.div`
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+  font-weight: 600;
+`;
+
+const Body = styled.div`
+  height: 80%;
+  padding: 11px;
+  border-radius: 20px;
+`;
+
+
+
+

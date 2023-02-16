@@ -1,20 +1,25 @@
-import React from 'react'
-import '../static/Signin.css';
-import { ReactComponent as Logo } from '../assets/logo.svg'
+import React from 'react';
+import { ReactComponent as Logo } from '../assets/logo.svg';
+import '../static/Signup.css';
 
 export default function Signin() {
   return (
-    <div className='scene flex'>
+    <div className="scene flex">
       <section className="card">
         <h1 className="card__heading">
-          <Logo/>
-          <p>Login</p>
+          <Logo />
+          <p style={{ marginTop: '20px' }}>Login</p>
         </h1>
         <form className="card__form" id="form_login">
           {/* <label for="id" className="visually"></label>  */}
-          <div>
-            <input id="id" className="card__input" type="text" name="id" required placeholder='ID' />
-          </div>
+          <input
+            id="id"
+            className="card__input"
+            type="text"
+            name="id"
+            required
+            placeholder="ID"
+          />
           {/* <label for="password" className="visually"></label> */}
           <input
             id="password"
@@ -22,8 +27,9 @@ export default function Signin() {
             type="password"
             name="pw"
             required
-            placeholder='PW'
+            placeholder="비밀번호!"
           />
+
           <button className="card__button" type="button">
             <span>Welcome</span>
           </button>
@@ -34,5 +40,5 @@ export default function Signin() {
         </form>
       </section>
     </div>
-  )
+  );
 }

@@ -1,6 +1,8 @@
 import React from 'react'
-import '../static/Signin.css';
-import { ReactComponent as Logo } from '../assets/logo.svg'
+import '../static/Signup.css';
+import { ReactComponent as Logo } from '../assets/logo.svg';
+
+
 
 export default function Signin() {
   return (
@@ -24,6 +26,7 @@ export default function Signin() {
             required
             placeholder='PW'
           />
+       
           <button class="card__button" type="button">
             <span>Welcome</span>
           </button>

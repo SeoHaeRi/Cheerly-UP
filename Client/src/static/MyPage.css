@@ -15,7 +15,7 @@ a {
 body {
   color: #1363DF;
   overflow-x: hidden;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -27,12 +27,8 @@ body {
   justify-content: center;
 }
 
-.scene {
-  height: 100vh;
-}
-
 .card {
-  -webkit-backdrop-filter: blur(10px);
+  /* -webkit-backdrop-filter: blur(10px); */
   backdrop-filter: blur(10px);
   background: rgba(254, 254, 254, 0.075);
   border: 1px solid rgba(254, 254, 254, 0.18);
@@ -42,9 +38,10 @@ body {
   max-width: 414px;
   overflow: hidden;
   margin: 30px 40px;
-  padding: 50px 80px 50px 30px;
-  /* position: absolute; */
+  padding: 20px 30px 50px 30px;
+  position: relative;
   text-align: center;
+  display: flex;
   z-index: 1;
 }
 
@@ -52,7 +49,7 @@ body {
 .card__heading {
   font-size: 1.35rem;
   font-weight: 800;
-  margin-bottom: 50px;
+  margin-bottom: 15px;
 }
 
 .card__input {
@@ -122,11 +119,3 @@ body {
   color: #1363DF;
 }
 
-button {
-  background: #FFBF00;
-  border: none;
-  border-radius: 30px;
-  color: white;
-  margin: 10px auto 0 auto;
-  padding: 8px 20px;
-}
