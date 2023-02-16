@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import board from '../assets/board.svg';
 import axios from 'axios';
@@ -52,14 +52,30 @@ const Imgdiv = styled.img`
 `;
 
 export default function Board() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3030/board').then((res) => {
+      setPosts(res.data);
+      console.log(res.data);
+    });
+  }, []);
+
   return (
     <>
       <Maindiv>
         {/* nav바는 컴포넌트를 이용해서 구현할수도 있고 부트스트랩도 가능 */}
         {/* <MyNav>{logo}</MyNav> */}
         <Earlydiv>
-          <Titlediv></Titlediv>
-          <Titlediv2></Titlediv2>
+          {posts.map((post, index) => {
+            return (
+              <Titlediv key={index}>
+                <h6 style={{ color: 'white' }}>index: {post.post_id}</h6>
+                <h6 style={{ color: 'white' }}>content: {post.content}</h6>
+                <h6 style={{ color: 'white' }}>date: {post.date}</h6>
+              </Titlediv>
+            );
+          })}
         </Earlydiv>
         <Imgdiv src={board} />
       </Maindiv>
