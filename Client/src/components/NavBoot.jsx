@@ -8,6 +8,7 @@ import styled from "styled-components";
 import logo from "../assets/garo_logo.svg";
 
 import "../static/NavBoot.css";
+// import "../static/Custom.css";
 
 const Mydiv = styled.div`
   position: absolute;
@@ -42,7 +43,7 @@ export default function NavBoot() {
         >
           <Container id="custom-div">
             <Navbar.Brand href="#home">
-              <img src={logo} />
+              <img src={logo} width="100%" height={70} />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
