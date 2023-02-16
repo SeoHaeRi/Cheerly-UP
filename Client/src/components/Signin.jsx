@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import '../static/Signin.css';
-import { ReactComponent as Logo } from '../assets/logo.svg'
+import { ReactComponent as Logo } from '../assets/logo.svg';
 
 export default function Signin() {
   return (
@@ -13,7 +13,14 @@ export default function Signin() {
         <form className="card__form" id="form_login">
           {/* <label for="id" className="visually"></label>  */}
           <div>
-            <input id="id" className="card__input" type="text" name="id" required placeholder='ID' />
+            <input
+              id="id"
+              className="card__input"
+              type="text"
+              name="id"
+              required
+              placeholder="ID"
+            />
           </div>
           {/* <label for="password" className="visually"></label> */}
           <input
@@ -22,7 +29,7 @@ export default function Signin() {
             type="password"
             name="pw"
             required
-            placeholder='PW'
+            placeholder="PW"
           />
           <button className="card__button" type="button">
             <span>Welcome</span>
@@ -34,5 +41,5 @@ export default function Signin() {
         </form>
       </section>
     </div>
-  )
+  );
 }
