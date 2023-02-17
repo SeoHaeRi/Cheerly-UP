@@ -7,6 +7,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { Post } from './Post.entity';
+import { Study } from './Study.entity';
 
 @Entity({ name: 'User' })
 export class User {
@@ -36,4 +37,7 @@ export class User {
 
   @OneToMany(() => Post, (post) => post.user, { cascade: true })
   posts: Post[];
+
+  @OneToMany(() => Study, (study) => study.user, { cascade: true })
+  studies: Study[];
 }

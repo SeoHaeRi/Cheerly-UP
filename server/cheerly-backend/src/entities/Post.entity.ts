@@ -13,19 +13,16 @@ export class Post {
   @PrimaryGeneratedColumn('increment')
   post_id: number;
 
-  // @Column({ unique: true })
-  // user_id: string;
-
-  @Column()
+  @Column({ nullable: false })
   title: string;
 
-  @Column()
+  @Column({ nullable: false })
   content: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ nullable: false })
   date: Date;
 
-  @Column()
+  @Column({ nullable: false })
   userId: string;
 
   @ManyToOne(() => User, (user) => user.posts)
