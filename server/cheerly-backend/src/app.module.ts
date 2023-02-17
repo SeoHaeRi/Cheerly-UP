@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CommentModule } from './domain/comment/comment.module';
 import { PostsModule } from './domain/posts/posts.module';
 import { ScrapperModule } from './domain/scrapper/scrapper.module';
 import { StudyModule } from './domain/study/study.module';
@@ -27,6 +28,7 @@ import { Study } from './entities/Study.entity';
     ScrapperModule,
     PostsModule,
     StudyModule,
+    CommentModule,
   ],
 })
 export class AppModule {}

@@ -4,8 +4,10 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Comment } from './Comment.entity';
 import { User } from './User.entity';
 
 @Entity({ name: 'Post' })
@@ -19,7 +21,7 @@ export class Post {
   @Column({ nullable: false })
   content: string;
 
-  @CreateDateColumn({ nullable: false })
+  @Column({ nullable: false })
   date: Date;
 
   @Column({ nullable: false })
@@ -28,6 +30,9 @@ export class Post {
   @ManyToOne(() => User, (user) => user.posts)
   @JoinColumn([{ name: 'userId', referencedColumnName: 'id' }])
   user: User;
+
+  @OneToOne(() => Comment, (comment) => comment.post)
+  comment: Comment;
 }
 
 //'varchar',{ length: 50 }

@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Post } from './Post.entity';
 import { Study } from './Study.entity';
+import { Comment } from './Comment.entity';
 
 @Entity({ name: 'User' })
 export class User {
@@ -40,4 +41,7 @@ export class User {
 
   @OneToMany(() => Study, (study) => study.user, { cascade: true })
   studies: Study[];
+
+  @OneToMany(() => Study, (comment) => comment.user, { cascade: true })
+  comments: Comment[];
 }
