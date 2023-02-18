@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { ReactComponent as Logo } from '../assets/logo.svg';
 
 export default function Signin() {
   return (
@@ -11,7 +11,6 @@ export default function Signin() {
         </h1>
         <form className="card__form" id="form_login">
           {/* <label for="id" className="visually"></label>  */}
-
 
           <button className="card__button" type="button">
             <span>Welcome</span>
