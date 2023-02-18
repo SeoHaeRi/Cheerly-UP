@@ -14,7 +14,6 @@ import MyPage from './Pages/MyPage';
 import Group_page from './Pages/Group_page';
 import { useCallback, useRef, useState } from 'react';
 import Error from './Pages/Error';
-import { useState } from 'react';
 import { setUserInfo } from './store/module/user';
 
 function App() {
@@ -35,16 +34,13 @@ function App() {
 
   return (
     <>
-
-
-      </BrowserRouter>
       {init ? (
         <BrowserRouter>
           <Navbar />
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/board" element={<Board />} />
-            <Route path="/studygroup" element={<Group />} />
+            <Route path="/studygroup" element={<Group_page />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/study" element={<Study />} />
