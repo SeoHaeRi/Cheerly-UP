@@ -52,7 +52,7 @@ body {
 .nav-elements ul {
   display: flex;
   position: relative;
-  left: 10%;
+  left: 25%;
   top: 10px;
   justify-content: space-between;
   list-style-type: none;
