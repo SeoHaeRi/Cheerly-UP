@@ -8,7 +8,7 @@ import { UserService } from './user.service';
 
 // @Module({
 //   imports: [
-//     TypeOrmModule.forFeature([User]),
+//     // TypeOrmModule.forFeature([User]),
 //     TypeOrmExModule.forCustomRepository([UserRepository]),
 //   ],
 //   controllers: [UserController],

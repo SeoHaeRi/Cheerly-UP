@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostsModule } from './domain/posts/posts.module';
 import { ScrapperModule } from './domain/scrapper/scrapper.module';
 import { UserModule } from './domain/user/user.module';
+import { User } from './entities/User.entity';
+import { Post } from './entities/Post.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -17,7 +19,7 @@ import { UserModule } from './domain/user/user.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWD,
       database: process.env.DB_DATABASE,
-      entities: [__dirname + '/entities/*.entity.js'],
+      entities: [Post, User],
       logging: true,
     }),
     UserModule,

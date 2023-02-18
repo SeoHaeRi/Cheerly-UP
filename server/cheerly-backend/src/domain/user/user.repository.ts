@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { User } from 'src/entities/User.entity';
 import { CustomRepository } from 'src/typeorm-ex.decorator';
 import { DataSource, Repository } from 'typeorm';
@@ -10,6 +14,14 @@ import { CreateUserDto } from './dto/CreateUser.dto';
 //     const { id, pw, nickname } = userData;
 //     const user = this.create({ id, pw, nickname });
 
+//     try {
+//       const user = this.create({ id, pw, nickname });
+//       await this.save(user);
+//     } catch (error) {
+//       console.log(error.code);
+
+//       throw new ConflictException('존재하는 유저입니다');
+//     }
 //     await this.save(user);
 //   }
 // }
@@ -22,14 +34,18 @@ export class UserRepository extends Repository<User> {
 
   async createUser(userData: CreateUserDto): Promise<void> {
     const { id, pw, nickname } = userData;
-    const user = this.create({ id, pw, nickname });
+    const isExist = await this.find({
+      select: ['id', 'nickname'],
+      where: [{ id: id }, { nickname: nickname }],
+    });
 
-    await this.save(user);
+    console.log('isExist : ', isExist);
+
+    if (!isExist) {
+      const user = this.create({ id, pw, nickname });
+      await this.save(user);
+    } else {
+      throw new ConflictException('존재하는 유저입니다');
+    }
   }
-  // async findByUsername(username: string): Promise<User> {
-  //   const result = await this.createQueryBuilder('user')
-  //     .where('user.username = :username', { username: username })
-  //     .getOne();
-  //   return result;
-  // }
 }

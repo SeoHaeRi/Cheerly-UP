@@ -4,10 +4,13 @@ import {
   CreateDateColumn,
   OneToMany,
   PrimaryColumn,
+  Unique,
+  Index,
 } from 'typeorm';
 import { Post } from './Post.entity';
 
 @Entity({ name: 'User' })
+@Index(['id', 'nickname'], { unique: true })
 export class User {
   @PrimaryColumn('varchar', { length: 50 })
   id: string;
