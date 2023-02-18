@@ -55,6 +55,9 @@ const Navbar = () => {
                 <li>
                   <NavLink to="/signup">회원가입</NavLink>
                 </li>
+                <li>
+                  <NavLink to="/chat">Chat</NavLink>
+                </li>
               </ul>
             </div>
           </div>
