@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReactComponent as Logo } from '../assets/logo.svg';
+import '../static/Signup.css';
 
 export default function Signin() {
   return (
@@ -11,6 +12,22 @@ export default function Signin() {
         </h1>
         <form className="card__form" id="form_login">
           {/* <label for="id" className="visually"></label>  */}
+          <input
+            id="id"
+            className="card__input"
+            type="text"
+            name="id"
+            required
+            placeholder="ID"
+          />
+          <input
+            id="password"
+            className="card__input"
+            type="password"
+            required
+            placeholder="PW"
+            name="pw"
+          />
 
           <button className="card__button" type="button">
             <span>Welcome</span>
