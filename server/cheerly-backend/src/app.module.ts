@@ -6,8 +6,11 @@ import { PostsModule } from './domain/posts/posts.module';
 import { ScrapperModule } from './domain/scrapper/scrapper.module';
 import { StudyModule } from './domain/study/study.module';
 import { UserModule } from './domain/user/user.module';
+import { SocketModule } from './domain/socket/socket.module';
+import { User } from './entities/User.entity';
+import { Post } from './entities/Post.entity';
+import { Comment } from './entities/Comment.entity';
 import { Study } from './entities/Study.entity';
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -21,7 +24,8 @@ import { Study } from './entities/Study.entity';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWD,
       database: process.env.DB_DATABASE,
-      entities: [__dirname + '/entities/*.entity.js'],
+      // entities: [__dirname + '/entities/*.entity.js'],
+      entities: [User, Post, Comment, Study],
       logging: true,
     }),
     UserModule,
@@ -29,6 +33,7 @@ import { Study } from './entities/Study.entity';
     PostsModule,
     StudyModule,
     CommentModule,
+    SocketModule,
   ],
 })
 export class AppModule {}
