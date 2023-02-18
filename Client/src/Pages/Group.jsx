@@ -29,10 +29,12 @@ const GroupHeader = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #44adff;
-  font-size: 2.5rem;
+  /* background-color: #44adff; */
+  font-size: 2rem;
   font-weight: 900;
   color: white;
+  background-color: skyblue;
+  text-align: center;
 `;
 
 const Titlediv = styled.div`
