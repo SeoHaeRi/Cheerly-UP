@@ -7,22 +7,27 @@ import { User } from 'src/entities/User.entity';
 import { CustomRepository } from 'src/typeorm-ex.decorator';
 import { DataSource, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/CreateUser.dto';
+import * as bcrypt from 'bcryptjs';
 
 // @CustomRepository(User)
 // export class UserRepository extends Repository<User> {
 //   async createUser(userData: CreateUserDto): Promise<void> {
 //     const { id, pw, nickname } = userData;
-//     const user = this.create({ id, pw, nickname });
+//     const salt = await bcrypt.genSalt();
+//     const hashedPW = await bcrypt.hash(pw, salt);
+//     const isExist = await this.find({
+//       select: ['id', 'nickname'],
+//       where: [{ id: id }, { nickname: nickname }],
+//     });
 
-//     try {
-//       const user = this.create({ id, pw, nickname });
+//     console.log('isExist : ', isExist);
+
+//     if (isExist.length === 0) {
+//       const user = this.create({ id, pw: hashedPW, nickname });
 //       await this.save(user);
-//     } catch (error) {
-//       console.log(error.code);
-
+//     } else {
 //       throw new ConflictException('존재하는 유저입니다');
 //     }
-//     await this.save(user);
 //   }
 // }
 
@@ -34,6 +39,8 @@ export class UserRepository extends Repository<User> {
 
   async createUser(userData: CreateUserDto): Promise<void> {
     const { id, pw, nickname } = userData;
+    const salt = await bcrypt.genSalt();
+    const hashedPW = await bcrypt.hash(pw, salt);
     const isExist = await this.find({
       select: ['id', 'nickname'],
       where: [{ id: id }, { nickname: nickname }],
@@ -41,8 +48,8 @@ export class UserRepository extends Repository<User> {
 
     console.log('isExist : ', isExist);
 
-    if (!isExist) {
-      const user = this.create({ id, pw, nickname });
+    if (isExist.length === 0) {
+      const user = this.create({ id, pw: hashedPW, nickname });
       await this.save(user);
     } else {
       throw new ConflictException('존재하는 유저입니다');
