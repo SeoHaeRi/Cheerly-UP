@@ -4,8 +4,10 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Comment } from './Comment.entity';
 import { User } from './User.entity';
 
 @Entity({ name: 'Post' })
@@ -13,24 +15,24 @@ export class Post {
   @PrimaryGeneratedColumn('increment')
   post_id: number;
 
-  // @Column({ unique: true })
-  // user_id: string;
-
-  @Column()
+  @Column({ nullable: false })
   title: string;
 
-  @Column()
+  @Column({ nullable: false })
   content: string;
 
-  @CreateDateColumn()
+  @Column({ nullable: false })
   date: Date;
 
-  @Column()
+  @Column({ nullable: false })
   userId: string;
 
   @ManyToOne(() => User, (user) => user.posts)
   @JoinColumn([{ name: 'userId', referencedColumnName: 'id' }])
   user: User;
+
+  @OneToOne(() => Comment, (comment) => comment.post)
+  comment: Comment;
 }
 
 //'varchar',{ length: 50 }

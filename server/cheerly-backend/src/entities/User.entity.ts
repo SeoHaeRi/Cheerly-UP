@@ -8,6 +8,8 @@ import {
   Index,
 } from 'typeorm';
 import { Post } from './Post.entity';
+import { Study } from './Study.entity';
+import { Comment } from './Comment.entity';
 
 @Entity({ name: 'User' })
 @Index(['id', 'nickname'], { unique: true })
@@ -38,4 +40,10 @@ export class User {
 
   @OneToMany(() => Post, (post) => post.user, { cascade: true })
   posts: Post[];
+
+  @OneToMany(() => Study, (study) => study.user, { cascade: true })
+  studies: Study[];
+
+  @OneToMany(() => Study, (comment) => comment.user, { cascade: true })
+  comments: Comment[];
 }
