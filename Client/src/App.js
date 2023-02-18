@@ -11,13 +11,11 @@ import Study from './Pages/Study';
 import Board from './Pages/Board';
 import Navbar from './components/Navbar';
 
-
 import MyPage from './Pages/MyPage';
 import Group_page from './Pages/Group_page';
 import { useCallback, useRef, useState } from 'react';
 import Error from './Pages/Error';
 import { setUserInfo } from './store/module/user';
-
 
 function App() {
   const [init, setInit] = useState(true);
