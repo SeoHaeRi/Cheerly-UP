@@ -7,7 +7,8 @@ import {
 } from '@nestjs/websockets';
 import { Server } from 'socket.io';
 
-@WebSocketGateway() //({cors})
+//cors - 설정
+@WebSocketGateway({ cors: '*' })
 export class MyGateWay implements OnModuleInit {
   @WebSocketServer()
   server: Server;
@@ -15,7 +16,9 @@ export class MyGateWay implements OnModuleInit {
   onModuleInit() {
     this.server.on('connection', (socket) => {
       console.log(socket.id);
-      console.log('Connected');
+      console.log('Server Socket Connected');
+
+      socket.emit('info', socket.id);
     });
   }
 

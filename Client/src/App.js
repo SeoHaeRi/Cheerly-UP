@@ -15,6 +15,8 @@ import Group_page from './Pages/Group_page';
 import { useCallback, useRef, useState } from 'react';
 import Error from './Pages/Error';
 import { setUserInfo } from './store/module/user';
+import Chat from './Pages/Chat';
+import Chatroom from './Pages/Chatroom';
 
 function App() {
   const [init, setInit] = useState(true);
@@ -45,6 +47,8 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/study" element={<Study />} />
             <Route path="/mypage" element={<MyPage />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/chatroom" element={<Chatroom />}></Route>
             <Route path="/*" element={<Error />} />
             {/* 추후 에러 페이지 추가  + 마이페이지 추가, domain 은 수정 가능!*/}
           </Routes>
