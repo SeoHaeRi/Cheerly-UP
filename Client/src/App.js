@@ -10,6 +10,7 @@ import Main from './Pages/Main';
 import Study from './Pages/Study';
 import Board from './Pages/Board';
 import Navbar from './components/Navbar';
+
 import MyPage from './Pages/MyPage';
 import Group_page from './Pages/Group_page';
 import { useCallback, useRef, useState } from 'react';
@@ -56,6 +57,7 @@ function App() {
       ) : (
         'Initializing ...'
       )}
+
     </>
   );
 }

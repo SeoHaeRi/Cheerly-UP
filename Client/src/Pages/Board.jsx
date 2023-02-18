@@ -1,30 +1,32 @@
-
-import React, { useState ,useEffect } from "react";
-import styled, { createGlobalStyle } from "styled-components";
+import React, { useState, useEffect } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
 
 function Board() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    axios 
-    .get("https://jsonplaceholder.typicode.com/posts")
-    .then(({data}) => setPosts(data));
-  })
+    axios.get('http://localhost:3030/board').then((res) => {
+      setPosts(res.data);
+      console.log(res.data);
+    });
+  }, []);
+
   return (
     <Container>
-    <GlobalStyle />
-    {posts.map((post, index) => (
-      <Post key={index}>
-        <Title>gd</Title>
-        <Body>gd</Body>
-      </Post>
-    ))}
-  </Container>
-  )
+      <GlobalStyle />
+      {posts.map((post, index) => (
+        <Post key={index}>
+          <Title>{post.post_id}</Title>
+          <Title>{post.date}</Title>
+          <Title>{post.title}</Title>
+          <Body>{post.content} </Body>
+        </Post>
+      ))}
+    </Container>
+  );
 }
 
 export default Board;
-
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -66,4 +68,3 @@ const Body = styled.div`
   padding: 11px;
   border-radius: 20px;
 `;
-
