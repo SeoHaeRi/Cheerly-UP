@@ -26,7 +26,9 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/mongoose": "^9.2.1",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/platform-socket.io": "^9.3.9",
     "@nestjs/typeorm": "^9.0.1",
+    "@nestjs/websockets": "^9.3.9",
     "@types/cheerio": "^0.22.31",
     "@types/express-serve-static-core": "^4.17.33",
     "class-transformer": "^0.5.1",
@@ -36,6 +38,7 @@
     "puppeteer": "^19.7.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
+    "socket.io-client": "^4.6.0",
     "typeorm": "^0.3.12"
   },
   "devDependencies": {
