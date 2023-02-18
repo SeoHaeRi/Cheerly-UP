@@ -18,7 +18,8 @@ function Board() {
         <Post key={index}>
           <Title>{post.post_id}</Title>
           <Title>{post.date}</Title>
-          <Body>{post.content} {post.userId}</Body>
+          <Title>{post.title}</Title>
+          <Body>{post.content} </Body>
         </Post>
       ))}
     </Container>

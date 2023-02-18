@@ -6,8 +6,8 @@ export default function Signin() {
   return (
     <div className="scene flex">
       <section className="card">
+          <Logo />
         <h1 className="card__heading">
-          {/* <Logo /> */}
           <p style={{ marginTop: '20px' }}>Login</p>
         </h1>
         <form className="card__form" id="form_login">
