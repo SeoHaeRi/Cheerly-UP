@@ -11,6 +11,7 @@ import { User } from './entities/User.entity';
 import { Post } from './entities/Post.entity';
 import { Comment } from './entities/Comment.entity';
 import { Study } from './entities/Study.entity';
+
 @Module({
   imports: [
     ConfigModule.forRoot({

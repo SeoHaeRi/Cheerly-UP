@@ -1,18 +1,20 @@
 import {
   Column,
   Entity,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
   OneToMany,
-  JoinColumn,
+  PrimaryColumn,
+  Unique,
+  Index,
 } from 'typeorm';
 import { Post } from './Post.entity';
 import { Study } from './Study.entity';
 import { Comment } from './Comment.entity';
 
 @Entity({ name: 'User' })
+@Index(['id', 'nickname'], { unique: true })
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn('varchar', { length: 50 })
   id: string;
 
   @Column('varchar', { length: 50 })
