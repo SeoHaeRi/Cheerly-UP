@@ -17,7 +17,7 @@ export class User {
   @PrimaryColumn('varchar', { length: 50 })
   id: string;
 
-  @Column('varchar', { length: 50 })
+  @Column('longtext')
   pw: string;
 
   @Column('varchar', { length: 128 })
