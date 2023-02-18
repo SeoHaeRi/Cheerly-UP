@@ -18,8 +18,6 @@ import Main from './Pages/Main';
 import Study from './Pages/Study';
 import Board from './Pages/Board';
 import Navbar from './components/Navbar';
-import MyPage from './Pages/MyPage';
-
 
 function App() {
   return (
@@ -35,10 +33,10 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/study" element={<Study />} />
+          <Route path="/board" element={<Board />} />
           {/* 추후 에러 페이지 추가  + 마이페이지 추가, domain 은 수정 가능!*/}
         </Routes>
       </BrowserRouter>
-   
     </>
   );
 }
