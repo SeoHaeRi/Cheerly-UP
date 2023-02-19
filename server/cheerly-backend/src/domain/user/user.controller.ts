@@ -27,7 +27,7 @@ export class UserController {
     return this.userService.logIn(userData);
   }
 
-  @Post('/test')
+  @Post('/verify')
   @UseGuards(AuthGuard())
   test(@Req() req) {
     console.log('req.user : ', req.user);
