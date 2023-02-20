@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import { AppModule } from './app.module';
 import { SocketIoAdapter } from './domain/socket/socket-io.adapters';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -12,5 +13,7 @@ async function bootstrap() {
   await app.listen(PORT, () =>
     console.log(`Application running on http://localhost:${PORT}`),
   );
+
+  app.useGlobalPipes(new ValidationPipe());
 }
 bootstrap();

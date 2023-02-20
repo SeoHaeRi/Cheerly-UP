@@ -34,7 +34,7 @@ function BoardDetailEdit() {
     const inputTitle = titleRef.current.value;
     const inputContent = contentRef.current.value;
 
-    console.log(inputTitle, inputContent);
+    // console.log(inputTitle, inputContent);
 
     if (
       inputTitle === '' ||
@@ -46,17 +46,18 @@ function BoardDetailEdit() {
     }
 
     axios
-      .patch(`http://localhost:3030/board/edit/:${param}`, {
-        title: inputTitle,
-        content: inputContent,
-        // date: new Date(),
-        userId: post.userId,
+      .patch(`http://localhost:3030/board/:${param}`, {
+        title: String(inputTitle),
+        content: String(inputContent),
+        date: new Date(),
+        userId: String(post.userId),
+        post_id: Number(post.post_id),
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
+        alert('게시글 수정이 완료되었습니다.');
         navigation(route);
       });
-    // alert('수정하시겟습니까');
   };
 
   return (
@@ -68,13 +69,12 @@ function BoardDetailEdit() {
             <label htmlFor="title"> 제목:</label>
             <input name="title" defaultValue={post.title} ref={titleRef} />
           </Title>
-          <Title> 날짜:{post.date} </Title>
-          <Title> 유저: {post.userId} </Title>
           <Body>
             {' '}
             <label htmlFor="title"> 내용:</label>
             <br></br>
             <textarea
+              style={{ width: '380px', height: '300px' }}
               name="body"
               defaultValue={post.content}
               ref={contentRef}
@@ -82,8 +82,16 @@ function BoardDetailEdit() {
           </Body>
         </Post>
         <div id="btns">
-          <button onClick={editPostHandler}>글 수정하기</button>
-          <button>글 삭제하기</button>
+          <button
+            style={{
+              background: '#65B1F7',
+              height: '45px',
+              width: '120px',
+            }}
+            onClick={editPostHandler}
+          >
+            수정하기
+          </button>
           <Link to={route}>돌아가기</Link>
         </div>
       </Container>
@@ -103,8 +111,8 @@ const Container = styled.div`
   min-height: 100vh;
   padding: 200px 0;
   display: grid;
-  grid-template-columns: repeat(4, 300px);
-  grid-template-rows: repeat(auto-fit, 300px);
+  grid-template-columns: repeat(1, 400px);
+  grid-template-rows: repeat(auto-fit, 500px);
   grid-auto-rows: 300px;
   grid-gap: 30px 20px;
   justify-content: center;
@@ -120,7 +128,7 @@ const Post = styled.div`
 `;
 
 const Title = styled.div`
-  height: 20%;
+  height: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,7 +137,7 @@ const Title = styled.div`
 `;
 
 const Body = styled.div`
-  height: 80%;
+  height: 90%;
   padding: 11px;
   border-radius: 20px;
 `;

@@ -39,7 +39,7 @@ export class PostsController {
   }
 
   //POST - 게시글 생성
-  @Post()
+  @Post('/write')
   async createPost(@Body() createPostDto: CreatePostDto) {
     //const {...postDetails, new } = createPostDto;
     //dto에 새로운 key 추가하면 가능
@@ -48,18 +48,25 @@ export class PostsController {
   }
 
   //Patch - 게시글 수정 :id -> 게시글 번호
-  @Patch('edit/:id')
+  @Patch('/:id')
   async updatePostById(
-    @Param('id', ParseIntPipe) postId: number,
+    @Param('id') postId: string,
+    // @Param('id', ParseIntPipe) postId: number,
     @Body() updatePostDto: UpdatePostDto,
   ) {
-    const editPost = await this.postsService.updatePost(postId, updatePostDto);
+    const param = postId.slice(1);
+    console.log(param);
+
+    const editPost = await this.postsService.updatePost(param, updatePostDto);
     console.log(editPost);
     return editPost;
   }
 
   @Delete('/:id')
-  async deletePostById(@Param('id', ParseIntPipe) postId: number) {
-    await this.postsService.deletePost(postId);
+  async deletePostById(@Param('id') postId: string) {
+    const param = postId.slice(1);
+    console.log(param);
+
+    await this.postsService.deletePost(param);
   }
 }

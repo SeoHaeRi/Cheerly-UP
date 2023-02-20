@@ -54,15 +54,15 @@ export class PostsService {
   }
 
   //PATCH - 게시글 수정
-  async updatePost(id: number, updatePostDetails: UpdatePostParams) {
+  async updatePost(id: string, updatePostDetails: UpdatePostParams) {
     return await this.boardRepository.update(
-      { post_id: id },
+      { post_id: Number(id) },
       { ...updatePostDetails, date: new Date() },
     );
   }
 
   //DELETE - 게시글 삭제
-  async deletePost(id: number) {
-    return await this.boardRepository.delete({ post_id: id });
+  async deletePost(id: string) {
+    return await this.boardRepository.delete({ post_id: Number(id) });
   }
 }

@@ -30,19 +30,35 @@ function BoardDetail() {
     navigate(route);
   };
 
+  const onClickDelete = () => {
+    const confirm = window.confirm(
+      '정말로 게시글을 삭제하시겠습니까? 삭제한 글은 다시 볼 수 없게 됩니다.',
+    );
+    if (confirm === true) {
+      axios
+        .delete(`http://localhost:3030/board/:${param}`, {
+          post_id: Number(post.post_id),
+        })
+        .then((res) => {
+          alert('삭제가 완료되었습니다.');
+          navigate('/board');
+        });
+    }
+  };
+
   return (
     <>
       <Container>
         <GlobalStyle />
         <Post>
           <Title>제목: {post.title}</Title>
-          <Title> 날짜:{post.date} </Title>
-          <Title> 유저: {post.userId} </Title>
-          <Body> 내용: {post.content}</Body>
+          <Title> {post.date} </Title>
+          <Title> 글쓴이: {post.userId} </Title>
+          <Body> {post.content}</Body>
         </Post>
         <div id="btns">
           <button onClick={onClickEdit}>글 수정하기</button>
-          <button>글 삭제하기</button>
+          <button onClick={onClickDelete}>글 삭제하기</button>
         </div>
       </Container>
     </>
@@ -61,8 +77,8 @@ const Container = styled.div`
   min-height: 100vh;
   padding: 200px 0;
   display: grid;
-  grid-template-columns: repeat(4, 300px);
-  grid-template-rows: repeat(auto-fit, 300px);
+  grid-template-columns: repeat(1, 400px);
+  grid-template-rows: repeat(auto-fit, 500px);
   grid-auto-rows: 300px;
   grid-gap: 30px 20px;
   justify-content: center;
@@ -78,7 +94,7 @@ const Post = styled.div`
 `;
 
 const Title = styled.div`
-  height: 20%;
+  height: 10%;
   display: flex;
   justify-content: center;
   align-items: center;

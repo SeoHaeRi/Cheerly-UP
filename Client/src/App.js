@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Group from './Pages/Group';
 import Signup from './components/Signup';
-import SignUp2 from './components/Signup2'
+import SignUp2 from './components/Signup2';
 import Signin from './components/Signin';
 import Signin2 from './components/Signin2';
 import Main from './Pages/Main';
@@ -30,13 +30,11 @@ import Chatroom from './Pages/Chatroom';
 
 import BoardDetail from './Pages/BoardDetail';
 import BoardDetailEdit from './Pages/BoardDetailEdit';
+import BoardWrite from './Pages/BoardWrite';
 
 import Life from './Pages/Life';
 
-
 function App() {
-
-
   const [init, setInit] = useState(true);
 
   const dispatch = useDispatch();
@@ -61,13 +59,12 @@ function App() {
             <Route path="/board" element={<Board />} />
             <Route path="/board/:id" element={<BoardDetail />}></Route>{' '}
             <Route path="/board/edit/:id" element={<BoardDetailEdit />}></Route>
+            <Route path="/board/write" element={<BoardWrite />}></Route>
             <Route path="/studygroup" element={<Group_page />} />
             <Route path="/signin" element={<Signin />} />
-            <Route path="/signin" element={<Signin2 />} />
-
+            {/* <Route path="/signin2" element={<Signin2 />} /> */}
             <Route path="/signup" element={<Signup />} />
             <Route path="/signup2" element={<SignUp2 />} />
-            
             <Route path="/study" element={<Study />} />
             <Route path="/life" element={<Life />} />
             <Route path="/mypage" element={<MyPage />} />
