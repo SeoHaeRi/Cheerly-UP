@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 // import Study  from '../assets/study.svg';
-import design from '../assets/design.svg';
+import fitness from '../assets/fitness.svg';
 import Stopwatch from '../components/stopwatch';
 import TodoList from '../components/TodoList';
 import { createGlobalStyle } from 'styled-components';
@@ -9,10 +9,12 @@ import TodoTemplate from '../components/TodoTemplate';
 import TodoHead from '../components/TodoHead';
 import TodoCreate from '../components/TodoCreate';
 import { TodoProvider } from '../store/TodoContext';
+import health from '../assets/health.svg';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background: #e0f1ff;
+    /* background: #ffffff;
+    background: #ffa700;  */
   }
 `;
 
@@ -26,44 +28,17 @@ const Earlydiv = styled.div`
   left: 65%;
 `;
 
-const Titlediv = styled.div`
-  background-color: #1363df;
-  color: white;
-  text-align: center;
-  display: flex;
-  align-content: center;
-  /* justify-content: center; */
-  margin: 50px;
-  /* padding: 50px; */
-  width: 30rem;
-  height: 6rem;
-  border-radius: 20px;
-`;
-
 const Imgdiv = styled.img`
   position: absolute;
-  top: 15%;
+  /* top: 15%; */
+  /* right: 10%; */
   left: 15%;
   width: 30rem;
   height: 30rem;
 `;
 
-const Introdiv = styled.div`
-  position: absolute;
-  background-color: skyblue;
-  top: 60%;
-  left: 10%;
-  color: white;
-  text-align: center;
-  align-items: center;
-  width: 40rem;
-  /* height: 8rem; */
-  font-size: 2rem;
-  border-radius: 10px;
-`;
-
 const TodoButton = styled.button`
-  background-color: #1363df;
+  background-color: #e91e63;
   width: 22rem;
   height: 4rem;
   position: absolute;
@@ -73,7 +48,7 @@ const TodoButton = styled.button`
 `;
 
 const DiaryButton = styled.button`
-  background-color: #1363df;
+  background-color: #e91e63;
   width: 22rem;
   height: 4rem;
   position: absolute;
@@ -83,22 +58,26 @@ const DiaryButton = styled.button`
 `;
 
 const MainHeader = styled.div`
-  background-color: #1363df;
+  background-color: #e91e63;
   width: 100%;
   height: 4rem;
   margin-top: 30px;
   padding: 20px;
   color: white;
-  font-size: 1.75rem;
+  font-size: 1.7rem;
   text-align: center;
 `;
 
-export default function Group() {
+export default function Life() {
   return (
     <>
       <Maindiv>
-        <MainHeader> 당신의 하루를 디자인 해보세요 🚀</MainHeader>
-        <Imgdiv src={design} />
+        <MainHeader>
+          {' '}
+          당신의 삶을 건강하게 채워보세요🌟
+          {/* <img src={health} width="30px" /> */}
+        </MainHeader>
+        <Imgdiv src={fitness} />
         {/* <Introdiv>하루를 디자인해보세요 🍏</Introdiv> */}
         <DiaryButton>다이어리 보러가기</DiaryButton>
         <TodoButton> 하루 일과 작성하기</TodoButton>
