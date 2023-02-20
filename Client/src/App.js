@@ -10,6 +10,7 @@ import Main from './Pages/Main';
 import Study from './Pages/Study';
 import Board from './Pages/Board';
 import Navbar from './components/Navbar';
+import Board3 from './Pages/Board3';
 
 import MyPage from './Pages/MyPage';
 import Group_page from './Pages/Group_page';
@@ -45,6 +46,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/board" element={<Board />} />
+            <Route path="/board3" element={<Board3 />} />
             <Route path="/studygroup" element={<Group_page />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
