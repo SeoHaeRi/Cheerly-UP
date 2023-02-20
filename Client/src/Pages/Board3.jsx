@@ -1,13 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
 
 function Board() {
-  const navigate = useNavigate();
-  const postRef = useRef([]);
   const [posts, setPosts] = useState([]);
-
   useEffect(() => {
     axios.get('http://localhost:3030/board').then((res) => {
       setPosts(res.data);
@@ -15,35 +11,18 @@ function Board() {
     });
   }, []);
 
-  const onClickPost = () => {
-    //console.log(postRef.current);
-    // const postID = postRef.current.querySelector('#postID').innerText;
-    // // axios.get(`http://localhost:3030/:${post_id}`, {
-    // //   postId: post_id,
-    // // });
-    // navigate(`/board/:id`, {
-    //   state: {
-    //     data: posts,
-    //   },
-    // });
-  };
-
-  //data: posts.filter((el) => el.post_id === Number(postID)),
   return (
-    <>
-      <button>글 쓰기</button>
-      <Container>
-        <GlobalStyle />
-        {posts.map((post, index) => (
-          <Post key={index} onClick={onClickPost} ref={postRef}>
-            <Title id="postID">{post.post_id}</Title>
-            <Title id="postDate">{post.date}</Title>
-            <Title id="postTitle">{post.title}</Title>
-            <Body id="postContent">{post.content} </Body>
-          </Post>
-        ))}
-      </Container>
-    </>
+    <Container>
+      <GlobalStyle />
+      {posts.map((post, index) => (
+        <Post key={index}>
+          <Title>{post.post_id}</Title>
+          <Title>{post.date}</Title>
+          <Title>{post.title}</Title>
+          <Body>{post.content} </Body>
+        </Post>
+      ))}
+    </Container>
   );
 }
 

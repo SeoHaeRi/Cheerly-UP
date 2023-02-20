@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 // import Study  from '../assets/study.svg';
-import design from '../assets/design.svg';
+import fitness from '../assets/fitness.svg';
 import Stopwatch from '../components/stopwatch';
 import TodoList from '../components/TodoList';
 import { createGlobalStyle } from 'styled-components';
@@ -9,10 +9,12 @@ import TodoTemplate from '../components/TodoTemplate';
 import TodoHead from '../components/TodoHead';
 import TodoCreate from '../components/TodoCreate';
 import { TodoProvider } from '../store/TodoContext';
+import health from '../assets/health.svg';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background: #e0f1ff;
+    /* background: #ffffff;
+    background: #ffa700;  */
   }
 `;
 
@@ -26,44 +28,17 @@ const Earlydiv = styled.div`
   left: 65%;
 `;
 
-const Titlediv = styled.div`
-  background-color: #1363df;
-  color: white;
-  text-align: center;
-  display: flex;
-  align-content: center;
-  /* justify-content: center; */
-  margin: 50px;
-  /* padding: 50px; */
-  width: 30rem;
-  height: 6rem;
-  border-radius: 20px;
-`;
-
 const Imgdiv = styled.img`
   position: absolute;
   /* top: 15%; */
+  /* right: 10%; */
   left: 15%;
   width: 30rem;
   height: 30rem;
 `;
 
-const Introdiv = styled.div`
-  position: absolute;
-  background-color: skyblue;
-  top: 60%;
-  left: 10%;
-  color: white;
-  text-align: center;
-  align-items: center;
-  width: 40rem;
-  /* height: 8rem; */
-  font-size: 2rem;
-  border-radius: 10px;
-`;
-
 const TodoButton = styled.button`
-  background-color: #1363df;
+  background-color: #e91e63;
   width: 22rem;
   height: 4rem;
   position: absolute;
@@ -73,7 +48,7 @@ const TodoButton = styled.button`
 `;
 
 const DiaryButton = styled.button`
-  background-color: #1363df;
+  background-color: #e91e63;
   width: 22rem;
   height: 4rem;
   position: absolute;
@@ -83,51 +58,35 @@ const DiaryButton = styled.button`
 `;
 
 const MainHeader = styled.div`
-  background-color: #1363df;
+  background-color: #e91e63;
   width: 100%;
   /* height: 4rem; */
   margin-top: 30px;
   padding: 20px;
   color: white;
-  font-size: 1.75rem;
+  font-size: 1.7rem;
   text-align: center;
 `;
 
-const DiaryDiv = styled.div`
-  color: #1363fd;
-  font-size: 1rem;
-  text-align: center;
-  width: 35rem;
-  height: 30rem;
-  top: 8rem;
-  position: relative; //버튼 위치를 위한 설정
-  right: -25%;
-  bottom: 50px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.04);
-  margin: 0 auto; //중앙 정렬
-  margin-top: 96px;
-  margin-bottom: 32px;
-  display: flex;
-  flex-direction: column;
-`;
-
-export default function Group() {
+export default function Life() {
   const [viewCalendar, setViewCalendar] = useState(true);
 
   return (
     <>
       <Maindiv>
-        <MainHeader> 당신의 하루를 디자인 해보세요 🚀</MainHeader>
-        <Imgdiv src={design} />
+        <MainHeader>
+          {' '}
+          당신의 삶을 건강하게 채워보세요🌟
+          {/* <img src={health} width="30px" /> */}
+        </MainHeader>
+        <Imgdiv src={fitness} />
         {/* <Introdiv>하루를 디자인해보세요 🍏</Introdiv> */}
         <DiaryButton onClick={() => setViewCalendar(true)}>
-          하루 일과 작성하기
+          오늘의 삶 기록하기
         </DiaryButton>
         <TodoButton onClick={() => setViewCalendar(false)}>
           {' '}
-          공부 기록하러 가기
+          이전의 활동 보러가기
         </TodoButton>
 
         <Earlydiv>
@@ -145,12 +104,7 @@ export default function Group() {
           </TodoTemplate>
         </TodoProvider>
       ) : (
-        <>
-          {' '}
-          <GlobalStyle />
-          <Stopwatch />
-          <DiaryDiv> 기록용 다이어리 </DiaryDiv>
-        </>
+        <Stopwatch />
       )}
     </>
   );
