@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Group from './Pages/Group';
 import Signup from './components/Signup';
+import SignUp2 from './components/Signup2'
 import Signin from './components/Signin';
+import Signin2 from './components/Signin2';
 import Main from './Pages/Main';
 import Study from './Pages/Study';
 import Board from './Pages/Board';
@@ -49,7 +51,11 @@ function App() {
             <Route path="/board3" element={<Board3 />} />
             <Route path="/studygroup" element={<Group_page />} />
             <Route path="/signin" element={<Signin />} />
+            <Route path="/signin" element={<Signin2 />} />
+
             <Route path="/signup" element={<Signup />} />
+            <Route path="/signup2" element={<SignUp2 />} />
+            
             <Route path="/study" element={<Study />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/chat" element={<Chat />} />

@@ -4,12 +4,13 @@ import '../static/Signup.css';
 import axios from "axios";
 
 const submit = async (values) => {
-  const {email, username, password} = values;
+  const {id, password, nickname} = values;
   try {
     await axios.post("http://localhost:3030/user/signup", {
-      email,
-      username,
+      
+      id,
       password,
+      nickname,
     });
     // toast.success(<h3>회원가입이 완료되었습니다.<br/>로그인 하세요😎</h3>, {
     //   position: "top-center",
@@ -58,29 +59,29 @@ export default function Signin() {
           />
 
           {/* <label for="password" className="visually"></label> */}
-          <input
+          {/* <input
             id="password"
             className="card__input"
             type="password"
             required
             placeholder="PW"
             name="pw"
-          />
+          /> */}
           {/* <label for="nickName" className="visually"></label> */}
           <input
-            id="nickName"
+            id="nickname"
             className="card__input"
             type="text"
             required
             placeholder="닉네임"
-            name="nickName"
+            name="nickname"
           />
 
-          <button className="card__button" type="button">
+          <button className="card__button" type="sumbit">
             <span>Join us</span>
           </button>
 
-          <button className="card__button1" type="button">
+          <button className="card__button1" type="button" onClick={submit}>
             <span>카카오로 로그인 하기</span>
           </button>
         </form>
