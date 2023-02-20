@@ -26,12 +26,12 @@ export class PostsService {
   }
 
   //Get :id  - 특정 게시글
-  async getOne(postId: number) {
+  async getOne(postId: string) {
     const post = await this.boardRepository
       .createQueryBuilder('p')
       .select(['p.post_id', 'p.title', 'p.content', 'p.date', 'p.userId'])
       .where('p.post_id = :post_id', {
-        post_id: postId,
+        post_id: Number(postId),
       })
       .getOne();
 

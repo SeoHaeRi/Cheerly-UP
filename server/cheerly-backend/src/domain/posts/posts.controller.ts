@@ -28,9 +28,13 @@ export class PostsController {
   }
 
   //Get - 특정 게시글
-  @Get('/:postId')
-  async getOne(@Param('postId') postId: number, @Req() req, @Res() res) {
-    const post = await this.postsService.getOne(postId);
+  @Get('/:id')
+  async getOne(@Param('id') postId: string, @Req() req, @Res() res) {
+    const param = postId.slice(1);
+    console.log(param);
+
+    const post = await this.postsService.getOne(param);
+    res.send(post);
     return post;
   }
 
@@ -44,12 +48,14 @@ export class PostsController {
   }
 
   //Patch - 게시글 수정 :id -> 게시글 번호
-  @Patch('/:id')
+  @Patch('edit/:id')
   async updatePostById(
     @Param('id', ParseIntPipe) postId: number,
     @Body() updatePostDto: UpdatePostDto,
   ) {
-    await this.postsService.updatePost(postId, updatePostDto);
+    const editPost = await this.postsService.updatePost(postId, updatePostDto);
+    console.log(editPost);
+    return editPost;
   }
 
   @Delete('/:id')
