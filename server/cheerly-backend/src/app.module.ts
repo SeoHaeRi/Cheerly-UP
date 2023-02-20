@@ -11,6 +11,8 @@ import { User } from './entities/User.entity';
 import { Post } from './entities/Post.entity';
 import { Comment } from './entities/Comment.entity';
 import { Study } from './entities/Study.entity';
+import { Chat } from './entities/Chat.entity';
+
 
 @Module({
   imports: [
@@ -26,7 +28,7 @@ import { Study } from './entities/Study.entity';
       password: process.env.DB_PASSWD,
       database: process.env.DB_DATABASE,
       // entities: [__dirname + '/entities/*.entity.js'],
-      entities: [User, Post, Comment, Study],
+      entities: [User, Post, Comment, Study, Chat],
       logging: true,
     }),
     UserModule,

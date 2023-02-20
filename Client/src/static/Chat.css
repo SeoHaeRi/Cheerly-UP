@@ -1,0 +1,202 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/*
+초기화
+*/
+.chat-wrap {
+  margin: auto;
+  background-color: #1363df;
+  color: white;
+  width: 50vw;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.header {
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+#chat {
+  display: inline-block;
+  padding: 10px;
+}
+.send {
+  color: white;
+  max-width: 255px;
+  border-radius: 16px;
+  padding: 10px 20px;
+  background-color: #1982fc;
+}
+
+.received {
+  max-width: 255px;
+  padding: 10px 20px;
+  background-color: #e5e5ea;
+  border-radius: 16px;
+  color: black;
+}
+
+#chat-input {
+  color: black;
+  width: 38vw;
+  height: 5vh;
+  border: none;
+  font-size: 15px;
+  position: fixed;
+  bottom: 1vh;
+  left: 30vw;
+  border-radius: 4px;
+}
+
+#members {
+  position: fixed;
+  bottom: 4vh;
+  left: 26vw;
+  width: 3vw;
+}
+
+#msg-btn {
+  all: unset;
+  background-color: #e5e5ea;
+  width: 60px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  color: #1982fc;
+  font-size: 15px;
+  text-align: center;
+  position: fixed;
+  bottom: 2vh;
+  left: 70vw;
+}
