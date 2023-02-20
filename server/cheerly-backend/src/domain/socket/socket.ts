@@ -30,14 +30,14 @@ export class MyGateWay implements OnModuleInit, OnGatewayDisconnect {
   @SubscribeMessage('newMessage')
   onNewMessage(@MessageBody() body: any) {
     console.log(body);
-    // this.server.emit('onMessage', {
-    //   msg: 'New Message',
-    //   content: body,
-    // });
+    this.server.emit('onMessage', {
+      msg: 'New Message',
+      content: body,
+    });
   }
 
-  @SubscribeMessage('room')
-  joinRoom(socket: Socket, roomId: string) {
-    socket.join(roomId);
-  }
+  // @SubscribeMessage('room')
+  // joinRoom(socket: Socket, roomId: string) {
+  //   // socket.join(roomId);
+  // }
 }
