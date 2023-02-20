@@ -1,145 +1,126 @@
-import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Formik, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { Button, TextField } from '@mui/material';
-// import {useNavigate} from "react-router-dom";
-import '../static/Signup2.css';
+import axios from "axios";
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {Formik, ErrorMessage} from "formik";
+import * as Yup from "yup";
+import {Button, TextField} from "@mui/material";
+import {useNavigate} from "react-router-dom";
+import "../static/Signup2.css";
 
 const SignUp = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
-    email: Yup.string().required('아이디를 입력하세요!'),
-    username: Yup.string()
-      .min(2, '닉네임은 최소 2글자 이상입니다!')
-      .max(10, '닉네임은 최대 10글자입니다!')
+    id: Yup.string().required("아이디를 입력하세요"),
+    nickname: Yup.string()
+      .min(2, "닉네임은 최소 2글자 이상입니다!")
+      .max(10, "닉네임은 최대 10글자입니다!")
       .matches(
         /^[가-힣a-zA-Z][^!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?\s]*$/,
-        '닉네임에 특수문자가 포함되면 안되고 숫자로 시작하면 안됩니다!',
+        "닉네임에 특수문자가 포함되면 안되고 숫자로 시작하면 안됩니다!"
       )
-      .required('닉네임을 입력하세요!'),
-    password: Yup.string()
-      .min(8, '비밀번호는 최소 8자리 이상입니다')
-      .max(16, '비밀번호는 최대 16자리입니다!')
-      .required('패스워드를 입력하세요!')
+      .required("닉네임을 입력하세요!"),
+    pw: Yup.string()
+      .min(8, "비밀번호는 최소 8자리 이상입니다")
+      .max(16, "비밀번호는 최대 16자리입니다!")
+      .required("패스워드를 입력하세요!")
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[^\s]*$/,
-        '알파벳, 숫자, 공백을 제외한 특수문자를 모두 포함해야 합니다!',
+        "알파벳, 숫자, 공백을 제외한 특수문자를 모두 포함해야 합니다!"
       ),
-    password2: Yup.string()
-      .oneOf([Yup.ref('password'), null], '비밀번호가 일치하지 않습니다!')
-      .required('필수 입력 값입니다!'),
+    pw2: Yup.string()
+      .oneOf([Yup.ref("pw"), null], "비밀번호가 일치하지 않습니다!")
+      .required("필수 입력 값입니다!"),
   });
   const submit = async (values) => {
-    const { email, username, password } = values;
+    const {id, nickname, pw} = values;
     try {
-      await axios.post('http://localhost:3030/user/signup', {
-        email,
-        username,
-        password,
+      await axios.post("http://localhost:3030/user/signup", {
+        id,
+        nickname,
+        pw,
       });
-      toast.success(
-        <h3>
-          회원가입이 완료되었습니다.
-          <br />
-          로그인 하세요😎
-        </h3>,
-        {
-          position: 'top-center',
-          autoClose: 2000,
-        },
-      );
-      setTimeout(() => {
-        // navigate("/login");
-        console.log('hi');
+      toast.success(<h3>회원가입이 완료되었습니다.<br/>로그인 하세요😎</h3>, {
+        position: "top-center",
+        autoClose: 2000
+      });
+      setTimeout(()=> {
+        navigate("http://localhost:3000/signin");
       }, 2000);
+
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
-      toast.error(e.response.data.message + '😭', {
-        position: 'top-center',
+      toast.error(e.response.data.message + "😭", {
+        position: "top-center",
       });
     }
   };
 
-  // axios
-  //       .post('http://52.78.94.205:4000/join', {
-  //         id: idRef.current.value,
-  //         pw: pwRef.current.value,
-  //         nickName: nickNameRef.current.value,
-  //       })
-  //       .then((res) => {
-  //         if (res.data.check == true) {
-  //           alert(res.data.msg);
-  //           sessionStorage.setItem('user_id', res.data.userInfo.user_id);
-  //           sessionStorage.setItem('user_pw', res.data.userInfo.user_pw);
-  //           sessionStorage.setItem(
-  //             'user_nickname',
-  //             res.data.userInfo.user_nickname
-  //           );
-  //           window.location.href = '/';
-  //         } else {
-  //           alert(res.data.msg);
-  //         }
-
   return (
     <Formik
       initialValues={{
-        email: '',
-        username: '',
-        password: '',
-        password2: '',
+        id: "",
+        nickname: "",
+        pw: "",
+        pw2: "",
       }}
       validationSchema={validationSchema}
       onSubmit={submit}
       validateOnMount={true}
     >
-      {({ values, handleSubmit, handleChange, errors }) => (
+      {({values, handleSubmit, handleChange, errors}) => (
         <div className="signup-wrapper">
-          <ToastContainer />
+          <ToastContainer/>
           <form onSubmit={handleSubmit} autoComplete="off">
             <div className="input-forms">
               <div className="input-forms-item">
-                <div className="input-label">아이디</div>
+                <div className="input-label">이메일</div>
                 <TextField
-                  value={values.userid}
-                  name="userid"
+                  value={values.id}
+                  name="id"
                   variant="outlined"
                   onChange={handleChange}
                 />
-                <div className="error-message">{errors.email}</div>
+                <div className="error-message">
+                  {errors.id}
+                </div>
               </div>
               <div className="input-forms-item">
                 <div className="input-label">닉네임</div>
                 <TextField
-                  value={values.username}
-                  name="username"
+                  value={values.nickname}
+                  name="nickname"
                   variant="outlined"
                   onChange={handleChange}
                 />
-                <div className="error-message">{errors.username}</div>
+                <div className="error-message">
+                  {errors.nickname}
+                </div>
               </div>
               <div className="input-forms-item">
                 <div className="input-label">비밀번호</div>
                 <TextField
-                  value={values.password}
-                  name="password"
+                  value={values.pw}
+                  name="pw"
                   variant="outlined"
                   type="password"
                   onChange={handleChange}
                 />
-                <div className="error-message">{errors.password}</div>
+                <div className="error-message">
+                  {errors.pw}
+                </div>
               </div>
               <div className="input-forms-item">
                 <div className="input-label">비밀번호 확인</div>
                 <TextField
                   value={values.password2}
-                  name="password2"
+                  name="pw2"
                   variant="outlined"
                   type="password"
                   onChange={handleChange}
                 />
-                <div className="error-message">{errors.password2}</div>
+                <div className="error-message">
+                  {errors.pw2}
+                </div>
               </div>
               <Button
                 color="primary"
