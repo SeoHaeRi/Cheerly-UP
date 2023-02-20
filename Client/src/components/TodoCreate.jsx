@@ -7,12 +7,19 @@ import { useTodoDispatch, useTodoNextId } from '../store/TodoContext'; //input�
 //  할 일을 입력할 수 있는 폼도 보여준다.
 
 const CircleButton = styled.button`
-  background: deepskyblue;
-  &:hover {
-    background: #4583df;
+  /* background: #68c768; */
+  background: #1368df;
+  /* &:hover {
+    background: #88ef88;
   }
   &:active {
-    background: #1050b0;
+    background: #4c954c;
+  } */
+  &:hover {
+    background: #5193f0;
+  }
+  &:active {
+    background: #0f5bc5;
   }
 
   z-index: 5;

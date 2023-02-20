@@ -36,6 +36,7 @@ export class MyGateWay implements OnModuleInit, OnGatewayDisconnect {
   @SubscribeMessage('newMessage')
   onNewMessage(@MessageBody() body: any, socket: Socket) {
     console.log(body);
+
     // return { event: 'newMessage', data: body };
     // this.server.emit('onMessage', {
     //   msg: 'New Message',
@@ -61,5 +62,16 @@ export class MyGateWay implements OnModuleInit, OnGatewayDisconnect {
   //   })
 
   //   this.server.on('leave-room')
+
+ /*
+ this.server.emit('onMessage', {
+      msg: 'New Message',
+      content: body,
+    });
+  }
+*/
+  // @SubscribeMessage('room')
+  // joinRoom(socket: Socket, roomId: string) {
+  //   // socket.join(roomId);
   // }
 }

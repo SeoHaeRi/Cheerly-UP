@@ -17,22 +17,25 @@ const Maindiv = styled.div`
 const Infdiv = styled.img`
   position: relative;
   top: 10%;
-  width: 20%;
+  width: 40%;
 `;
 
 const GroupHeader = styled.div`
-  position: relative;
   width: 100%;
   /* height: 4rem; */
-  /* top: 10px; */
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  /* background-color: #44adff; */
-  font-size: 2rem;
+  margin-top: 30px;
+  padding: 20px;
   color: white;
-  background-color: #66bcff;
+  font-size: 1.75rem;
   text-align: center;
+
+  /* position: relative; */
+
+  /* align-items: center;
+  justify-content: center;
+  text-align: center; */
+  /* background-color: #44adff; */
+  background-color: #66bcff;
 `;
 
 const Titlediv = styled.div`
@@ -43,7 +46,7 @@ const Titlediv = styled.div`
   align-content: center;
   margin: 40px;
   width: 39rem;
-  left: 3rem;
+  left: 8.5rem;
   height: 6.5rem;
   border-radius: 20px;
   border: #b6dfff solid 4px;
@@ -55,6 +58,7 @@ const Groupbadge = styled.p`
   /* left: 50%; */
   font-size: 1rem;
   background-color: #66bcff;
+  padding: 5px;
   height: 30px;
   width: 38.8rem;
   text-align: center;
@@ -63,16 +67,32 @@ const Groupbadge = styled.p`
 const Grouptitle = styled.p`
   color: #44adff;
   font-size: 1.15rem;
-  top: 40%;
+  top: 50%;
   vertical-align: center;
   font-weight: 800;
   position: relative;
 `;
 const Groupurl = styled.a`
-  color: blue;
+  /* color: white;
+  text-align: center;
+  padding: 10px;
   position: absolute;
+  top: 3rem;
   left: 30rem;
   font-size: 1rem;
+  width: 10rem;
+  height: 2rem;
+  border-radius: 10px; */
+  /* background-color: skyblue; */
+  color: white;
+  text-align: center;
+  /* padding: 10px; */
+  position: relative;
+  top: 2.5rem;
+  /* left: 0rem; */
+  font-size: 1rem;
+  width: 7rem;
+  border-radius: 10px;
 `;
 
 const Imgdiv = styled.img`
@@ -175,18 +195,17 @@ export default function Group_page() {
   // 값이 유효할때
   return (
     <Maindiv>
-      <GroupHeader>당신에게 맞는 모임, 여기서 찾아보기 ✍️</GroupHeader>
+      <GroupHeader>당신에게 필요한 모임, 여기서 찾아보세요 ✍️</GroupHeader>
       {currentPosts && groups.length > 0 ? (
         currentPosts.map((group, index) => (
           <Titlediv key={index}>
-            <Infdiv src={inf} />
+            <Groupurl href={group.url} target="_blank">
+              <Infdiv src={inf}></Infdiv>
+            </Groupurl>
             <Groupbadge>{group.badge}</Groupbadge>
             <br />
             <Grouptitle>{group.title}</Grouptitle>
             <br />
-            <Groupurl href={group.url} target="_blank">
-              Inflearn
-            </Groupurl>
           </Titlediv>
           // <div>
           //   <div>{item.title}</div>

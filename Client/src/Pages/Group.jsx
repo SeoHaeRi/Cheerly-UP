@@ -13,15 +13,18 @@ const Earlydiv = styled.div`
   top: 18%;
   left: 10%;
 `;
-const Mainp = styled.p`
-  position: relative;
-  top: 15rem;
-  left: 15%;
-  color: #1363df;
-  font-size: 3.5rem;
-`;
 
 const GroupHeader = styled.div`
+  background-color: skyblue;
+  width: 100%;
+  height: 4rem;
+  margin-top: 30px;
+  padding: 10px;
+  color: white;
+  font-size: 1.7rem;
+  text-align: center;
+
+  /* 
   position: relative;
   width: 100%;
   height: 4rem;
@@ -29,12 +32,11 @@ const GroupHeader = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  /* background-color: #44adff; */
   font-size: 2rem;
   font-weight: 900;
   color: white;
   background-color: skyblue;
-  text-align: center;
+  text-align: center; */
 `;
 
 const Titlediv = styled.div`

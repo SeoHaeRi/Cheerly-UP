@@ -26,8 +26,12 @@ import { setUserInfo } from './store/module/user';
 import Chat from './Pages/Chat';
 import Chatroom from './Pages/Chatroom';
 import { io } from 'socket.io-client';
+
 import BoardDetail from './Pages/BoardDetail';
 import BoardDetailEdit from './Pages/BoardDetailEdit';
+
+import Life from './Pages/Life';
+
 
 function App() {
   const socket = io('http://localhost:3030', { transports: ['websocket'] });
@@ -60,6 +64,7 @@ function App() {
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/study" element={<Study />} />
+            <Route path="/life" element={<Life />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/chatroom" element={<Chatroom />}></Route>

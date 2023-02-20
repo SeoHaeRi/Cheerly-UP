@@ -9,7 +9,8 @@ const TodoHeadBlock = styled.div`
   h1 {
     margin: 0px;
     font-size: 36px;
-    color: #68c768;
+    /* color: #68c768; */
+    color: #1368df;
   }
   .day {
     margin-top: 1.2rem;
@@ -19,12 +20,23 @@ const TodoHeadBlock = styled.div`
   }
 
   .tasks-left {
-    color: #ff8558;
+    /* color: #ff8558;
     text-align: center;
 
     font-size: 18px;
     margin-top: 40px;
-    font-weight: bold;
+    font-weight: bold; */
+    color: white;
+    margin-left: 22%;
+    width: 60%;
+    height: 60px;
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+    margin-top: 25px;
+    /* font-weight: bold; */
+    background: #ff5722;
+    border-radius: 20px;
   }
 `;
 
@@ -46,7 +58,7 @@ export default function TodoHead() {
     <TodoHeadBlock>
       <h1>
         {' '}
-        <img src={cal} width="50px" alt="cal" /> {dateString}
+        <img src={cal} width="50px" alt="cal" height="50px;" /> {dateString}
       </h1>
       <div className="day"> 오늘의 요일 : {dayName} </div>
       {/* <h1>2023년 0월 00일</h1>
