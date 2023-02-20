@@ -6,19 +6,19 @@ import { io } from 'socket.io-client';
 
 //Chatroom 페이지에서 유저 정보, 방 번호 받아오기
 export default function Chat() {
-  const socket = io('http://localhost:3030', { transports: ['websocket'] });
+  const socket = io('http://localhost:3030');
 
   // const [state, setState] = useState({ message: '', name: '' });
   // const [chat, setChat] = useState([]);
   const room_number = '';
-  const user_name = '';
+  const user_name = '유저네임';
   const msgRef = useRef();
   const noticeRef = useRef();
 
   //connection - 서버와 소켓 연결
-  socket.on('connection', (socket) => {
-    console.log('Server Socket Connected!');
-  });
+  // socket.on('connection', (socket) => {
+  //   console.log('Server Socket Connected!');
+  // });
 
   //info - 사용자 소켓 아이디 가져오기
   let user_socketID = '';
@@ -39,13 +39,13 @@ export default function Chat() {
       alert('메시지를 입력해주세요.');
     }
 
-    const container = document.createElement('div');
-    container.classList.add('send');
-    container.innerText = sendMsg;
-    const chat = document.querySelector('#chat');
-    chat.appendChild(container);
+    // const container = document.createElement('div');
+    // container.classList.add('send');
+    // container.innerText = sendMsg;
+    // const chat = document.querySelector('#chat');
+    // chat.appendChild(container);
 
-    socket.emit('newMessage', {
+    socket.emit('msgToServer', {
       msg: sendMsg,
       socketID: user_socketID,
       time: new Date(),
@@ -54,7 +54,15 @@ export default function Chat() {
     });
   };
 
-  socket.on('onMessage', (payload) => {});
+  socket.on('msgToClient', (payload) => {
+    console.log(payload);
+
+    const container = document.createElement('div');
+    container.classList.add('received');
+    container.innerText = payload.msg;
+    const chat = document.querySelector('#chat');
+    chat.appendChild(container);
+  });
 
   return (
     <>
