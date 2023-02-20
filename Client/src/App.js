@@ -17,12 +17,14 @@ import Error from './Pages/Error';
 import { setUserInfo } from './store/module/user';
 import Chat from './Pages/Chat';
 import Chatroom from './Pages/Chatroom';
+import { io } from 'socket.io-client';
 
 function App() {
+  const socket = io('http://localhost:3030', { transports: ['websocket'] });
+
   const [init, setInit] = useState(true);
 
   const dispatch = useDispatch();
-
   const userInfo = {
     id: sessionStorage.getItem('id'),
     nickname: sessionStorage.getItem('nickname'),

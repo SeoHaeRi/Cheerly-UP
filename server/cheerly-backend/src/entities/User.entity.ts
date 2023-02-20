@@ -9,6 +9,7 @@ import {
 import { Post } from './Post.entity';
 import { Study } from './Study.entity';
 import { Comment } from './Comment.entity';
+import { Chat } from './Chat.entity';
 
 @Entity({ name: 'User' })
 export class User {
@@ -44,4 +45,7 @@ export class User {
 
   @OneToMany(() => Study, (comment) => comment.user, { cascade: true })
   comments: Comment[];
+
+  @OneToMany(() => Chat, (chat) => chat.user, { cascade: true })
+  chats: Chat[];
 }

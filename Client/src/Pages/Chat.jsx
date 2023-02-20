@@ -1,75 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // import { Reset } from 'styled-reset';
 import styled from 'styled-components';
+import '../static/Chat.css';
 import { io } from 'socket.io-client';
 
+//Chatroom 페이지에서 유저 정보, 방 번호 받아오기
 export default function Chat() {
-  const Chatdiv = styled.div`
-    background-color: #1363df;
-    color: white;
-    width: 500px;
-    padding: 20px;
-    height: 70vh;
-    overflow-y: auto;
-  `;
-
-  const Headerdiv = styled.div`
-    color: white;
-    font-size: 35px;
-    padding: 10px;
-  `;
-
-  const Senddiv = styled.div`
-    color: white;
-    text-align: right;
-    position: relative;
-    max-width: 255px;
-    border-radius: 16px;
-    padding: 10px 20px;
-    background-color: #1982fc;
-    float: right;
-  `;
-
-  const Buttondiv = styled.button`
-    position: absolute;
-    bottom: 7vh;
-    right: 55vw;
-    background-color: #1982fc;
-    width: 57px;
-    height: 30px;
-    border: none;
-    border-radius: 10%;
-    color: white;
-    font-size: 15px;
-  `;
-
-  const Receiveddiv = styled.div`
-    position: relative;
-    max-width: 255px;
-    padding: 10px 20px;
-    background-color: #e5e5ea;
-    float: left;
-    border-radius: 16px;
-    color: black;
-  `;
-
-  const Inputdiv = styled.input`
-    position: absolute;
-    bottom: 7vh;
-    color: white;
-    width: 35vw;
-    height: 5vh;
-    border: none;
-    background-color: transparent;
-    font-size: 15px;
-  `;
-
-  /////
-
   const socket = io('http://localhost:3030', { transports: ['websocket'] });
 
-  const [state, setState] = useState({ message: '', name: '' });
-  const [chat, setChat] = useState([]);
+  // const [state, setState] = useState({ message: '', name: '' });
+  // const [chat, setChat] = useState([]);
+  const room_number = '';
+  const user_name = '';
+  const msgRef = useRef();
+  const noticeRef = useRef();
 
   //connection - 서버와 소켓 연결
   socket.on('connection', (socket) => {
@@ -77,32 +21,79 @@ export default function Chat() {
   });
 
   //info - 사용자 소켓 아이디 가져오기
-  socket.on('info', (socket) => {
-    console.log(socket);
+  let user_socketID = '';
+  socket.on('info', (socketID) => {
+    user_socketID = socketID;
+    const userEnterMsg = document.createElement('h5');
+    userEnterMsg.textContent = socketID + '님이 입장하셨습니다.';
+    const notice = document.querySelector('.notice');
+    notice.appendChild(userEnterMsg);
+    console.log(socketID);
   });
+
+  //메시지 보내기 버튼 클릭시
+  const handleSubmitNewMessage = () => {
+    const sendMsg = msgRef.current.value;
+
+    if (sendMsg === '' || sendMsg === undefined) {
+      alert('메시지를 입력해주세요.');
+    }
+
+    const container = document.createElement('div');
+    container.classList.add('send');
+    container.innerText = sendMsg;
+    const chat = document.querySelector('#chat');
+    chat.appendChild(container);
+
+    socket.emit('newMessage', {
+      msg: sendMsg,
+      socketID: user_socketID,
+      time: new Date(),
+      username: user_name,
+      room_number: room_number,
+    });
+  };
+
+  socket.on('onMessage', (payload) => {});
 
   return (
     <>
-      <Chatdiv className="chat-wrap">
-        <Headerdiv className="header">
-          <h1>Message</h1>
-        </Headerdiv>
-        <div className="notice"></div>
+      <div className="chat-wrap">
+        <div className="header">
+          <h1>Chat</h1>
+          <h5>방번호: 채팅방 이름</h5>
+          <h6>n명 참여중</h6>
+        </div>
+        <div className="notice" ref={noticeRef}></div>
+        <div id="chat">
+          <div className="send-container">
+            {/* <div className="usr-sender">보내는 사람 이름</div> */}
+            <div className="send"> 안녕하세요.</div>
+            {/* <span className="send-time">시간</span> */}
+          </div>
 
-        <Senddiv className="send">안녕하세요.</Senddiv>
-        <Receiveddiv className="received">누구세요</Receiveddiv>
+          <div className="received-container">
+            {/* <h6 className="receiver">받는 사람 이름</h6> */}
+            <div className="received"> 누구세요</div>
+            {/* <span className="received-time">시간</span> */}
+          </div>
+        </div>
 
-        <label htmlFor="chat-input"></label>
-        <Inputdiv
+        <select id="members">
+          <option value="전체">전체</option>
+        </select>
+        <input
           type="text"
           name="chat-input"
           id="chat-input"
           placeholder="채팅을 입력하세요"
+          ref={msgRef}
         />
-        <form>
-          <Buttondiv onclick="btnSend()">send</Buttondiv>
-        </form>
-      </Chatdiv>
+
+        <button id="msg-btn" onClick={() => handleSubmitNewMessage()}>
+          send
+        </button>
+      </div>
     </>
   );
 }
