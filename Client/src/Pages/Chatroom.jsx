@@ -12,6 +12,14 @@ export default function Chatroom() {
       alert('채팅방의 이름을 입력해주세요!');
   };
 
+  const onClickEnter = () => {
+    socket.on('join', ({ username, room_number }) => {
+      socket.join(room_number);
+
+      socket.emit();
+    });
+  };
+
   return (
     <div id="wrap">
       <div id="header">채팅방 목록</div>
@@ -32,7 +40,9 @@ export default function Chatroom() {
             <td>방이름</td>
             <td>
               {' '}
-              <button id="btn">입장하기</button>
+              <button onClick={onClickEnter} id="btn">
+                입장하기
+              </button>
             </td>
           </tr>
         </tbody>

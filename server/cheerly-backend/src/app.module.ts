@@ -13,7 +13,6 @@ import { Comment } from './entities/Comment.entity';
 import { Study } from './entities/Study.entity';
 import { Chat } from './entities/Chat.entity';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({

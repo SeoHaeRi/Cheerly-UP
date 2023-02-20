@@ -1,5 +1,12 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  NavLink,
+  useParams,
+} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,7 +17,6 @@ import Main from './Pages/Main';
 import Study from './Pages/Study';
 import Board from './Pages/Board';
 import Navbar from './components/Navbar';
-import Board3 from './Pages/Board3';
 
 import MyPage from './Pages/MyPage';
 import Group_page from './Pages/Group_page';
@@ -20,7 +26,12 @@ import { setUserInfo } from './store/module/user';
 import Chat from './Pages/Chat';
 import Chatroom from './Pages/Chatroom';
 import { io } from 'socket.io-client';
+
+import BoardDetail from './Pages/BoardDetail';
+import BoardDetailEdit from './Pages/BoardDetailEdit';
+
 import Life from './Pages/Life';
+
 
 function App() {
   const socket = io('http://localhost:3030', { transports: ['websocket'] });
@@ -47,7 +58,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/board" element={<Board />} />
-            <Route path="/board3" element={<Board3 />} />
+            <Route path="/board/:id" element={<BoardDetail />}></Route>{' '}
+            <Route path="/board/edit/:id" element={<BoardDetailEdit />}></Route>
             <Route path="/studygroup" element={<Group_page />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
