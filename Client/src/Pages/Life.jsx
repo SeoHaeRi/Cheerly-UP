@@ -60,7 +60,7 @@ const DiaryButton = styled.button`
 const MainHeader = styled.div`
   background-color: #e91e63;
   width: 100%;
-  height: 4rem;
+  /* height: 4rem; */
   margin-top: 30px;
   padding: 20px;
   color: white;
@@ -69,6 +69,8 @@ const MainHeader = styled.div`
 `;
 
 export default function Life() {
+  const [viewCalendar, setViewCalendar] = useState(true);
+
   return (
     <>
       <Maindiv>
@@ -79,22 +81,31 @@ export default function Life() {
         </MainHeader>
         <Imgdiv src={fitness} />
         {/* <Introdiv>하루를 디자인해보세요 🍏</Introdiv> */}
-        <DiaryButton>다이어리 보러가기</DiaryButton>
-        <TodoButton> 하루 일과 작성하기</TodoButton>
+        <DiaryButton onClick={() => setViewCalendar(true)}>
+          오늘의 삶 기록하기
+        </DiaryButton>
+        <TodoButton onClick={() => setViewCalendar(false)}>
+          {' '}
+          이전의 활동 보러가기
+        </TodoButton>
 
         <Earlydiv>
           {/* <Titlediv>시간을 기록해보세요!</Titlediv> */}
           {/* <Stopwatch /> */}
         </Earlydiv>
       </Maindiv>
-      <TodoProvider>
-        <GlobalStyle />
-        <TodoTemplate>
-          <TodoHead />
-          <TodoList />
-          <TodoCreate />
-        </TodoTemplate>
-      </TodoProvider>
+      {viewCalendar ? (
+        <TodoProvider>
+          <GlobalStyle />
+          <TodoTemplate>
+            <TodoHead />
+            <TodoList />
+            <TodoCreate />
+          </TodoTemplate>
+        </TodoProvider>
+      ) : (
+        <Stopwatch />
+      )}
     </>
   );
 }

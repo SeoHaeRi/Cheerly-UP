@@ -42,7 +42,7 @@ const Titlediv = styled.div`
 
 const Imgdiv = styled.img`
   position: absolute;
-  top: 15%;
+  /* top: 15%; */
   left: 15%;
   width: 30rem;
   height: 30rem;
@@ -85,7 +85,7 @@ const DiaryButton = styled.button`
 const MainHeader = styled.div`
   background-color: #1363df;
   width: 100%;
-  height: 4rem;
+  /* height: 4rem; */
   margin-top: 30px;
   padding: 20px;
   color: white;
@@ -93,29 +93,65 @@ const MainHeader = styled.div`
   text-align: center;
 `;
 
+const DiaryDiv = styled.div`
+  color: #1363fd;
+  font-size: 1rem;
+  text-align: center;
+  width: 35rem;
+  height: 30rem;
+  top: 8rem;
+  position: relative; //버튼 위치를 위한 설정
+  right: -25%;
+  bottom: 50px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.04);
+  margin: 0 auto; //중앙 정렬
+  margin-top: 96px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+`;
+
 export default function Group() {
+  const [viewCalendar, setViewCalendar] = useState(true);
+
   return (
     <>
       <Maindiv>
         <MainHeader> 당신의 하루를 디자인 해보세요 🚀</MainHeader>
         <Imgdiv src={design} />
         {/* <Introdiv>하루를 디자인해보세요 🍏</Introdiv> */}
-        <DiaryButton>다이어리 보러가기</DiaryButton>
-        <TodoButton> 하루 일과 작성하기</TodoButton>
+        <DiaryButton onClick={() => setViewCalendar(true)}>
+          하루 일과 작성하기
+        </DiaryButton>
+        <TodoButton onClick={() => setViewCalendar(false)}>
+          {' '}
+          공부 기록하러 가기
+        </TodoButton>
 
         <Earlydiv>
           {/* <Titlediv>시간을 기록해보세요!</Titlediv> */}
           {/* <Stopwatch /> */}
         </Earlydiv>
       </Maindiv>
-      <TodoProvider>
-        <GlobalStyle />
-        <TodoTemplate>
-          <TodoHead />
-          <TodoList />
-          <TodoCreate />
-        </TodoTemplate>
-      </TodoProvider>
+      {viewCalendar ? (
+        <TodoProvider>
+          <GlobalStyle />
+          <TodoTemplate>
+            <TodoHead />
+            <TodoList />
+            <TodoCreate />
+          </TodoTemplate>
+        </TodoProvider>
+      ) : (
+        <>
+          {' '}
+          <GlobalStyle />
+          <Stopwatch />
+          <DiaryDiv> 기록용 다이어리 </DiaryDiv>
+        </>
+      )}
     </>
   );
 }
