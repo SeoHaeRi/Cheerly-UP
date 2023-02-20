@@ -20,12 +20,23 @@ const TodoHeadBlock = styled.div`
   }
 
   .tasks-left {
-    color: #ff8558;
+    /* color: #ff8558;
     text-align: center;
 
     font-size: 18px;
     margin-top: 40px;
-    font-weight: bold;
+    font-weight: bold; */
+    color: white;
+    margin-left: 22%;
+    width: 60%;
+    height: 60px;
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+    margin-top: 25px;
+    /* font-weight: bold; */
+    background: #ff5722;
+    border-radius: 20px;
   }
 `;
 

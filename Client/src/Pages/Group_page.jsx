@@ -22,7 +22,7 @@ const Infdiv = styled.img`
 
 const GroupHeader = styled.div`
   width: 100%;
-  height: 4rem;
+  /* height: 4rem; */
   margin-top: 30px;
   padding: 20px;
   color: white;
@@ -46,7 +46,7 @@ const Titlediv = styled.div`
   align-content: center;
   margin: 40px;
   width: 39rem;
-  left: 7rem;
+  left: 8.5rem;
   height: 6.5rem;
   border-radius: 20px;
   border: #b6dfff solid 4px;
