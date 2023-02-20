@@ -13,6 +13,8 @@ import { Comment } from './entities/Comment.entity';
 import { Study } from './entities/Study.entity';
 import { Chat } from './entities/Chat.entity';
 import { SocketGateway } from './domain/socket/socket.gateway';
+import { ValidationPipe } from '@nestjs/common';
+import { APP_PIPE } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -38,6 +40,6 @@ import { SocketGateway } from './domain/socket/socket.gateway';
     CommentModule,
     SocketModule,
   ],
-  providers: [SocketGateway],
+  providers: [SocketGateway, { provide: APP_PIPE, useClass: ValidationPipe }],
 })
 export class AppModule {}

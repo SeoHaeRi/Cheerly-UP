@@ -15,27 +15,46 @@ function Board() {
     });
   }, []);
 
-  const onClickPost = () => {
-    //console.log(postRef.current);
+  const onClickPost = (post_id) => {
+    console.log(post_id);
+    // console.log(postRef.current);
     // const postID = postRef.current.querySelector('#postID').innerText;
     // // axios.get(`http://localhost:3030/:${post_id}`, {
     // //   postId: post_id,
     // // });
-    // navigate(`/board/:id`, {
-    //   state: {
-    //     data: posts,
-    //   },
-    // });
+    navigate(`/board/:${post_id}`, {
+      state: {
+        data: posts,
+      },
+    });
   };
 
   //data: posts.filter((el) => el.post_id === Number(postID)),
+
+  const onClickWrite = () => {
+    navigate('/board/write');
+  };
+
   return (
     <>
-      <button>글 쓰기</button>
+      <button
+        style={{
+          background: '#65B1F7',
+          height: '45px',
+          width: '100px',
+        }}
+        onClick={onClickWrite}
+      >
+        글 쓰기
+      </button>
       <Container>
         <GlobalStyle />
         {posts.map((post, index) => (
-          <Post key={index} onClick={onClickPost} ref={postRef}>
+          <Post
+            key={index}
+            onClick={() => onClickPost(post.post_id)}
+            ref={postRef}
+          >
             <Title id="postID">{post.post_id}</Title>
             <Title id="postDate">{post.date}</Title>
             <Title id="postTitle">{post.title}</Title>
