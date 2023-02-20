@@ -12,7 +12,7 @@ import { Post } from './entities/Post.entity';
 import { Comment } from './entities/Comment.entity';
 import { Study } from './entities/Study.entity';
 import { Chat } from './entities/Chat.entity';
-
+import { SocketGateway } from './domain/socket/socket.gateway';
 
 @Module({
   imports: [
@@ -38,5 +38,6 @@ import { Chat } from './entities/Chat.entity';
     CommentModule,
     SocketModule,
   ],
+  providers: [SocketGateway],
 })
 export class AppModule {}
