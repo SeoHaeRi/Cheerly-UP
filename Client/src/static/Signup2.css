@@ -1,0 +1,49 @@
+@media all and (min-width: 1024px) {
+  .input-forms {
+    padding: 70px;
+  }
+  .input-forms input {
+    width: 400px;
+  }
+}
+@media all and (max-width: 1024px) {
+  .input-forms {
+    padding: 60px;
+  }
+  .input-forms input {
+    width: 330px;
+  }
+}
+@media all and (max-width: 768px) {
+  .input-forms {
+    padding: 50px;
+  }
+  .input-forms input {
+    width: 300px;
+  }
+}
+.signup-wrapper {
+  font-family: "Noto Sans KR", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signup-wrapper .input-forms {
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.signup-wrapper .input-forms .input-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #282c34;
+}
+.signup-wrapper .input-forms .input-forms-item {
+  padding: 7px 0;
+}
+.signup-wrapper .input-forms .input-forms-item .error-message {
+  font-size: 1rem;
+  color: blue;
+  font-weight: bold;
+}
