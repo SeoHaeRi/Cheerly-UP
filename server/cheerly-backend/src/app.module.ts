@@ -40,6 +40,6 @@ import { APP_PIPE } from '@nestjs/core';
     CommentModule,
     SocketModule,
   ],
-  providers: [SocketGateway, { provide: APP_PIPE, useClass: ValidationPipe }],
+  providers: [{ provide: APP_PIPE, useClass: ValidationPipe }],
 })
 export class AppModule {}
