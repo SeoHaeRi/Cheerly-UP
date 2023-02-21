@@ -6,5 +6,5 @@ import auth from './module/token';
 export default combineReducers({
   user,
   chatroom,
-  auth
+  auth,
 });

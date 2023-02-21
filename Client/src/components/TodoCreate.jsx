@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
 import { useTodoDispatch, useTodoNextId } from '../store/TodoContext'; //input도 관리
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 //useState를 사용하여 토글 할 수 있는 open 값을 관리하며, 이 값이 true일 때에는 아이콘을 45도 돌려서 X 모양이 보이게 한 후, 버튼 색상을 바꿔준다.
 //  할 일을 입력할 수 있는 폼도 보여준다.
@@ -87,6 +89,13 @@ const Input = styled.input`
 `;
 
 function TodoCreate() {
+  //유저 정보
+  const userID = useSelector((state) => state.user.user.data.user_id);
+  const userNickname = useSelector(
+    (state) => state.user.user.data.user_nickname,
+  );
+
+  const inputRef = useRef();
   const [open, setOpen] = useState(false); //const [open, setOpen] = useState(false);에서 open의 초기값으로 false
   const [value, setValue] = useState('');
 
@@ -100,6 +109,21 @@ function TodoCreate() {
   //onSubmit 에서는 새로운 항목을 추가하는 액션을 dispatch 한 후, value 초기화 및 open 값을 false 로 전환
   const onSubmit = (e) => {
     e.preventDefault(); // 새로고침 방지
+    ///////////////
+    //소미 추가 코드//
+    const inputContent = inputRef.current.value;
+    console.log(inputContent);
+    axios
+      .post('http://localhost:3030/study', {
+        user_id: String(userID),
+        content: String(inputContent),
+      })
+      .then(() => {
+        alert('오늘의 할 일을 추가하였습니다!');
+        window.location.replace('/study');
+      });
+
+    ///////////////////
     dispatch({
       type: 'CREATE',
       todo: {
@@ -122,6 +146,7 @@ function TodoCreate() {
               placeholder="할 일을 입력하고, Enter를 누르세요."
               onChange={onChange}
               value={value}
+              ref={inputRef}
             />
           </InsertForm>
         </InsertFormPositioner>
