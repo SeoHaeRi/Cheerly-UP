@@ -1,9 +1,7 @@
-import { OnModuleInit } from '@nestjs/common';
 import {
   ConnectedSocket,
   OnGatewayConnection,
   OnGatewayDisconnect,
-  OnGatewayInit,
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
@@ -12,59 +10,36 @@ import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway({
   cors: {
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3000', 'http://localhost:8000'],
   },
-}) // namespace는 optional 입니다!
+})
 export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server: Server;
 
-  // afterInit() {
-  //   this.server.on('connection', (socket) => {
-  //     console.log('Server: Socket Connected');
-  //     socket.emit('info', socket.id);
-  //   });
-  // }
-
-  // @SubscribeMessage('connection')
-  // serverConnect(client: Socket) {
-  //   // this.server.on('connection', (socket) => {
-  //   console.log('Server: Socket Connected');
-  //   this.server.emit('info', client.id);
-  //   // });
-  // }
-
-  // onModuleInit() {
-  //   this.server.on('connection', (socket) => {
-  //     console.log('Server: Socket Connected');
-  //     socket.emit('info', socket.id);
-  //   });
-  // }
-
-  handleConnection(@ConnectedSocket() socket: Socket) {
-    console.log(`${socket.id} 소켓 연결`);
-    socket.emit('info', socket.id);
+  handleConnection(@ConnectedSocket() client: Socket) {
+    console.log(`${client.id} 소켓 연결`);
   }
 
   handleDisconnect(client: Socket) {
     console.log(client.id + ' server socket disconnected');
   }
 
+  // 채팅방 생성
+  @SubscribeMessage('join')
+  enterChatRoom(client: Socket, payload) {
+    const roomname = payload.room.name;
+    client.join(roomname);
+    this.server.to(roomname).emit('info', client.id);
+  }
+  // 채팅방 안에 사람에게 메시지 보내기
   @SubscribeMessage('msgToServer')
   handleMessage(client: Socket, payload): void {
-    console.log('msgToServer');
-
-    this.server.emit('msgToClient', payload);
-  }
-
-  @SubscribeMessage('enterChatRoom')
-  enterChatRoom(client: Socket, roomId: string) {
-    client.join(roomId);
-    client.to(roomId).emit('enterId', client.id);
-  }
-  //메시지가 전송되면 모든 유저에게 메시지 전송
-  @SubscribeMessage('sendMessage')
-  sendMessage(client: Socket, message: string): void {
-    this.server.emit('getMessage', message);
+    const rooms = client.rooms;
+    const roomArray = Array.from(rooms);
+    console.log(roomArray[roomArray.length - 1]);
+    this.server
+      .to(roomArray[roomArray.length - 1])
+      .emit('msgToClient', payload);
   }
 }
