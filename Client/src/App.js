@@ -39,8 +39,9 @@ function App() {
   const dispatch = useDispatch();
 
   const userInfo = {
-    user_id: sessionStorage.getItem('user_id'),
-    user_nickname: sessionStorage.getItem('user_nickname'),
+    user_id: localStorage.getItem('user_id'),
+    user_nickname: localStorage.getItem('user_nickname'),
+    accesstoken: localStorage.getItem('accesstoken'),
   };
 
   if (userInfo) {

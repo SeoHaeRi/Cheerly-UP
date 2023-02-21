@@ -92,13 +92,14 @@ const Navbar = () => {
                   <NavLink to="/board">게시판</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/mypage">마이페이지</NavLink>
-                </li>
-                <li>
                   <NavLink to="/chatroom">Chat</NavLink>
                 </li>
                 <li>
+                  <NavLink to="/mypage">마이페이지</NavLink>
+                </li>
+                <li>
                   <NavLink
+                    to="/"
                     onClick={() => {
                       dispatch(logout());
                     }}
