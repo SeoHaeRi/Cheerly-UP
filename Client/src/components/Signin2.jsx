@@ -4,10 +4,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Button, TextField } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import '../static/Signup2.css';
+import { Cookies } from 'react-cookie';
+import jwt_decode from 'jwt-decode';
 
 const SignUp = () => {
+  const cookies = new Cookies();
+
   const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
     id: Yup.string().required('아이디를 입력하세요'),
@@ -32,7 +36,6 @@ const SignUp = () => {
         <h3>
           로그인 완료되었습니다.😎
           <br />
-          
         </h3>,
         {
           position: 'top-center',
@@ -40,9 +43,20 @@ const SignUp = () => {
         },
       );
       setTimeout(() => {
+
         console.log(data);
         navigate('/');
       }, 2000);
+
+        const decodedUserInfo = jwt_decode(data.accessToken);
+
+        localStorage.setItem('accesstoken', data.accessToken);
+        localStorage.setItem('user_id', decodedUserInfo.id);
+        localStorage.setItem('user_nickname', decodedUserInfo.nickname);
+
+        window.location.href = '/';
+      }, 1000);
+
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
       toast.error(e.response.data.message + '😭', {

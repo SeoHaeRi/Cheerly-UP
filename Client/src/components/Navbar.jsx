@@ -50,13 +50,13 @@ const Navbar = () => {
                   <NavLink to="/board">게시판</NavLink>
                 </li>
                 <li>
+                  <NavLink to="/chatroom">Chat</NavLink>
+                </li>
+                <li>
                   <NavLink to="/signin">로그인</NavLink>
                 </li>
                 <li>
                   <NavLink to="/signup">회원가입</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/chat">Chat</NavLink>
                 </li>
                 <li>
                   <NavLink to="/mypage">My Page</NavLink>
@@ -95,10 +95,14 @@ const Navbar = () => {
                   <NavLink to="/board">게시판</NavLink>
                 </li>
                 <li>
+                  <NavLink to="/chatroom">Chat</NavLink>
+                </li>
+                <li>
                   <NavLink to="/mypage">마이페이지</NavLink>
                 </li>
                 <li>
                   <NavLink
+                    to="/"
                     onClick={() => {
                       dispatch(logout());
                     }}

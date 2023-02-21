@@ -30,6 +30,6 @@ export class UserController {
   @Post('/verify')
   @UseGuards(AuthGuard())
   test(@Req() req) {
-    console.log('req.user : ', req.user);
+    return req.user;
   }
 }

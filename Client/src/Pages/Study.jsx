@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Maindiv = styled.div`
   background-color: white;
+  font-family: 'Jua', sans-serif;
 `;
 const Earlydiv = styled.div`
   background-color: white;

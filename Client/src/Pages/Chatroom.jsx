@@ -1,23 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { io } from 'socket.io-client';
 import '../static/Chatroom.css';
 
 export default function Chatroom() {
-  const socket = io('http://localhost:3030', { transports: ['websocket'] });
-
+  const navigate = useNavigate();
   const createRoom = () => {
     const title = prompt('채팅방의 이름을 설정해주세요.');
     if (title === '' || title === undefined)
       alert('채팅방의 이름을 입력해주세요!');
   };
 
-  const onClickEnter = () => {
-    socket.on('join', ({ username, room_number }) => {
-      socket.join(room_number);
-
-      socket.emit();
-    });
+  const EnterChatting = () => {
+    const roomName = 'roomName';
+    navigate(`/chat/${roomName}`);
   };
 
   return (
@@ -39,8 +35,7 @@ export default function Chatroom() {
             <td>인덱스</td>
             <td>방이름</td>
             <td>
-              {' '}
-              <button onClick={onClickEnter} id="btn">
+              <button onClick={EnterChatting} id="btn">
                 입장하기
               </button>
             </td>

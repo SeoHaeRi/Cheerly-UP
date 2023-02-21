@@ -10,7 +10,6 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Group from './Pages/Group';
 import Signup from './components/Signup';
 import SignUp2 from './components/Signup2';
 import Signin from './components/Signin';
@@ -38,12 +37,14 @@ function App() {
   const [init, setInit] = useState(true);
 
   const dispatch = useDispatch();
+
   const userInfo = {
-    id: sessionStorage.getItem('id'),
-    nickname: sessionStorage.getItem('nickname'),
+    user_id: localStorage.getItem('user_id'),
+    user_nickname: localStorage.getItem('user_nickname'),
+    accesstoken: localStorage.getItem('accesstoken'),
   };
 
-  if (userInfo.id) {
+  if (userInfo) {
     dispatch(setUserInfo(userInfo, true));
   } else {
     dispatch(setUserInfo(userInfo, false));
@@ -67,8 +68,9 @@ function App() {
             <Route path="/signup" element={<SignUp2 />} />
             <Route path="/study" element={<Study />} />
             <Route path="/life" element={<Life />} />
+            {/* <Route path="/healing" element={<Healing />} /> */}
             <Route path="/mypage" element={<MyPage />} />
-            <Route path="/chat" element={<Chat />} />
+            <Route path="/chat/:roomname" element={<Chat />} />
             <Route path="/chatroom" element={<Chatroom />}></Route>
             <Route path="/*" element={<Error />} />
             {/* 추후 에러 페이지 추가  + 마이페이지 추가, domain 은 수정 가능!*/}

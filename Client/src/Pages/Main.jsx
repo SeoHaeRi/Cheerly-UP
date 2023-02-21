@@ -5,6 +5,10 @@ import NavBoot from '../components/NavBoot';
 
 const Maindiv = styled.div`
   background-color: white;
+  font-family: 'Jua', sans-serif;
+
+  /* font-family: 'Noto Serif KR', serif; */
+  /* font-family: 'DM Serif Text', serif; */
 `;
 const Earlydiv = styled.div`
   background-color: white;
