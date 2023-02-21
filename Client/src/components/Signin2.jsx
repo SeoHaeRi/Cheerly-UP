@@ -26,7 +26,7 @@ const SignUp = () => {
       ),
   });
   const submit = async (values) => {
-    const { id, pw } = values;
+    const { id, pw  } = values;
     try {
       const { data } = await axios.post('http://localhost:3030/user/login', {
         id,
@@ -43,6 +43,11 @@ const SignUp = () => {
         },
       );
       setTimeout(() => {
+
+        console.log(data);
+        navigate('/');
+      }, 2000);
+
         const decodedUserInfo = jwt_decode(data.accessToken);
 
         localStorage.setItem('accesstoken', data.accessToken);
@@ -51,6 +56,7 @@ const SignUp = () => {
 
         window.location.href = '/';
       }, 1000);
+
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
       toast.error(e.response.data.message + '😭', {
