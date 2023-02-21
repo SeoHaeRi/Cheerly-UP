@@ -38,12 +38,13 @@ function App() {
   const [init, setInit] = useState(true);
 
   const dispatch = useDispatch();
+
   const userInfo = {
-    id: sessionStorage.getItem('id'),
-    nickname: sessionStorage.getItem('nickname'),
+    token: sessionStorage.getItem('token'),
+    user_id: sessionStorage.getItem('user_id'),
   };
 
-  if (userInfo.id) {
+  if (userInfo.token) {
     dispatch(setUserInfo(userInfo, true));
   } else {
     dispatch(setUserInfo(userInfo, false));
