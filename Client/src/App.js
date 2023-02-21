@@ -40,11 +40,11 @@ function App() {
   const dispatch = useDispatch();
 
   const userInfo = {
-    token: sessionStorage.getItem('token'),
     user_id: sessionStorage.getItem('user_id'),
+    user_nickname: sessionStorage.getItem('user_nickname'),
   };
 
-  if (userInfo.token) {
+  if (userInfo) {
     dispatch(setUserInfo(userInfo, true));
   } else {
     dispatch(setUserInfo(userInfo, false));

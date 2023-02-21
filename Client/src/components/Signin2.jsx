@@ -44,11 +44,11 @@ const SignUp = () => {
       );
       setTimeout(() => {
         const decodedUserInfo = jwt_decode(data.accessToken);
-        console.log(decodedUserInfo);
-        console.log(id);
-        sessionStorage.setItem('token', data.accessToken);
-        sessionStorage.setItem('user_id', id);
-        // window.location.href = '/';
+
+        sessionStorage.setItem('user_id', decodedUserInfo.id);
+        sessionStorage.setItem('user_nickname', decodedUserInfo.nickname);
+
+        window.location.href = '/';
       }, 2000);
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
