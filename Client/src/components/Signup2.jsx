@@ -44,7 +44,7 @@ const SignUp = () => {
         autoClose: 2000
       });
       setTimeout(()=> {
-        navigate("http://localhost:3000/signin");
+        navigate("/signin");
       }, 2000);
 
     } catch (e) {
@@ -73,7 +73,7 @@ const SignUp = () => {
           <form onSubmit={handleSubmit} autoComplete="off">
             <div className="input-forms">
               <div className="input-forms-item">
-                <div className="input-label">이메일</div>
+                <div className="input-label">아이디</div>
                 <TextField
                   value={values.id}
                   name="id"

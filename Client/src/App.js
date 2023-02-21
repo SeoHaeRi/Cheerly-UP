@@ -61,10 +61,10 @@ function App() {
             <Route path="/board/edit/:id" element={<BoardDetailEdit />}></Route>
             <Route path="/board/write" element={<BoardWrite />}></Route>
             <Route path="/studygroup" element={<Group_page />} />
-            <Route path="/signin" element={<Signin />} />
-            {/* <Route path="/signin2" element={<Signin2 />} /> */}
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/signup2" element={<SignUp2 />} />
+            <Route path="/signin2" element={<Signin />} />
+            <Route path="/signin" element={<Signin2 />} />
+            <Route path="/signup2" element={<Signup />} />
+            <Route path="/signup" element={<SignUp2 />} />
             <Route path="/study" element={<Study />} />
             <Route path="/life" element={<Life />} />
             <Route path="/mypage" element={<MyPage />} />
