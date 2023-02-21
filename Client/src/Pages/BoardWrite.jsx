@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
 import {
@@ -8,10 +8,42 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function BoardWrite() {
-  const onClickWrite = () => {};
+  const userID = useSelector((state) => state.user.user.data.user_id);
+  const userNickname = useSelector(
+    (state) => state.user.user.data.user_nickname,
+  );
+  console.log(userID, userNickname);
 
+  const titleRef = useRef();
+  const contentRef = useRef();
+
+  const onClickWrite = () => {
+    const inputTitle = titleRef.current.value;
+    const inputContent = contentRef.current.value;
+    if (
+      inputTitle === '' ||
+      inputTitle === undefined ||
+      inputContent === '' ||
+      inputContent === undefined
+    ) {
+      alert('글의 제목과 내용을 입력해주세요!');
+    } else {
+      axios
+        .post('http://localhost:3030/board/write', {
+          title: String(inputTitle),
+          content: String(inputContent),
+          date: new Date(),
+          userId: String(userID),
+        })
+        .then(() => {
+          alert('게시글 작성이 완료되었습니다.');
+          window.location.href = '/board';
+        });
+    }
+  };
   return (
     <>
       <Container>
@@ -19,13 +51,14 @@ function BoardWrite() {
         <Post>
           <Title>
             제목:
-            <input></input>
+            <input ref={titleRef}></input>
           </Title>
           <Body>
             {' '}
             내용:
             <br></br>
             <textarea
+              ref={contentRef}
               style={{ width: '380px', height: '300px' }}
             ></textarea>{' '}
           </Body>

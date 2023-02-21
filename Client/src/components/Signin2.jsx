@@ -45,11 +45,12 @@ const SignUp = () => {
       setTimeout(() => {
         const decodedUserInfo = jwt_decode(data.accessToken);
 
-        sessionStorage.setItem('user_id', decodedUserInfo.id);
-        sessionStorage.setItem('user_nickname', decodedUserInfo.nickname);
+        localStorage.setItem('accesstoken', data.accessToken);
+        localStorage.setItem('user_id', decodedUserInfo.id);
+        localStorage.setItem('user_nickname', decodedUserInfo.nickname);
 
         window.location.href = '/';
-      }, 2000);
+      }, 1000);
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
       toast.error(e.response.data.message + '😭', {
