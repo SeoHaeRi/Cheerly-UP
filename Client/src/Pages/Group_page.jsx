@@ -7,6 +7,7 @@ import inf from '../assets/inf.svg';
 
 const Maindiv = styled.div`
   background-color: transparent;
+  font-family: 'Jua', sans-serif;
 `;
 // const Earlydiv = styled.div`
 //   background-color: transparent;

@@ -10,7 +10,6 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Group from './Pages/Group';
 import Signup from './components/Signup';
 import SignUp2 from './components/Signup2';
 import Signin from './components/Signin';
@@ -67,6 +66,7 @@ function App() {
             <Route path="/signup" element={<SignUp2 />} />
             <Route path="/study" element={<Study />} />
             <Route path="/life" element={<Life />} />
+            {/* <Route path="/healing" element={<Healing />} /> */}
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/chatroom" element={<Chatroom />}></Route>
