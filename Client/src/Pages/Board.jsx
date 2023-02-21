@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
+import Comment from '../components/Comment';
 
 function Board() {
   const navigate = useNavigate();

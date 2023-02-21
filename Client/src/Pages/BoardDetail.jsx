@@ -8,6 +8,7 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom';
+import Comment from '../components/Comment';
 
 function BoardDetail() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function BoardDetail() {
   useEffect(() => {
     axios.get(`http://localhost:3030/board/:${param}`).then((res) => {
       setPost(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     });
   }, []);
 
@@ -56,11 +57,30 @@ function BoardDetail() {
           <Title> 글쓴이: {post.userId} </Title>
           <Body> {post.content}</Body>
         </Post>
-        <div id="btns">
-          <button onClick={onClickEdit}>글 수정하기</button>
-          <button onClick={onClickDelete}>글 삭제하기</button>
+        <div>
+          <button
+            style={{
+              background: '#65B1F7',
+              height: '45px',
+              width: '120px',
+            }}
+            onClick={onClickEdit}
+          >
+            글 수정하기
+          </button>
+          <button
+            style={{
+              background: '#65B1F7',
+              height: '45px',
+              width: '120px',
+            }}
+            onClick={onClickDelete}
+          >
+            글 삭제하기
+          </button>
         </div>
       </Container>
+      <Comment />
     </>
   );
 }
@@ -74,12 +94,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 200px 0;
   display: grid;
   grid-template-columns: repeat(1, 400px);
   grid-template-rows: repeat(auto-fit, 500px);
-  grid-auto-rows: 300px;
+  grid-auto-rows: 100px;
   grid-gap: 30px 20px;
   justify-content: center;
   background: white;
