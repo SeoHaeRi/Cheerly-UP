@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Group from './Pages/Group';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
 import Main from './Pages/Main';
@@ -53,6 +52,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/study" element={<Study />} />
             <Route path="/life" element={<Life />} />
+            {/* <Route path="/healing" element={<Healing />} /> */}
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/chatroom" element={<Chatroom />}></Route>

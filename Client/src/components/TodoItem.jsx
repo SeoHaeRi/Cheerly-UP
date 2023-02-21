@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { MdDone, MdDelete } from 'react-icons/md';
 import { useTodoDispatch } from '../store/TodoContext'; //dispatch 가져와서 토글 기능, 삭제기능
+import axios from 'axios';
 
 //할 일 항목들 보여주는 TodoItem 컴포넌트
 //react-icons에서 MdDone과 MdDelete 아이콘을 사용
@@ -70,6 +71,16 @@ function TodoItem({ id, done, text }) {
   const onToggle = () => dispatch({ type: 'TOGGLE', id });
   const onRemove = () => dispatch({ type: 'REMOVE', id });
 
+  const [study, setStudy] = useState([]);
+
+  useEffect(() => {
+    axios
+      .post('http://localhost:3030/study', { id, text, done })
+      .then((res) => {
+        setStudy(res.data);
+        console.log(res.data);
+      });
+  }, []);
   return (
     <TodoItemBlock>
       <CheckCircle done={done} onClick={onToggle}>
