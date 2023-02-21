@@ -14,6 +14,7 @@
     "bootstrap": "^5.2.3",
     "formik": "^2.2.9",
     "fs": "^0.0.1-security",
+    "image-uploader": "^2.0.2",
     "material": "^0.5.3",
     "moment": "^2.29.4",
     "react": "^18.2.0",

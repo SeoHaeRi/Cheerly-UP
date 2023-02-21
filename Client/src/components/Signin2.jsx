@@ -22,7 +22,7 @@ const SignUp = () => {
       ),
   });
   const submit = async (values) => {
-    const { id, pw } = values;
+    const { id, pw  } = values;
     try {
       const { data } = await axios.post('http://localhost:3030/user/login', {
         id,
@@ -41,7 +41,7 @@ const SignUp = () => {
       );
       setTimeout(() => {
         console.log(data);
-        // navigate('/');
+        navigate('/');
       }, 2000);
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력

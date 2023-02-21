@@ -58,6 +58,9 @@ const Navbar = () => {
                 <li>
                   <NavLink to="/chat">Chat</NavLink>
                 </li>
+                <li>
+                  <NavLink to="/mypage">My Page</NavLink>
+                </li>
               </ul>
             </div>
           </div>
