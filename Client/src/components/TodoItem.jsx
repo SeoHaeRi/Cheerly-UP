@@ -81,6 +81,7 @@ function TodoItem({ id, done, text }) {
         console.log(res.data);
       });
   }, []);
+  
   return (
     <TodoItemBlock>
       <CheckCircle done={done} onClick={onToggle}>
@@ -90,6 +91,7 @@ function TodoItem({ id, done, text }) {
       <Remove onClick={onRemove}>
         <MdDelete />
       </Remove>
+      <button onClick={study}>저장하기</button>
     </TodoItemBlock>
   );
 }
