@@ -1,18 +1,18 @@
-const SET_TOKEN = 'set_token';
+const SETTOKEN = 'SETTOKEN';
 
 const AuthInitialState = {
   token: null
 }
 
-
 export const setToken = (token) => ({
-  type: SET_TOKEN,
+  type: SETTOKEN,
   token
 })
 
-export const AuthReducer = (state = AuthInitialState, action) => {
+
+const AuthReducer = (state = AuthInitialState, action) => {
   switch(action.type) {
-    case SET_TOKEN:
+    case SETTOKEN:
       return {
         ...state,
         token: action.token
@@ -21,3 +21,4 @@ export const AuthReducer = (state = AuthInitialState, action) => {
       return state;
   }
 }
+export default AuthReducer;
