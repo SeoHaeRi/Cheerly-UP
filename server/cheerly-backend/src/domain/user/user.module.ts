@@ -1,22 +1,14 @@
+import { HttpModule, HttpService } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/entities/User.entity';
-import { TypeOrmExModule } from 'src/typeorm-ex.module';
 import { JwtStrategy } from './jwt.strategy';
 import { UserController } from './user.controller';
 import { UserRepository } from './user.repository';
 import { UserService } from './user.service';
 
-// @Module({
-//   imports: [
-//     // TypeOrmModule.forFeature([User]),
-//     TypeOrmExModule.forCustomRepository([UserRepository]),
-//   ],
-//   controllers: [UserController],
-//   providers: [UserService],
-// })
 @Module({
   imports: [
     PassportModule.register({
@@ -29,6 +21,7 @@ import { UserService } from './user.service';
       },
     }),
     TypeOrmModule.forFeature([User]),
+    HttpModule,
   ],
   controllers: [UserController],
   providers: [UserService, UserRepository, JwtStrategy],
