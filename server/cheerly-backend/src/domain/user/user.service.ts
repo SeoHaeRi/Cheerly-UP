@@ -4,12 +4,15 @@ import { UserRepository } from './user.repository';
 import * as bcrypt from 'bcryptjs';
 import { LoginUserDto } from './dto/LoginUser.dto';
 import { JwtService } from '@nestjs/jwt';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class UserService {
   constructor(
     private userRepository: UserRepository,
     private jwtService: JwtService,
+    private http: HttpService,
   ) {}
 
   async signUp(userData: CreateUserDto): Promise<void> {
@@ -34,5 +37,17 @@ export class UserService {
     } else {
       throw new UnauthorizedException('login failed');
     }
+  }
+
+  async kakaoLogin(code: string) {
+    const kakao_api_url = `https://kauth.kakao.com/oauth/token
+    ?grant_type=authorization_code
+    &client_id=${process.env.KAKAO_clientID}
+    &redirect_url=${process.env.KAKAO_redirectUri}
+    &code=${code}`;
+
+    const token_res = await lastValueFrom(this.http.post(kakao_api_url));
+    // const access_token: string = token_res.data.access_token;
+    console.log(token_res);
   }
 }
