@@ -10,7 +10,7 @@ const PrivateRoute = (props) => {
   const { component: RouteComponent, path } = props;
   // redirectUrl은 로그인이 성공후 돌아갈 화면이다.
   if (!jwtUtils.isAuth(token)) {
-    alert('로그인이 필요한 페이지입니다');
+    alert('로그인이 필요한 페이지입니다.');
     return <Navigate to={`/signin?redirectUrl=${path}`} />;
   }
   return <RouteComponent />;

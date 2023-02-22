@@ -34,6 +34,7 @@ export class PostsController {
     console.log(param);
 
     const post = await this.postsService.getOne(param);
+
     res.send(post);
     return post;
   }

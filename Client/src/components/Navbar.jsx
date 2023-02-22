@@ -110,10 +110,10 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/"
-                    onClick={() => {
+                    onClick={(e) => {
                       dispatch(setToken(''));
                       sessionStorage.clear();
+                      window.location.href = '/';
                     }}
                   >
                     로그아웃

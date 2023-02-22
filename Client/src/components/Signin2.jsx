@@ -63,7 +63,7 @@ const SignUp = () => {
         if (redirectUrl) {
           navigate(redirectUrl);
         } else {
-          navigate('/');
+          window.location.href = '/';
         }
       }, 2000);
     } catch (e) {
