@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { MdDone, MdDelete } from 'react-icons/md';
 import { useTodoDispatch } from '../store/TodoContext'; //dispatch 가져와서 토글 기능, 삭제기능
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 //할 일 항목들 보여주는 TodoItem 컴포넌트
 //react-icons에서 MdDone과 MdDelete 아이콘을 사용
@@ -66,22 +67,42 @@ const Text = styled.div`
 `;
 // dispatch 를 사용해서 토글 기능과 삭제 기능
 
-function TodoItem({ id, done, text }) {
+function TodoItem({ id, done, text, study_id }) {
+  const userID = useSelector((state) => state.user.user.data.user_id);
+  const userNickname = useSelector(
+    (state) => state.user.user.data.user_nickname,
+  );
+
+  console.log({ id, done, text });
   const dispatch = useTodoDispatch();
   const onToggle = () => dispatch({ type: 'TOGGLE', id });
-  const onRemove = () => dispatch({ type: 'REMOVE', id });
+  const onRemove = () => {
+    dispatch({ type: 'REMOVE', id });
+    const confirm = window.confirm('선택한 오늘 할 일을 지우시겠습니까?');
+    if (confirm === true) {
+      axios
+        .delete(`http://localhost:3030/study/${userID}/${study_id}`, {
+          study_id: Number(study_id),
+          userId: userID,
+        })
+        .then((res) => {
+          alert('삭제가 완료되었습니다.');
+          window.location.replace('/study');
+        });
+    }
+  };
 
   const [study, setStudy] = useState([]);
 
-  useEffect(() => {
-    axios
-      .post('http://localhost:3030/study', { id, text, done })
-      .then((res) => {
-        setStudy(res.data);
-        console.log(res.data);
-      });
-  }, []);
-  
+  // useEffect(() => {
+  //   axios
+  //     .post('http://localhost:3030/study', { id, text, done })
+  //     .then((res) => {
+  //       setStudy(res.data);
+  //       console.log(res.data);
+  //     });
+  // }, []);
+
   return (
     <TodoItemBlock>
       <CheckCircle done={done} onClick={onToggle}>
@@ -91,7 +112,6 @@ function TodoItem({ id, done, text }) {
       <Remove onClick={onRemove}>
         <MdDelete />
       </Remove>
-      <button onClick={study}>저장하기</button>
     </TodoItemBlock>
   );
 }

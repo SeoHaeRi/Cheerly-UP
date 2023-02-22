@@ -4,29 +4,29 @@ import React, { useReducer, createContext, useContext, useRef } from 'react';
 // 두개의 Context 를 만들어서 따로 따로 넣어주기
 // 이렇게 하면 dispatch 만 필요한 컴포넌트에서 불필요한 렌더링을 방지
 const initialTodos = [
-  {
-    id: 1,
-    text: '새싹 뉴스 정독하기',
-    done: true,
-  },
-  {
-    id: 2,
-    text: '아이스 아메리카노 샷 추가하기',
-    done: true,
-  },
-  {
-    id: 3,
-    text: '자유롭게 할일을 적어봅시다❤️‍🔥',
-    done: false,
-  },
-  {
-    id: 4,
-    text: '✍️아래 버튼을 눌러 추가할 수 있어요!',
-    done: false,
-  },
+  // {
+  //   id: 1,
+  //   text: '새싹 뉴스 정독하기',
+  //   done: true,
+  // },
+  // {
+  //   id: 2,
+  //   text: '아이스 아메리카노 샷 추가하기',
+  //   done: true,
+  // },
+  // {
+  //   id: 3,
+  //   text: '자유롭게 할일을 적어봅시다❤️‍🔥',
+  //   done: false,
+  // },
+  // {
+  //   id: 4,
+  //   text: '✍️아래 버튼을 눌러 추가할 수 있어요!',
+  //   done: false,
+  // },
 ];
 
-function todoReducer(state, action) {
+export default function todoReducer(state, action) {
   switch (action.type) {
     case 'CREATE':
       return state.concat(action.todo);

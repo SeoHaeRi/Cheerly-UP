@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTodoState } from '../store/TodoContext';
 import cal from '../assets/cal.svg';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 const TodoHeadBlock = styled.div`
   padding: 48px 32px 24px 32px;
   border-bottom: 1px solid #e9ecef;
@@ -54,6 +56,17 @@ export default function TodoHead() {
     day: 'numeric',
   });
   const dayName = today.toLocaleDateString('ko-KR', { weekday: 'long' });
+
+  const userID = useSelector((state) => state.user.user.data.user_id);
+  const userNickname = useSelector(
+    (state) => state.user.user.data.user_nickname,
+  );
+
+  const [undoneNumber, setUndoneNumber] = useState('');
+  axios.get(`http://localhost:3030/study/${userID}`).then((res) => {
+    setUndoneNumber(res.data.filter((el) => el.done === 0).length);
+  });
+
   return (
     <TodoHeadBlock>
       <h1>
@@ -64,7 +77,8 @@ export default function TodoHead() {
       {/* <h1>2023년 0월 00일</h1>
       <div className="day">오늘의 요일 : 화요일</div> */}
       <div className="tasks-left">
-        오늘의 할 일이 {undoneTasks.length} 개 남았어요
+        {/* 오늘의 할 일이 {undoneTasks.length} 개 남았어요 */}
+        오늘의 할 일이 {undoneNumber} 개 남았어요
       </div>
     </TodoHeadBlock>
   );
