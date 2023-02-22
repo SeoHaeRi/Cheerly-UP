@@ -9,38 +9,84 @@ import {
   useParams,
 } from 'react-router-dom';
 import Comment from '../components/Comment';
+import { useSelector } from 'react-redux';
+import { jwtUtils } from '../utils/jwtUtils';
 
 function BoardDetail() {
+  const token = useSelector((state) => state.token.token);
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    if (jwtUtils.isAuth(token)) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  }, [token]);
+
+  const userID = useSelector((state) => state.user.user.data.user_id);
+  const userNickname = useSelector(
+    (state) => state.user.user.data.user_nickname,
+  );
+
   const navigate = useNavigate();
   const [post, setPost] = useState([]);
 
   const { id } = useParams();
-  const param = id.slice(1);
-  const route = '/board/edit/:' + param;
+  const route = '/board/edit/' + id;
+
+  function formatDate(string) {
+    var options = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    };
+    return new Date(string).toLocaleDateString([], options);
+  }
 
   useEffect(() => {
-    axios.get(`http://localhost:3030/board/:${param}`).then((res) => {
-      setPost(res.data);
+    axios.get(`http://localhost:3030/board/${id}`).then((res) => {
+      const convertDate = formatDate(res.data.date);
+
+      const postDataArr = {
+        post_id: res.data.post_id,
+        title: res.data.title,
+        content: res.data.content,
+        date: convertDate,
+        userId: res.data.userId,
+      };
+
+      setPost(postDataArr);
     });
   }, []);
 
   const onClickEdit = () => {
-    navigate(route);
+    if (post.userId !== userID || !isAuth) {
+      alert('본인의 게시글만 수정할 수 있습니다.');
+    } else {
+      navigate(route);
+    }
   };
 
   const onClickDelete = () => {
-    const confirm = window.confirm(
-      '정말로 게시글을 삭제하시겠습니까? 삭제한 글은 다시 볼 수 없게 됩니다.',
-    );
-    if (confirm === true) {
-      axios
-        .delete(`http://localhost:3030/board/:${param}`, {
-          post_id: Number(post.post_id),
-        })
-        .then((res) => {
-          alert('삭제가 완료되었습니다.');
-          navigate('/board');
-        });
+    if (post.userId !== userID || !isAuth) {
+      alert('본인의 게시글만 삭제할 수 있습니다.');
+    } else {
+      const confirm = window.confirm(
+        '정말로 게시글을 삭제하시겠습니까? 삭제한 글은 다시 볼 수 없게 됩니다.',
+      );
+      if (confirm === true) {
+        axios
+          .delete(`http://localhost:3030/board/${id}`, {
+            post_id: Number(post.post_id),
+          })
+          .then((res) => {
+            alert('삭제가 완료되었습니다.');
+            navigate('/board');
+          });
+      }
     }
   };
 
@@ -73,7 +119,7 @@ function BoardDetail() {
             }}
             onClick={onClickDelete}
           >
-            철회하기 
+            철회하기
           </button>
         </div>
       </Container>

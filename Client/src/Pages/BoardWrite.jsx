@@ -15,7 +15,6 @@ function BoardWrite() {
   const userNickname = useSelector(
     (state) => state.user.user.data.user_nickname,
   );
-  console.log(userID, userNickname);
 
   const titleRef = useRef();
   const contentRef = useRef();
@@ -55,8 +54,7 @@ function BoardWrite() {
           </Title>
           <Body>
             {' '}
-            마음의 소리를 내지르세요 :
-            <br></br>
+            마음의 소리를 내지르세요 :<br></br>
             <textarea
               ref={contentRef}
               style={{ width: '380px', height: '300px' }}

@@ -8,8 +8,14 @@ import {
   useParams,
   useNavigate,
 } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function BoardDetailEdit() {
+  const userID = useSelector((state) => state.user.user.data.user_id);
+  const userNickname = useSelector(
+    (state) => state.user.user.data.user_nickname,
+  );
+
   const navigation = useNavigate();
 
   const [post, setPost] = useState([]);
@@ -19,9 +25,7 @@ function BoardDetailEdit() {
   const { id } = useParams();
   const param = id.slice(1);
 
-  const route = '/board/:' + param;
-  console.log(param);
-  //   console.log(postData);
+  const route = '/board/' + id;
 
   useEffect(() => {
     axios.get(`http://localhost:3030/board/:${param}`).then((res) => {
@@ -43,21 +47,21 @@ function BoardDetailEdit() {
       inputContent === undefined
     ) {
       alert('수정할 글의 제목과 내용을 입력해주세요!');
+    } else {
+      axios
+        .patch(`http://localhost:3030/board/:${param}`, {
+          title: String(inputTitle),
+          content: String(inputContent),
+          date: new Date(),
+          userId: String(post.userId),
+          post_id: Number(post.post_id),
+        })
+        .then((res) => {
+          // console.log(res.data);
+          alert('게시글 수정이 완료되었습니다.');
+          navigation(route);
+        });
     }
-
-    axios
-      .patch(`http://localhost:3030/board/:${param}`, {
-        title: String(inputTitle),
-        content: String(inputContent),
-        date: new Date(),
-        userId: String(post.userId),
-        post_id: Number(post.post_id),
-      })
-      .then((res) => {
-        // console.log(res.data);
-        alert('게시글 수정이 완료되었습니다.');
-        navigation(route);
-      });
   };
 
   return (

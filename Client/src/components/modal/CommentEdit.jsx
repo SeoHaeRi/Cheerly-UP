@@ -7,17 +7,25 @@ export default function ModalCommentEdit({ show, onHide, comment, param }) {
 
   const onClickEditHandler = () => {
     const inputText = textRef.current.value;
-    axios
-      .patch(`http://localhost:3030/comment/:${param}/:${comment.comment_id}`, {
-        content: String(inputText),
-        post_id: Number(comment.post_id),
-        comment_id: Number(comment.comment_id),
-        date: new Date(),
-      })
-      .then((res) => {
-        alert('댓글 수정이 완료되었습니다.');
-        window.location.href = `/board/:${param}`;
-      });
+
+    if (inputText === '' || inputText === undefined) {
+      alert('값을 입력해주세요!');
+    } else {
+      axios
+        .patch(
+          `http://localhost:3030/comment/:${param}/:${comment.comment_id}`,
+          {
+            content: String(inputText),
+            post_id: Number(comment.post_id),
+            comment_id: Number(comment.comment_id),
+            date: new Date(),
+          },
+        )
+        .then((res) => {
+          alert('댓글 수정이 완료되었습니다.');
+          window.location.href = `/board/:${param}`;
+        });
+    }
   };
 
   return (
@@ -40,6 +48,7 @@ export default function ModalCommentEdit({ show, onHide, comment, param }) {
               type="text"
               style={{ height: '100px' }}
               ref={textRef}
+              placeholder="수정할 댓글의 내용을 입력해주세요."
             />
           </Form.Group>
         </Form>
