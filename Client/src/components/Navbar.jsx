@@ -1,15 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Light } from '../assets/light.svg';
 import { ReactComponent as Brand } from '../assets/garo_logo.svg';
 import '../static/Navbar.css';
 import { logout } from '../store/module/user';
+import { jwtUtils } from '../utils/jwtUtils';
+import { setToken } from '../store/module/token';
 
 const Navbar = () => {
   //리덕스 로그인 정보 가져오기!
-  const user = useSelector((state) => state.user.user.data);
-  const isLogIn = useSelector((state) => state.user.user.isLogIn);
+  // const user = useSelector((state) => state.user.user.data);
+  // const isLogIn = useSelector((state) => state.user.user.isLogIn);
+  const token = useSelector((state) => state.token.token);
+  const [isAuth, setIsAuth] = useState(false);
+  useEffect(() => {
+    if (jwtUtils.isAuth(token)) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  }, [token]);
   const dispatch = useDispatch();
 
   const [showNavbar, setShowNavbar] = useState(false);
@@ -20,7 +31,7 @@ const Navbar = () => {
 
   return (
     <>
-      {!isLogIn ? (
+      {!isAuth ? (
         <nav className="navbar">
           <div className="container">
             <div className="logo">
@@ -57,9 +68,6 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink to="/signup">회원가입</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/mypage">My Page</NavLink>
                 </li>
               </ul>
             </div>
@@ -104,7 +112,7 @@ const Navbar = () => {
                   <NavLink
                     to="/"
                     onClick={() => {
-                      dispatch(logout());
+                      dispatch(setToken(''));
                     }}
                   >
                     로그아웃

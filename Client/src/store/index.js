@@ -1,10 +1,21 @@
 import { combineReducers } from 'redux';
 import user from './module/user';
 import chatroom from './module/chatroom';
-import auth from './module/token';
+import token from './module/token';
+import storageSession from 'redux-persist/lib/storage/session';
+import { persistReducer } from 'redux-persist';
 
-export default combineReducers({
+const persistConfig = {
+  key: 'root',
+  //session storage에 저장
+  storage: storageSession,
+  whitelist: ['token'],
+};
+
+export const rootReducer = combineReducers({
   user,
   chatroom,
-  auth,
+  token,
 });
+
+export default persistReducer(persistConfig, rootReducer);
