@@ -32,6 +32,7 @@ import BoardDetailEdit from './Pages/BoardDetailEdit';
 import BoardWrite from './Pages/BoardWrite';
 
 import Life from './Pages/Life';
+import Healing from './Pages/Healing';
 
 function App() {
   const [init, setInit] = useState(true);
@@ -68,7 +69,7 @@ function App() {
             <Route path="/signup" element={<SignUp2 />} />
             <Route path="/study" element={<Study />} />
             <Route path="/life" element={<Life />} />
-            {/* <Route path="/healing" element={<Healing />} /> */}
+            <Route path="/healing" element={<Healing />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/chat/:roomname" element={<Chat />} />
             <Route path="/chatroom" element={<Chatroom />}></Route>
