@@ -17,18 +17,13 @@ export default function WriteComment() {
   const userNickname = useSelector(
     (state) => state.user.user.data.user_nickname,
   );
-
   const [Viewcomment, setViewcomment] = useState(true);
-
   const { id } = useParams();
   const param = id.slice(1);
-
   const [comments, setComments] = useState([]);
   const [ModalOn, setModalOn] = useState(false);
   // const [inputList, setInputList] = useState([]);
-
   const commentRef = useRef();
-
   //게시판 글에 맞는 댓글 불러오기
   useEffect(() => {
     axios.get(`http://localhost:3030/comment/:${param}`).then((res) => {
@@ -36,15 +31,12 @@ export default function WriteComment() {
       console.log(res.data);
     });
   }, []);
-
   const EditInput = () => {
     return <textarea placeholder="수정할 댓글 내용을 입력해주세요." />;
   };
-
   //댓글 삭제
   const deleteCommentHandler = (commentID) => {
     const confirm = window.confirm('정말로 댓글을 삭제하시겠습니까?');
-
     if (confirm === true) {
       axios
         .delete(`http://localhost:3030/comment/:${param}/:${commentID}`, {
@@ -57,39 +49,19 @@ export default function WriteComment() {
         });
     }
   };
-
   //댓글 수정
   const onClickEditHandler = (comment) => {
     console.log(comment.userId, userID);
-
     const Component = {
       comment_id: comment.comment_id,
       component: <EditInput />,
     };
-
     if (comment.userId !== userID) {
       alert('본인의 댓글만 수정할 수 있습니다.');
     } else {
       setModalOn(true);
-
-      //
-      // let commentDiv = document.getElementById(`${comment.comment_id}-comment`);
-      // commentDiv.lastChild = { inputList };
-      // setInputList(inputList.concat(<EditInput key={inputList.length} />));
-      ///
-      // let editbtn = document.getElementById(`${comment_id}-editbtn`);
-      // let deletebtn = document.getElementById(`${comment_id}-deletebtn`);
-      // let editConfirmbtn = document.getElementById(`${comment_id}-editConfirm`);
-      // commentDiv.outerHTML = `<textarea id="${comment_id}-text"/>`;
-      // editbtn.style.display = 'none';
-      // deletebtn.style.display = 'none';
-      // // const confirmEditBtn = document.createElement('button');
-      // // confirmEditBtn.classList.add(`${comment_id}-editConfirm`);
-      // // confirmEditBtn.innerText = '수정';
-      // console.log(commentDiv.outerHTML);
     }
   };
-
   return (
     <>
       <button onClick={() => setViewcomment(true)}>댓글 목록</button>
@@ -144,8 +116,9 @@ export default function WriteComment() {
     </>
   );
 }
-
 const CommentDiv = styled.div`
+  display: flex;
+  justify-content: center;
   border: solid 1px #1982fc;
   width: 50%;
   margin-top: 30px;

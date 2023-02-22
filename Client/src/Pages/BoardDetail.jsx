@@ -18,12 +18,9 @@ function BoardDetail() {
   const param = id.slice(1);
   const route = '/board/edit/:' + param;
 
-  //   console.log(postData);
-
   useEffect(() => {
     axios.get(`http://localhost:3030/board/:${param}`).then((res) => {
       setPost(res.data);
-      // console.log(res.data);
     });
   }, []);
 
@@ -52,10 +49,10 @@ function BoardDetail() {
       <Container>
         <GlobalStyle />
         <Post>
-          <Title>제목: {post.title}</Title>
+          <Title>제목 : {post.title}</Title>
           <Title> {post.date} </Title>
-          <Title> 글쓴이: {post.userId} </Title>
-          <Body> {post.content}</Body>
+          <Title> Id: {post.userId} </Title>
+          <Body> 내용 : {post.content}</Body>
         </Post>
         <div>
           <button
@@ -66,7 +63,7 @@ function BoardDetail() {
             }}
             onClick={onClickEdit}
           >
-            글 수정하기
+            다시 지르기
           </button>
           <button
             style={{
@@ -76,7 +73,7 @@ function BoardDetail() {
             }}
             onClick={onClickDelete}
           >
-            글 삭제하기
+            철회하기 
           </button>
         </div>
       </Container>
