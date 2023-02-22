@@ -26,6 +26,7 @@ import Error from './Pages/Error';
 import { setUserInfo } from './store/module/user';
 import Chat from './Pages/Chat';
 import Chatroom from './Pages/Chatroom';
+import Chat3 from './Pages/Chat3'
 
 import BoardDetail from './Pages/BoardDetail';
 import BoardDetailEdit from './Pages/BoardDetailEdit';
@@ -68,6 +69,8 @@ function App() {
             <Route path="/signin" element={<Signin2 />} />
             <Route path="/signup2" element={<Signup />} />
             <Route path="/signup" element={<SignUp2 />} />
+            <Route path="/chat3" element={<Chat3 />} />
+            
             <Route
               path="/study"
               element={<PrivateRoute path="/study" component={Study} />}

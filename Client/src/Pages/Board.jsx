@@ -77,7 +77,7 @@ function Board() {
   return (
     <>
       <MainHeader>대나무 숲</MainHeader>
-      <Button onClick={onClickWrite}>아우성 지르기</Button>
+      <Button onClick={onClickWrite}>소리 지르기</Button>
       <Container>
         {posts.map((post, index) => (
           <div
