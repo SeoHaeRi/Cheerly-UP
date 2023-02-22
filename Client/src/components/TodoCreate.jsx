@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
-import { useTodoDispatch, useTodoNextId } from '../store/TodoContext'; //input도 관리
+import { useTodoDispatch, useTodoNextId } from '../store/module/TodoContext'; //input도 관리
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { jwtUtils } from '../utils/jwtUtils';
 
 //useState를 사용하여 토글 할 수 있는 open 값을 관리하며, 이 값이 true일 때에는 아이콘을 45도 돌려서 X 모양이 보이게 한 후, 버튼 색상을 바꿔준다.
 //  할 일을 입력할 수 있는 폼도 보여준다.
@@ -89,6 +90,15 @@ const Input = styled.input`
 `;
 
 function TodoCreate() {
+  const token = useSelector((state) => state.token.token);
+  const [isAuth, setIsAuth] = useState(false);
+  useEffect(() => {
+    if (jwtUtils.isAuth(token)) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  }, [token]);
   //유저 정보
   const userID = useSelector((state) => state.user.user.data.user_id);
   const userNickname = useSelector(
@@ -120,6 +130,8 @@ function TodoCreate() {
       })
       .then(() => {
         alert('오늘의 할 일을 추가하였습니다!');
+
+        //  새로고침으로 일단 해놨는데, 다른 방법 생각하기
         window.location.replace('/study');
       });
 

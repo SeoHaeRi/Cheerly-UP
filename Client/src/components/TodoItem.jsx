@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { MdDone, MdDelete } from 'react-icons/md';
-import { useTodoDispatch } from '../store/TodoContext'; //dispatch 가져와서 토글 기능, 삭제기능
+import { useTodoDispatch } from '../store/module/TodoContext'; //dispatch 가져와서 토글 기능, 삭제기능
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
