@@ -17,9 +17,7 @@ function setUserInfo(userInfo, isLogIn) {
 }
 
 function logout() {
-  sessionStorage.removeItem('accesstoken');
-  sessionStorage.removeItem('user_id');
-  sessionStorage.removeItem('user_nickname');
+  sessionStorage.clear();
   // window.location.href = '/';
   //일단 세션 정보를 지우는 걸로 로그아웃 설정
   //추후에 JWT 토큰을 사용한다면 수정해야함.

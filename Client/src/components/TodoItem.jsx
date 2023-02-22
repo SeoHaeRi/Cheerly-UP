@@ -73,9 +73,31 @@ function TodoItem({ id, done, text, study_id }) {
     (state) => state.user.user.data.user_nickname,
   );
 
-  console.log({ id, done, text });
+  console.log(study_id);
   const dispatch = useTodoDispatch();
-  const onToggle = () => dispatch({ type: 'TOGGLE', id });
+  //PATCH - 할일 완료 버튼
+  const onToggle = () => {
+    dispatch({ type: 'TOGGLE', id });
+    if (done === 0) {
+      axios
+        .patch(`http://localhost:3030/study/${userID}/${study_id}`, {
+          study_id: Number(study_id),
+          user_id: userID,
+          done: 1,
+        })
+        .then((res) => alert('짝짝짝!!👏 수고하셨어요!'));
+    } else {
+      axios
+        .patch(`http://localhost:3030/study/${userID}/${study_id}`, {
+          study_id: Number(study_id),
+          user_id: userID,
+          done: 0,
+        })
+        .then();
+    }
+  };
+
+  //DELETE 삭제 버튼
   const onRemove = () => {
     dispatch({ type: 'REMOVE', id });
     const confirm = window.confirm('선택한 오늘 할 일을 지우시겠습니까?');
@@ -87,21 +109,11 @@ function TodoItem({ id, done, text, study_id }) {
         })
         .then((res) => {
           alert('삭제가 완료되었습니다.');
-          window.location.replace('/study');
         });
     }
   };
 
   const [study, setStudy] = useState([]);
-
-  // useEffect(() => {
-  //   axios
-  //     .post('http://localhost:3030/study', { id, text, done })
-  //     .then((res) => {
-  //       setStudy(res.data);
-  //       console.log(res.data);
-  //     });
-  // }, []);
 
   return (
     <TodoItemBlock>
