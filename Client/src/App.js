@@ -33,8 +33,9 @@ import BoardDetailEdit from './Pages/BoardDetailEdit';
 import BoardWrite from './Pages/BoardWrite';
 
 import Life from './Pages/Life';
-//import Healing from './Pages/Healing';
+import Healing from './Pages/Healing';
 import PrivateRoute from './routes/PrivateRoute';
+import MyPost from './Pages/MyPost';
 
 function App() {
   const [init, setInit] = useState(true);
@@ -65,6 +66,7 @@ function App() {
             <Route path="/board/edit/:id" element={<BoardDetailEdit />}></Route>
             <Route path="/board/write" element={<BoardWrite />}></Route>
             <Route path="/studygroup" element={<Group_page />} />
+            <Route path="/healing" element={<Healing />} />
             <Route path="/signin2" element={<Signin />} />
             <Route path="/signin" element={<Signin2 />} />
             <Route path="/signup2" element={<Signup />} />
@@ -89,8 +91,11 @@ function App() {
               path="/chatroom"
               element={<PrivateRoute path="/chatroom" component={Chatroom} />}
             />
+            <Route
+              path="/mypost"
+              element={<PrivateRoute path="/mypost" component={MyPost} />}
+            />
             <Route path="/*" element={<Error />} />
-            {/* 추후 에러 페이지 추가  + 마이페이지 추가, domain 은 수정 가능!*/}
           </Routes>
         </BrowserRouter>
       ) : (
