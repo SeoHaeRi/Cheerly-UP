@@ -49,11 +49,15 @@ export default function TodoList() {
   const [todoData, setTodoData] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3030/study/${userID}`).then((res) => {
-      console.log(res.data);
-      setTodoData(res.data);
-    });
-  }, []);
+    async function getData() {
+      await axios
+        .get(`http://localhost:3030/study/${userID}`, {
+          user_id: userID,
+        })
+        .then((res) => setTodoData(res.data));
+    }
+    getData();
+  }, [userID]);
 
   return (
     <>

@@ -113,6 +113,7 @@ const Navbar = () => {
                     to="/"
                     onClick={() => {
                       dispatch(setToken(''));
+                      sessionStorage.clear();
                     }}
                   >
                     로그아웃
