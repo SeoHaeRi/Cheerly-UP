@@ -32,6 +32,7 @@ import BoardDetailEdit from './Pages/BoardDetailEdit';
 import BoardWrite from './Pages/BoardWrite';
 
 import Life from './Pages/Life';
+import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
   const [init, setInit] = useState(true);
@@ -39,9 +40,9 @@ function App() {
   const dispatch = useDispatch();
 
   const userInfo = {
-    user_id: localStorage.getItem('user_id'),
-    user_nickname: localStorage.getItem('user_nickname'),
-    accesstoken: localStorage.getItem('accesstoken'),
+    user_id: sessionStorage.getItem('user_id'),
+    user_nickname: sessionStorage.getItem('user_nickname'),
+    accesstoken: sessionStorage.getItem('accesstoken'),
   };
 
   if (userInfo) {
@@ -66,12 +67,24 @@ function App() {
             <Route path="/signin" element={<Signin2 />} />
             <Route path="/signup2" element={<Signup />} />
             <Route path="/signup" element={<SignUp2 />} />
-            <Route path="/study" element={<Study />} />
-            <Route path="/life" element={<Life />} />
+            <Route
+              path="/study"
+              element={<PrivateRoute path="/study" component={Study} />}
+            />
+            <Route
+              path="/life"
+              element={<PrivateRoute path="/life" component={Life} />}
+            />
             {/* <Route path="/healing" element={<Healing />} /> */}
-            <Route path="/mypage" element={<MyPage />} />
+            <Route
+              path="/mypage"
+              element={<PrivateRoute path="/mypage" component={MyPage} />}
+            />
             <Route path="/chat/:roomname" element={<Chat />} />
-            <Route path="/chatroom" element={<Chatroom />}></Route>
+            <Route
+              path="/chatroom"
+              element={<PrivateRoute path="/chatroom" component={Chatroom} />}
+            />
             <Route path="/*" element={<Error />} />
             {/* 추후 에러 페이지 추가  + 마이페이지 추가, domain 은 수정 가능!*/}
           </Routes>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TodoItem from './TodoItem';
-import { useTodoState } from '../store/TodoContext'; ///state 를 조회하고 이를 렌더링
+import { useTodoState } from '../store/module/TodoContext'; ///state 를 조회하고 이를 렌더링
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 

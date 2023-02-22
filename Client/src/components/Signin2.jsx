@@ -1,20 +1,21 @@
-
-
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Button, TextField } from '@mui/material';
-import { json, useNavigate } from 'react-router-dom';
+import { json, useNavigate, useSearchParams } from 'react-router-dom';
 import '../static/Signup2.css';
 import { Cookies } from 'react-cookie';
 import jwt_decode from 'jwt-decode';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../store/module/token';
 
 const SignUp = () => {
   const cookies = new Cookies();
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const validationSchema = Yup.object().shape({
     id: Yup.string().required('아이디를 입력하세요'),
 
@@ -34,6 +35,18 @@ const SignUp = () => {
         id,
         pw,
       });
+
+      const decodedUserInfo = jwt_decode(data.accessToken);
+
+      sessionStorage.setItem('accesstoken', data.accessToken);
+      sessionStorage.setItem('user_id', decodedUserInfo.id);
+      sessionStorage.setItem('user_nickname', decodedUserInfo.nickname);
+
+      // window.location.href = '/';
+      //
+      dispatch(setToken(data.accessToken));
+      const redirectUrl = searchParams.get('redirectUrl');
+
       toast.success(
         <h3>
           로그인 완료되었습니다.😎
@@ -47,14 +60,12 @@ const SignUp = () => {
       // redirecturl이 쿼리스트링으로 존재하면
       // 원래 가고자했던 페이지로 돌아가기
       setTimeout(() => {
-        const decodedUserInfo = jwt_decode(data.accessToken);
-
-        localStorage.setItem('accesstoken', data.accessToken);
-        localStorage.setItem('user_id', decodedUserInfo.id);
-        localStorage.setItem('user_nickname', decodedUserInfo.nickname);
-
-        window.location.href = '/';
-      }, 1000);
+        if (redirectUrl) {
+          navigate(redirectUrl);
+        } else {
+          navigate('/');
+        }
+      }, 2000);
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
       toast.error(e.response.data.message + '😭', {

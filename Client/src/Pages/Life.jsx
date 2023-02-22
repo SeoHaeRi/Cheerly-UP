@@ -8,7 +8,7 @@ import { createGlobalStyle } from 'styled-components';
 import TodoTemplate from '../components/TodoTemplate';
 import TodoHead from '../components/TodoHead';
 import TodoCreate from '../components/TodoCreate';
-import { TodoProvider } from '../store/TodoContext';
+import { TodoProvider } from '../store/module/TodoContext';
 import health from '../assets/health.svg';
 
 const GlobalStyle = createGlobalStyle`
