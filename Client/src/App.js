@@ -32,6 +32,7 @@ import BoardDetailEdit from './Pages/BoardDetailEdit';
 import BoardWrite from './Pages/BoardWrite';
 
 import Life from './Pages/Life';
+//import Healing from './Pages/Healing';
 import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
