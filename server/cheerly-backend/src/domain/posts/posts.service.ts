@@ -41,6 +41,23 @@ export class PostsService {
     return post;
   }
 
+  //Get :userid  - 특정 게시글
+  async getMany(userId: string) {
+    const postbyUser = await this.boardRepository
+      .createQueryBuilder('p')
+      .select(['p.post_id', 'p.title', 'p.content', 'p.date', 'p.userId'])
+      .where('p.userId = :userId', {
+        userId: String(userId),
+      })
+      .getMany();
+
+    if (!postbyUser)
+      throw new NotFoundException(`Can't find post with id ${userId}`);
+
+    console.log(postbyUser);
+    return postbyUser;
+  }
+
   //POST - 게시글 생성
   async createPost(postDetails: CreatePostParams) {
     const newPost = await this.boardRepository.create({

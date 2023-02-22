@@ -32,8 +32,12 @@ export default function MyPage() {
         <button className="card_button" onClick={handleSubmit}>
           등록
         </button>
-        <button className="card__button" type="button">
-          <span>내가 쓴글</span>
+        <button
+          className="card__button"
+          type="button"
+          onClick={() => navigate('/mypost')}
+        >
+          <span>내가 쓴 글</span>
         </button>
         <div className="card__button">유저 정보</div>
         <div className="card__button">유</div>
@@ -42,3 +46,5 @@ export default function MyPage() {
     </div>
   );
 }
+
+/* 나의 공부,라이프 기록도 가져올 것인지*/
