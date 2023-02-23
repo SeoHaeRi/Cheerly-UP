@@ -63,9 +63,7 @@ const SignUp = () => {
 
   // 카카오 로그인 버튼 클릭
   const viewKakao = () => {
-    axios.get('http://localhost:3030/user/kakao').then((response) => {
-      console.log('kakao : ', response);
-    });
+    window.location.href = 'http://localhost:3030/user/kakao';
   };
 
   return (

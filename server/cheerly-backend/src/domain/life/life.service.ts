@@ -40,6 +40,30 @@ export class LifeService {
     return lifeDataByUser;
   }
 
+  //GET userId 일치 + done = 1
+  async getLivesRecord(userId: string) {
+    const TIME_ZONE = 9 * 60 * 60 * 1000; // 9시간
+
+    const koreatime = new Date(Date.now() + TIME_ZONE)
+      .toISOString()
+      .split('T')[0];
+
+    //userId 일치 + done
+    const lifeRecord = await this.lifeRepository
+      .createQueryBuilder('l')
+      .select(['l.life_id', 'l.done', 'l.date', 'l.content', 'l.user_id'])
+      .where('l.user_id = :user_id', {
+        user_id: String(userId),
+      })
+      .andWhere('l.done = :done', {
+        done: 1,
+      })
+      .getMany();
+
+    console.log(lifeRecord);
+    return lifeRecord;
+  }
+
   //POST - 라이프 투두리스트 할 일 생성
   createLife(lifeDetails: CreateLifeParams) {
     const newLifeToDo = this.lifeRepository.create({

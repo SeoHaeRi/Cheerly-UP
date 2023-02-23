@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
+import 'semantic-ui-css/semantic.min.css';
 
 import Signup from './components/Signup';
 import SignUp2 from './components/Signup2';
@@ -36,8 +37,9 @@ import Life from './Pages/Life';
 import Healing from './Pages/Healing';
 import PrivateRoute from './routes/PrivateRoute';
 import MyPost from './Pages/MyPost';
-import MyStudyRecord from './Pages/MyStudyRecord';
-
+ import MyStudyRecord from './Pages/MyStudyRecord';
+import MyLifeRecord from './Pages/MyLifeRecord';
+ 
 function App() {
   const [init, setInit] = useState(true);
 
@@ -59,7 +61,8 @@ function App() {
     <>
       {init ? (
         <BrowserRouter>
-          <Navbar />
+          <Navbardrop />
+          {/* <Navbar /> */}
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/board" element={<Board />} />
@@ -100,6 +103,10 @@ function App() {
               element={
                 <PrivateRoute path="/mystudyrecord" component={MyStudyRecord} />
               }
+            />
+            <Route
+              path="/mylife"
+              element={<PrivateRoute path="/mylife" component={MyLifeRecord} />}
             />
             <Route path="/*" element={<Error />} />
           </Routes>

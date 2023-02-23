@@ -87,7 +87,7 @@ const Healing = (props) => {
       query: query,
       sort: 'accuracy', // accuracy | recency 정확도 or 최신
       page: 1, // 페이지번호
-      size: 10, // 한 페이지에 보여 질 문서의 개수
+      size: 12, // 한 페이지에 보여 질 문서의 개수
     };
 
     const { data } = await blogSearch(params); // api 호출

@@ -41,7 +41,7 @@ export class StudyService {
     return studyDatabyUser;
   }
 
-  //userId 일치
+  //GET userId 일치 + done = 1
   async getStudiesRecord(userId: string) {
     const TIME_ZONE = 9 * 60 * 60 * 1000; // 9시간
 
