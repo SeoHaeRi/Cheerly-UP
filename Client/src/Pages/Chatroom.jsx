@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import '../static/Chatroom.css';
 
 export default function Chatroom() {
+  const roomName = useRef();
+  const roomNumber = useRef();
+
+  useEffect(() => {
+    
+  })
   const navigate = useNavigate();
   const createRoom = () => {
     const title = prompt('채팅방의 이름을 설정해주세요.');
     if (title === '' || title === undefined)
       alert('채팅방의 이름을 입력해주세요!');
   };
-
   const EnterChatting = () => {
     const roomName = 'roomName';
     navigate(`/chat/${roomName}`);
