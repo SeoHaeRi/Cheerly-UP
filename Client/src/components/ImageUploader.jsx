@@ -1,9 +1,8 @@
-import "../static/Imageupload.css";
-import { Button } from "@mui/material";
+import '../static/Imgupload.css';
+import { Button } from '@mui/material';
 
 const ImageUploader = ({ preview_URL, setImage }) => {
   let inputRef;
-
   const saveImage = (e) => {
     e.preventDefault();
     const fileReader = new FileReader();
@@ -25,7 +24,7 @@ const ImageUploader = ({ preview_URL, setImage }) => {
         accept="image/*"
         onChange={saveImage}
         ref={(refParam) => (inputRef = refParam)}
-        style={{ display: "none" }}
+        style={{ display: 'none' }}
       />
       <div className="img-wrapper">
         <img src={preview_URL} />
@@ -40,6 +39,9 @@ const ImageUploader = ({ preview_URL, setImage }) => {
         </Button>
       </div>
     </div>
+
+
+
   );
 };
 

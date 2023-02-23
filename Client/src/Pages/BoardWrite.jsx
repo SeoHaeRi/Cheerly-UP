@@ -15,7 +15,6 @@ function BoardWrite() {
   const userNickname = useSelector(
     (state) => state.user.user.data.user_nickname,
   );
-  console.log(userID, userNickname);
 
   const titleRef = useRef();
   const contentRef = useRef();
@@ -29,7 +28,7 @@ function BoardWrite() {
       inputContent === '' ||
       inputContent === undefined
     ) {
-      alert('글의 제목과 내용을 입력해주세요!');
+      alert('내용을 입력해주세요!');
     } else {
       axios
         .post('http://localhost:3030/board/write', {
@@ -39,7 +38,7 @@ function BoardWrite() {
           userId: String(userID),
         })
         .then(() => {
-          alert('게시글 작성이 완료되었습니다.');
+          alert('완료되었습니다.');
           window.location.href = '/board';
         });
     }
@@ -50,13 +49,12 @@ function BoardWrite() {
         <GlobalStyle />
         <Post>
           <Title>
-            제목:
+            아우성:
             <input ref={titleRef}></input>
           </Title>
           <Body>
             {' '}
-            내용:
-            <br></br>
+            마음의 소리를 내지르세요 :<br></br>
             <textarea
               ref={contentRef}
               style={{ width: '380px', height: '300px' }}
@@ -71,7 +69,7 @@ function BoardWrite() {
           }}
           onClick={onClickWrite}
         >
-          글 등록
+          등록
         </button>
       </Container>
     </>

@@ -26,15 +26,16 @@ import Error from './Pages/Error';
 import { setUserInfo } from './store/module/user';
 import Chat from './Pages/Chat';
 import Chatroom from './Pages/Chatroom';
+import Chat3 from './Pages/Chat3'
 
 import BoardDetail from './Pages/BoardDetail';
 import BoardDetailEdit from './Pages/BoardDetailEdit';
 import BoardWrite from './Pages/BoardWrite';
 
 import Life from './Pages/Life';
-//import Healing from './Pages/Healing';
-import PrivateRoute from './routes/PrivateRoute';
 import Healing from './Pages/Healing';
+import PrivateRoute from './routes/PrivateRoute';
+import MyPost from './Pages/MyPost';
 
 function App() {
   const [init, setInit] = useState(true);
@@ -70,6 +71,8 @@ function App() {
             <Route path="/signin" element={<Signin2 />} />
             <Route path="/signup2" element={<Signup />} />
             <Route path="/signup" element={<SignUp2 />} />
+            <Route path="/chat3" element={<Chat3 />} />
+            
             <Route
               path="/study"
               element={<PrivateRoute path="/study" component={Study} />}
@@ -88,8 +91,11 @@ function App() {
               path="/chatroom"
               element={<PrivateRoute path="/chatroom" component={Chatroom} />}
             />
+            <Route
+              path="/mypost"
+              element={<PrivateRoute path="/mypost" component={MyPost} />}
+            />
             <Route path="/*" element={<Error />} />
-            {/* 추후 에러 페이지 추가  + 마이페이지 추가, domain 은 수정 가능!*/}
           </Routes>
         </BrowserRouter>
       ) : (

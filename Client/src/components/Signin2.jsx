@@ -63,12 +63,12 @@ const SignUp = () => {
         if (redirectUrl) {
           navigate(redirectUrl);
         } else {
-          navigate('/');
+          window.location.href = '/';
         }
       }, 2000);
     } catch (e) {
-      // 서버에서 받은 에러 메시지 출력
-      toast.error(e.response.data.message + '😭', {
+      // 로그인 실패시
+      toast.error('다시 한 번만 확인해주세요 !' + '😭', {
         position: 'top-center',
       });
     }

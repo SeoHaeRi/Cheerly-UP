@@ -11,7 +11,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 const reduxDevTool =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
-const store = configureStore({ reducer: rootReducer }, reduxDevTool);
+const store = configureStore({ reducer: rootReducer, middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false, }), }, reduxDevTool);
 const persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

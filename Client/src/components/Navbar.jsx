@@ -24,6 +24,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const [showNavbar, setShowNavbar] = useState(false);
+  const [logOut, setLogOut] = useState('');
 
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar);
@@ -109,14 +110,27 @@ const Navbar = () => {
                   <NavLink to="/mypage">마이페이지</NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    to="/"
+                  <button
+                    className={logOut}
+                    id="logoutbtn"
+                    style={{
+                      backgroundColor: 'transparent',
+                      fontSize: '18px',
+                      fontWeight: '400',
+                      color: '#2f234f',
+                      textDecoration: 'none',
+                      margin: '0',
+                      padding: '0',
+                    }}
                     onClick={() => {
+                      setLogOut('active');
                       dispatch(setToken(''));
+                      sessionStorage.clear();
+                      window.location.href = '/';
                     }}
                   >
                     로그아웃
-                  </NavLink>
+                  </button>
                 </li>
               </ul>
             </div>

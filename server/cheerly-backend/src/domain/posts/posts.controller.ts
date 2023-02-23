@@ -27,13 +27,23 @@ export class PostsController {
     return posts;
   }
 
-  //Get - 특정 게시글
+  //Get - 특정 게시글 id
   @Get('/:id')
   async getOne(@Param('id') postId: string, @Req() req, @Res() res) {
     const param = postId.slice(1);
     console.log(param);
 
     const post = await this.postsService.getOne(param);
+
+    res.send(post);
+    return post;
+  }
+
+  //Get - 특정 유저 id
+  @Get('mypost/:id')
+  async getMany(@Param('id') userId: string, @Req() req, @Res() res) {
+    const post = await this.postsService.getMany(userId);
+
     res.send(post);
     return post;
   }

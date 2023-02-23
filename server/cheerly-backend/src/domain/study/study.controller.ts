@@ -28,7 +28,7 @@ export class StudyController {
   //   return studyData;
   // }
 
-  //GET - 특정 스터디 데이터 가져오기(userId)
+  //GET - 특정 스터디 데이터 가져오기(userId + date)
   @Get('/:id')
   async getStudiesByUserId(
     @Param('id') userId: string,
@@ -54,13 +54,14 @@ export class StudyController {
   }
 
   //PATCH - 스터디 content, done, date 업데이트
-  //일단 도메인은 /study/edit/스터디id로 설정
-  @Patch('/edit/:id')
+  //특정 유저의 특정 스터디 id의 정보를 업데이트해야함.
+  @Patch('/:id/:sd')
   async updateStudy(
-    @Param('id', ParseIntPipe) studyId: number,
+    @Param('id') userId: string,
+    @Param('sd') studyId: number,
     @Body() updateStudyDto: UpdateStudyDto,
   ) {
-    await this.studyService.updateStudy(studyId, updateStudyDto);
+    await this.studyService.updateStudy(userId, studyId, updateStudyDto);
   }
 
   //DELETE - 투두 삭제

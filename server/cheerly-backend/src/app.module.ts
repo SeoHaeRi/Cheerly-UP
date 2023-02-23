@@ -15,6 +15,8 @@ import { Chat } from './entities/Chat.entity';
 import { SocketGateway } from './domain/socket/socket.gateway';
 import { ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
+import { LifeModule } from './domain/life/life.module';
+import { Life } from './entities/Life.entity';
 
 @Module({
   imports: [
@@ -30,7 +32,7 @@ import { APP_PIPE } from '@nestjs/core';
       password: process.env.DB_PASSWD,
       database: process.env.DB_DATABASE,
       // entities: [__dirname + '/entities/*.entity.js'],
-      entities: [User, Post, Comment, Study, Chat],
+      entities: [User, Post, Comment, Study, Chat, Life],
       logging: true,
     }),
     UserModule,
@@ -39,6 +41,7 @@ import { APP_PIPE } from '@nestjs/core';
     StudyModule,
     CommentModule,
     SocketModule,
+    LifeModule,
   ],
   providers: [{ provide: APP_PIPE, useClass: ValidationPipe }],
 })

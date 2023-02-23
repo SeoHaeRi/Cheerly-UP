@@ -16,7 +16,7 @@ export class StudyService {
   //   return studies;
   // }
 
-  //GET - 특정 스터디 데이터 가져오기(userId)
+  //GET - 특정 스터디 데이터 가져오기(userId + 날짜)
   //클라이언트에서 유저의 정보를 request해서 받아오는 것 설정해야함!!
   async getStudiesByUserId(userId: string) {
     const TIME_ZONE = 9 * 60 * 60 * 1000; // 9시간
@@ -25,13 +25,14 @@ export class StudyService {
       .toISOString()
       .split('T')[0];
 
+    //userId 일치 & 날짜 일치하는 데이터 불러오기
     const studyDatabyUser = await this.studyRepository
       .createQueryBuilder('s')
       .select(['s.study_id', 's.done', 's.date', 's.content', 's.user_id'])
       .where('s.user_id = :user_id', {
-        user_id: userId,
+        user_id: String(userId),
       })
-      .where('s.date = :date', {
+      .andWhere('s.date = :date', {
         date: koreatime,
       })
       .getMany();
@@ -65,9 +66,13 @@ export class StudyService {
   }
 
   //PATCH - 스터디 content, done, date 변경
-  updateStudy(id: number, updateStudyDetails: UpdateStudyParams) {
+  updateStudy(
+    userId: string,
+    studyId: number,
+    updateStudyDetails: UpdateStudyParams,
+  ) {
     return this.studyRepository.update(
-      { study_id: id },
+      { study_id: studyId, user_id: userId },
       { ...updateStudyDetails, date: new Date() },
     );
   }

@@ -130,9 +130,7 @@ function TodoCreate() {
       })
       .then(() => {
         alert('오늘의 할 일을 추가하였습니다!');
-
-        //  새로고침으로 일단 해놨는데, 다른 방법 생각하기
-        window.location.replace('/study');
+        window.location.href = '/study';
       });
 
     ///////////////////
@@ -148,6 +146,7 @@ function TodoCreate() {
     setOpen(false);
     nextId.current += 1;
   };
+
   return (
     <>
       {open && (

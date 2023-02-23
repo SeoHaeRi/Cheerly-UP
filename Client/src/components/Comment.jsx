@@ -11,29 +11,63 @@ import {
 import CommentDetail from './CommentDetail';
 import { useSelector } from 'react-redux';
 import ModalCommentEdit from './modal/CommentEdit';
+import { jwtUtils } from '../utils/jwtUtils';
 
 export default function WriteComment() {
+  const navigate = useNavigate();
+  const token = useSelector((state) => state.token.token);
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    if (jwtUtils.isAuth(token)) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  }, [token]);
+
   const userID = useSelector((state) => state.user.user.data.user_id);
   const userNickname = useSelector(
     (state) => state.user.user.data.user_nickname,
   );
 
   const [Viewcomment, setViewcomment] = useState(true);
-
   const { id } = useParams();
   const param = id.slice(1);
-
   const [comments, setComments] = useState([]);
   const [ModalOn, setModalOn] = useState(false);
-  // const [inputList, setInputList] = useState([]);
-
   const commentRef = useRef();
 
+  function formatDate(string) {
+    var options = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    };
+    return new Date(string).toLocaleDateString([], options);
+  }
+
   //게시판 글에 맞는 댓글 불러오기
+  let data = [];
+
   useEffect(() => {
     axios.get(`http://localhost:3030/comment/:${param}`).then((res) => {
-      setComments(res.data);
-      console.log(res.data);
+      for (let i = 0; i < res.data.length; i++) {
+        const commentData = res.data[i];
+        const convertDate = formatDate(commentData.date);
+
+        const commentDataArr = {
+          comment_id: commentData.comment_id,
+          content: commentData.content,
+          date: convertDate,
+          userId: commentData.userId,
+          post_id: commentData.post_id,
+        };
+        data.push(commentDataArr);
+      }
+      setComments(data);
     });
   }, []);
 
@@ -42,63 +76,61 @@ export default function WriteComment() {
   };
 
   //댓글 삭제
-  const deleteCommentHandler = (commentID) => {
-    const confirm = window.confirm('정말로 댓글을 삭제하시겠습니까?');
-
-    if (confirm === true) {
-      axios
-        .delete(`http://localhost:3030/comment/:${param}/:${commentID}`, {
-          post_id: Number(comments.post_id),
-          comment_id: Number(commentID),
-        })
-        .then((res) => {
-          alert('삭제가 완료되었습니다.');
-          window.location.href = `/board/:${param}`;
-        });
+  const deleteCommentHandler = (comment, commentID) => {
+    if (comment.userId !== userID || !isAuth) {
+      alert('본인의 댓글만 삭제할 수 있습니다.');
+    } else {
+      const confirm = window.confirm('정말로 댓글을 삭제하시겠습니까?');
+      if (confirm === true) {
+        axios
+          .delete(`http://localhost:3030/comment/:${param}/:${commentID}`, {
+            post_id: Number(comments.post_id),
+            comment_id: Number(commentID),
+          })
+          .then((res) => {
+            alert('삭제가 완료되었습니다.');
+            navigate(`/board/:${param}`);
+          });
+      }
     }
   };
 
   //댓글 수정
   const onClickEditHandler = (comment) => {
     console.log(comment.userId, userID);
-
     const Component = {
       comment_id: comment.comment_id,
       component: <EditInput />,
     };
 
-    if (comment.userId !== userID) {
+    if (comment.userId !== userID || !isAuth) {
       alert('본인의 댓글만 수정할 수 있습니다.');
     } else {
       setModalOn(true);
-
-      //
-      // let commentDiv = document.getElementById(`${comment.comment_id}-comment`);
-      // commentDiv.lastChild = { inputList };
-      // setInputList(inputList.concat(<EditInput key={inputList.length} />));
-      ///
-      // let editbtn = document.getElementById(`${comment_id}-editbtn`);
-      // let deletebtn = document.getElementById(`${comment_id}-deletebtn`);
-      // let editConfirmbtn = document.getElementById(`${comment_id}-editConfirm`);
-      // commentDiv.outerHTML = `<textarea id="${comment_id}-text"/>`;
-      // editbtn.style.display = 'none';
-      // deletebtn.style.display = 'none';
-      // // const confirmEditBtn = document.createElement('button');
-      // // confirmEditBtn.classList.add(`${comment_id}-editConfirm`);
-      // // confirmEditBtn.innerText = '수정';
-      // console.log(commentDiv.outerHTML);
+    }
+  };
+  //유효한 토큰의 사용자만 댓글을 쓸 수 있도록
+  const onClickWriteCommentHandler = () => {
+    if (!isAuth) {
+      alert('로그인한 사용자만 댓글을 쓸 수 있습니다!');
+    } else {
+      setViewcomment(false);
     }
   };
 
   return (
     <>
       <button onClick={() => setViewcomment(true)}>댓글 목록</button>
-      <button onClick={() => setViewcomment(false)}>댓글 쓰기</button>
+      <button onClick={onClickWriteCommentHandler}>댓글 쓰기</button>
       {Viewcomment ? (
         <CommentDiv>
           <div>
             {comments.map((comment, index) => (
-              <div key={index}>
+              <div
+                key={index}
+                id="each-comment"
+                // style={{ borderBottom: 'solid 1px #1982fc' }}
+              >
                 <ModalCommentEdit
                   show={ModalOn}
                   onHide={setModalOn}
@@ -106,12 +138,14 @@ export default function WriteComment() {
                   param={param}
                 />
                 <div>댓글 쓴 사람 아이디: {comment.userId}</div>
-                <div>날짜: {comment.date}</div>
+                <div>{comment.date}</div>
                 <div id={`${comment.comment_id}-comment`} ref={commentRef}>
                   내용: {comment.content}
                   <button
                     id={`${comment.comment_id}-deletebtn`}
-                    onClick={() => deleteCommentHandler(comment.comment_id)}
+                    onClick={() =>
+                      deleteCommentHandler(comment, comment.comment_id)
+                    }
                   >
                     ❌
                   </button>
@@ -121,7 +155,6 @@ export default function WriteComment() {
                   >
                     ✏️
                   </button>
-                  {/* <button id={`${comment.comment_id}-editConfirm`}>수정</button> */}
                 </div>
               </div>
             ))}
@@ -144,8 +177,9 @@ export default function WriteComment() {
     </>
   );
 }
-
 const CommentDiv = styled.div`
+  display: flex;
+  justify-content: center;
   border: solid 1px #1982fc;
   width: 50%;
   margin-top: 30px;
