@@ -63,7 +63,7 @@ export default function TodoHeadLife() {
   );
 
   const [undoneNumber, setUndoneNumber] = useState('');
-  axios.get(`http://localhost:3030/study/${userID}`).then((res) => {
+  axios.get(`http://localhost:3030/life/${userID}`).then((res) => {
     setUndoneNumber(res.data.filter((el) => el.done === 0).length);
   });
 

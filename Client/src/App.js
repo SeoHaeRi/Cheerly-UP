@@ -37,6 +37,7 @@ import Healing from './Pages/Healing';
 import PrivateRoute from './routes/PrivateRoute';
 import MyPost from './Pages/MyPost';
 import MyStudyRecord from './Pages/MyStudyRecord';
+import MyLifeRecord from './Pages/MyLifeRecord';
 
 function App() {
   const [init, setInit] = useState(true);
@@ -100,6 +101,10 @@ function App() {
               element={
                 <PrivateRoute path="/mystudyrecord" component={MyStudyRecord} />
               }
+            />
+            <Route
+              path="/mylife"
+              element={<PrivateRoute path="/mylife" component={MyLifeRecord} />}
             />
             <Route path="/*" element={<Error />} />
           </Routes>
