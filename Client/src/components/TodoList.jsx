@@ -15,32 +15,6 @@ const TodoListBlock = styled.div`
 `;
 export default function TodoList() {
   const todos = useTodoState();
-  // const [todos, setTodos] = useTodoState();
-
-  // const [study, setStudy] = useState([]);
-  // const {id, text, done} = values;
-  // try {
-  //   await axios.post('http://localhost:3030/study', {
-  //     id, text, done,
-  //   });
-  //   catch(e) {}
-  // }
-  // useEffect(() => {
-  //   axios
-  //     .post('http://localhost:3030/study', { id, text, done })
-  //     .then((res) => {
-  //       setTodos(res.data);
-  //       console.log(res.data);
-  //     });
-  // }, []);
-  // useEffect(() => {
-  //   axios
-  //     .post('http"//localhost:3030/study', { id, text, done })
-  //     .then((res) => {
-  //       setTodos(res.data);
-  //       console.log(res.data);
-  //     });
-  // }, []);
 
   const userID = useSelector((state) => state.user.user.data.user_id);
   const userNickname = useSelector(

@@ -37,8 +37,9 @@ import Life from './Pages/Life';
 import Healing from './Pages/Healing';
 import PrivateRoute from './routes/PrivateRoute';
 import MyPost from './Pages/MyPost';
-import Navbardrop from './components/Navbardrop';
-
+ import MyStudyRecord from './Pages/MyStudyRecord';
+import MyLifeRecord from './Pages/MyLifeRecord';
+ 
 function App() {
   const [init, setInit] = useState(true);
 
@@ -96,6 +97,16 @@ function App() {
             <Route
               path="/mypost"
               element={<PrivateRoute path="/mypost" component={MyPost} />}
+            />
+            <Route
+              path="/mystudyrecord"
+              element={
+                <PrivateRoute path="/mystudyrecord" component={MyStudyRecord} />
+              }
+            />
+            <Route
+              path="/mylife"
+              element={<PrivateRoute path="/mylife" component={MyLifeRecord} />}
             />
             <Route path="/*" element={<Error />} />
           </Routes>

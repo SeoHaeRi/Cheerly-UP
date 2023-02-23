@@ -31,8 +31,16 @@ export class LifeController {
   @Get('/:id')
   async getLivesByUserId(@Param('id') userId: string, @Req() req, @Res() res) {
     const lifeDataByUser = await this.lifeService.getLivesByUserId(userId);
-    // res.send(lifeDataByUser)
+    res.send(lifeDataByUser);
     return lifeDataByUser;
+  }
+
+  //GET - 특정 라이프 데이터 가져오기 ( userId + done)
+  @Get('/record/:id')
+  async getLivesRecord(@Param('id') userId: string, @Req() req, @Res() res) {
+    const lifeDataRecord = await this.lifeService.getLivesRecord(userId);
+    res.send(lifeDataRecord);
+    return lifeDataRecord;
   }
 
   //POST - 라이프 투두리스트 할 일 생성
