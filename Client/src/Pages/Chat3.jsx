@@ -38,9 +38,9 @@ export default function Chat() {
       console.log(payload);
 
       const container = document.createElement('div');
-      container.classList.add('received');
+      container.classList.add('message__bubble');
       container.innerText = payload.msg + ' ' + payload.time;
-      const chat = document.querySelector('#chat');
+      const chat = document.querySelector('.message-row');
       chat.appendChild(container);
     });
   }, []);
@@ -63,7 +63,7 @@ export default function Chat() {
 
   return (
     <>
-      <div className="main-screen main-chat">
+      <div className="main-chat">
         <div className="chat__timestamp , notice">
           <h1>Chat</h1>
           <h5>방번호: 채팅방 이름</h5>
@@ -73,10 +73,9 @@ export default function Chat() {
 
         <div className="message-row">
           <div className="message-row__content">
-            <span className="message__author">유저</span>
+            <div className="message__author"></div>
             <div className="message-info">
-              <span className="message__bubble">ㅋㅋ</span>
-              <span className="message__time">11:11</span>
+              <div className="message__bubble"></div>
             </div>
           </div>
         </div>
@@ -84,8 +83,7 @@ export default function Chat() {
         <div className="message-row message-row--own">
           <div className="message-row__content">
             <div className="message__info">
-              <div className="received, message__bubble"> 누구세요</div>
-              <span className="received-time,message__time">21:27</span>
+              <div className="message__bubble2"></div>
             </div>
           </div>
           {/* <h6 className="receiver">받는 사람 이름</h6> */}
@@ -93,18 +91,28 @@ export default function Chat() {
         </div>
       </div>
 
-      <form class="reply">
-        <div class="reply__column">
-          <select class='members'>
+      <div className="reply">
+        <div className="reply__column">
+          <select className="members">
             <option value="전체">전체</option>
           </select>
-          <i class="far fa-plus-square fa-lg"></i>
+          <i className="far fa-plus-square fa-lg"></i>
         </div>
-        <div class="reply__column">
-          <input type="text" placeholder="메시지를 입력하세요" name="chat-input" ref={msgRef} />
-        <button className='card__button' onClick={() => handleSubmitNewMessage()}><i class="far fa-smile-wink fa-lg"></i></button>
+        <div className="reply__column">
+          <input
+            type="text"
+            placeholder="메시지를 입력하세요"
+            name="chat-input"
+            ref={msgRef}
+          />
+          <button
+            className="card__button"
+            onClick={() => handleSubmitNewMessage()}
+          >
+            <i className="far fa-smile-wink fa-lg"></i>
+          </button>
         </div>
-      </form>
+      </div>
 
       {/* <select id="members">
         <option value="전체">전체</option>

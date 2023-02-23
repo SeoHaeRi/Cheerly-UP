@@ -49,12 +49,12 @@ function BoardWrite() {
         <GlobalStyle />
         <Post>
           <Title>
-            아우성:
+            제목 
             <input ref={titleRef}></input>
           </Title>
           <Body>
             {' '}
-            마음의 소리를 내지르세요 :<br></br>
+            마음의 소리를 내지르세요 <br></br>
             <textarea
               ref={contentRef}
               style={{ width: '380px', height: '300px' }}
