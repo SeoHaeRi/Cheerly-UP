@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import '../static/Signup2.css';
+import { ReactComponent as Logo } from '../assets/logo.svg';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const SignUp = () => {
     pw: Yup.string()
       .min(8, '비밀번호는 최소 8자리 이상입니다')
       .max(16, '비밀번호는 최대 16자리입니다!')
-      .required('패스워드를 입력하세요!')
+      .required('비밀번호를 입력하세요!')
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[^\s]*$/,
         '알파벳, 숫자, 공백을 제외한 특수문자를 모두 포함해야 합니다!',
@@ -80,6 +81,7 @@ const SignUp = () => {
     >
       {({ values, handleSubmit, handleChange, errors }) => (
         <div className="signup-wrapper">
+          <Logo />
           <ToastContainer />
           <form onSubmit={handleSubmit} autoComplete="off">
             <div className="input-forms">
@@ -133,11 +135,14 @@ const SignUp = () => {
               >
                 회원가입
               </Button>
+              <button
+                className="card__button1"
+                type="button"
+                onClick={viewKakao}
+              >
+                <span>카카오로 로그인 하기</span>
+              </button>
             </div>
-
-            <button className="card__button1" type="button" onClick={viewKakao}>
-              <span>카카오로 로그인 하기</span>
-            </button>
           </form>
         </div>
       )}

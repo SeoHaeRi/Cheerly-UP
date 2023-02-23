@@ -22,16 +22,19 @@
     width: 300px;
   }
 }
+
+body {
+  background-color: #ffffff;
+}
 .signup-wrapper {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 60px;
 }
 .signup-wrapper .input-forms {
-  background-color: #ffffff;
-  border-radius: 10px;
-  display: flex;
+  border-radius: 50px;
   flex-direction: column;
 }
 .signup-wrapper .input-forms .input-label {

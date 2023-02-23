@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
 import {
   useNavigate,
@@ -8,15 +7,18 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom';
-import Comment from '../components/Comment';
+import "../static/BoardDetail.css";
 import { useSelector } from 'react-redux';
 import { jwtUtils } from '../utils/jwtUtils';
 import { Button, Dialog, DialogContent, IconButton } from '@mui/material';
 import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import DisabledByDefaultOutlinedIcon from '@mui/icons-material/DisabledByDefaultOutlined';
+import Comment from '../components/Comment';
 
-function BoardDetail() {
+
+function BoardDetail2() {
+  const [show, setShow] = useState(false);
   const token = useSelector((state) => state.token.token);
   const [isAuth, setIsAuth] = useState(false);
 
@@ -96,77 +98,47 @@ function BoardDetail() {
 
   return (
     <>
-      <Container>
-        <GlobalStyle />
-        <Post>
-          <Title>제목 : {post.title}</Title>
-          <Title> {post.date} </Title>
-          <Title> Id: {post.userId} </Title>
-          <Body> 내용 : {post.content}</Body>
-        </Post>
+    <div className='board-wrapper'>
+      <div className="edit-delete-button">
+        <Button
+          variant="outlined"
+          color="error"
+          endIcon={<DeleteForeverOutlinedIcon />}
+          className="delete-button"
+          onClick={onClickDelete}
+        >
+          삭제
+        </Button>
+        <Button
+          variant="outlined"
+          endIcon={<BuildOutlinedIcon />}
+          onClick={onClickEdit}
+        >
+          수정
+        </Button>
+      </div>
 
-        {/* <Comment /> */}
-      </Container>
-      <Button
-        onClick={onClickDelete}
-        variant="outlined"
-        color="error"
-        endIcon={<DeleteForeverOutlinedIcon />}
-        className="delete-button"
-      >
-        삭제
-      </Button>
-      <Button
-        onClick={onClickEdit}
-        variant="outlined"
-        endIcon={<BuildOutlinedIcon />}
-      >
-        수정
-      </Button>
-      <Comment/>
-    </>
+
+      <div className="board-header">
+            <div className="board-header-username">{post.userId}</div>
+          </div>
+          <hr/>
+          <div className="board-body">
+            <div className="board-image">
+              {/* <img src={`/api/image/view/${board_id}`}/> */}
+            </div>
+            <div className="board-title-content">
+              <div className="board-title">{post.title}</div>
+              <div className="board-content">{post.content}</div>
+            </div>
+          </div>
+          <hr/>
+          <div className="board-footer">
+            <Comment/>
+          </div>
+          </div>
+        </>
   );
 }
 
-export default BoardDetail;
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-  }
-`;
-
-const Container = styled.div`
-  /* min-height: 100vh; */
-  padding: 200px 0;
-  display: grid;
-  grid-template-columns: repeat(1, 400px);
-  grid-template-rows: repeat(auto-fit, 500px);
-  grid-auto-rows: 100px;
-  grid-gap: 30px 20px;
-  justify-content: center;
-  background: white;
-  box-sizing: border-box;
-`;
-
-const Post = styled.div`
-  border: 1px solid black;
-  border-radius: 20px;
-  background: white;
-  box-shadow: 10px 5px 5px #7f8fa6;
-`;
-
-const Title = styled.div`
-  height: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid black;
-  font-weight: 600;
-`;
-
-const Body = styled.div`
-  height: 80%;
-  padding: 11px;
-  border-radius: 20px;
-`;
+export default BoardDetail2;
