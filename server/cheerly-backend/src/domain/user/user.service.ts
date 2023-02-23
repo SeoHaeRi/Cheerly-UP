@@ -4,8 +4,6 @@ import { UserRepository } from './user.repository';
 import * as bcrypt from 'bcryptjs';
 import { LoginUserDto } from './dto/LoginUser.dto';
 import { JwtService } from '@nestjs/jwt';
-import { firstValueFrom, lastValueFrom } from 'rxjs';
-import { HttpService } from '@nestjs/axios';
 import { UpdateUserDto } from './dto/UpdateUser.dto';
 import axios from 'axios';
 

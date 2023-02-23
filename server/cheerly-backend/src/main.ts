@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import { AppModule } from './app.module';
-import { SocketIoAdapter } from './domain/socket/socket-io.adapters';
 import { ValidationPipe } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
@@ -11,7 +10,6 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.enableCors();
-  // app.useWebSocketAdapter(new SocketIoAdapter(app));
   app.useWebSocketAdapter(new IoAdapter(app));
 
   // app.useStaticAssets(join(__dirname, '..', 'upload'));
