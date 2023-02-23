@@ -22,7 +22,6 @@ import { UserService } from './user.service';
       },
     }),
     TypeOrmModule.forFeature([User]),
-    HttpModule,
     //이미지 multer
     MulterModule.register({
       dest: './upload',
