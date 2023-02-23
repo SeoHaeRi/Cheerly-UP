@@ -12,15 +12,26 @@ const Navbar = () => {
   //리덕스 로그인 정보 가져오기!
   // const user = useSelector((state) => state.user.user.data);
   // const isLogIn = useSelector((state) => state.user.user.isLogIn);
+  const getCookie = (name) => {
+    const value = document.cookie.match(`(^|;)?${name}=([^;]*)(;|$)`);
+    return value ? value[2] : null;
+  };
+  const deleteCookie = (name) => {
+    const date = new Date();
+    document.cookie = `${name}='';expires=${date.toUTCString()};path=/`;
+  };
   const token = useSelector((state) => state.token.token);
   const [isAuth, setIsAuth] = useState(false);
+  const kakaoToken = getCookie('kakao');
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
+      setIsAuth(true);
+    } else if (kakaoToken) {
       setIsAuth(true);
     } else {
       setIsAuth(false);
     }
-  }, [token]);
+  }, [token, kakaoToken]);
   const dispatch = useDispatch();
 
   const [showNavbar, setShowNavbar] = useState(false);
@@ -124,8 +135,12 @@ const Navbar = () => {
                     }}
                     onClick={() => {
                       setLogOut('active');
-                      dispatch(setToken(''));
-                      sessionStorage.clear();
+                      if (kakaoToken) {
+                        deleteCookie('kakao');
+                      } else {
+                        dispatch(setToken(''));
+                        sessionStorage.clear();
+                      }
                       window.location.href = '/';
                     }}
                   >
