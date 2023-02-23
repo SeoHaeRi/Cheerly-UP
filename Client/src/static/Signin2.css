@@ -26,28 +26,29 @@
 body {
   background-color: #ffffff;
 }
-.signup-wrapper {
-  font-family: 'Noto Sans KR', sans-serif;
+
+.signin-wrapper {
+  font-family: "Noto Sans KR", sans-serif;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 140px;
+  margin-top: 130px;
 }
-.signup-wrapper .input-forms {
+.signin-wrapper .input-forms {
   border-radius: 50px;
   display: flex;
   flex-direction: column;
 }
-.signup-wrapper .input-forms .input-label {
+.signin-wrapper .input-forms .input-label {
   font-size: 1.2rem;
   font-weight: bold;
   color: #282c34;
 }
-.signup-wrapper .input-forms .input-forms-item {
+.signin-wrapper .input-forms .input-forms-item {
   padding: 7px 0;
 }
-.signup-wrapper .input-forms .input-forms-item .error-message {
+.signin-wrapper .input-forms .input-forms-item .error-message {
   font-size: 1rem;
   color: blue;
   font-weight: bold;

@@ -7,6 +7,8 @@ import '../static/Card.css';
 import { Button } from '@mui/material';
 import { jwtUtils } from '../utils/jwtUtils';
 import { useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Board() {
   const token = useSelector((state) => state.token.token);
@@ -56,6 +58,22 @@ function Board() {
       setPosts(data);
     });
   }, []);
+  const onClickWrite = () => {
+    if (!isAuth) {
+      toast.error(
+        <h3>
+          로그인 하셔야 작성 가능합니다 😭
+          <br />
+        </h3>,
+        {
+          position: 'top-center',
+          autoClose: 2000,
+        },
+      );
+    } else {
+      navigate('/board/write');
+    }
+  };
 
   const onClickPost = (post_id) => {
     navigate(`/board/:${post_id}`, {
@@ -64,20 +82,23 @@ function Board() {
       },
     });
   };
-  const onClickWrite = () => {
-    if (!isAuth) {
-      alert('로그인한 사용자만 글을 쓸 수 있습니다!');
-    } else {
-      navigate('/board/write');
-    }
-  };
 
   return (
     <>
       <MainHeader>대나무 숲</MainHeader>
-      <Button1 onClick={onClickWrite} className="card_button">
-        소리 지르기
-      </Button1>
+      <br></br>
+      <ToastContainer />
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Button
+          color="success"
+          variant="contained"
+          type="submit"
+          onClick={onClickWrite}
+          size="large"
+        >
+          소리 지르기
+        </Button>
+      </div>
 
       <Container>
         {posts.map((post, index) => (
@@ -106,10 +127,10 @@ export default Board;
 const Container = styled.div`
   padding: 30px 0;
   display: grid;
-  grid-template-columns: repeat(4, 300px);
-  grid-template-rows: repeat(auto-fit, 300px);
+  grid-template-columns: repeat(4, 250px);
+  grid-template-rows: repeat(auto-fit, 250px);
   grid-auto-rows: 300px;
-  grid-gap: 30px 20px;
+  grid-gap: 25px;
   justify-content: center;
   background: white;
   box-sizing: border-box;
@@ -117,24 +138,11 @@ const Container = styled.div`
 `;
 
 const MainHeader = styled.div`
-  background-color: #1363df;
+  background-color: green;
   width: 100%;
   margin-top: 30px;
   padding: 20px;
   color: white;
   font-size: 1.75rem;
   text-align: center;
-`;
-
-const Button1 = styled.div`
-  width: 100%;
-  background: #65b1f7;
-  border: none;
-  border-radius: 20px;
-  color: #ffffff;
-  margin: 15px auto 0 auto;
-  padding: 8px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;

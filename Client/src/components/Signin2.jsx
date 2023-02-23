@@ -5,13 +5,14 @@ import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Button, TextField } from '@mui/material';
 import { json, useNavigate, useSearchParams } from 'react-router-dom';
-import '../static/Signup2.css';
+import '../static/Signin2.css';
 import { Cookies } from 'react-cookie';
 import jwt_decode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../store/module/token';
+import { ReactComponent as Logo } from '../assets/logo.svg';
 
-const SignUp = () => {
+const SignIn = () => {
   const cookies = new Cookies();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const SignUp = () => {
     pw: Yup.string()
       .min(8, '비밀번호는 최소 8자리 이상입니다')
       .max(16, '비밀번호는 최대 16자리입니다!')
-      .required('패스워드를 입력하세요!')
+      .required('비밀번호를 입력하세요!')
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[^\s]*$/,
         '알파벳, 숫자, 공백을 제외한 특수문자를 모두 포함해야 합니다!',
@@ -42,8 +43,6 @@ const SignUp = () => {
       sessionStorage.setItem('user_id', decodedUserInfo.id);
       sessionStorage.setItem('user_nickname', decodedUserInfo.nickname);
 
-      // window.location.href = '/';
-      //
       dispatch(setToken(data.accessToken));
       const redirectUrl = searchParams.get('redirectUrl');
 
@@ -85,7 +84,8 @@ const SignUp = () => {
       validateOnMount={true}
     >
       {({ values, handleSubmit, handleChange, errors }) => (
-        <div className="signup-wrapper">
+        <div className="signin-wrapper">
+          <Logo />
           <ToastContainer />
           <form onSubmit={handleSubmit} autoComplete="off">
             <div className="input-forms">
@@ -128,4 +128,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;

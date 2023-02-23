@@ -77,10 +77,15 @@ export default function MyPage() {
           onClick={() => navigate('/mylife')}
         >
           <span>나의 라이프 기록</span>
-        </button>
+        </button>  
+          <button className='card__button' type='button' onClick={() => navigate('/mypageedit')}>
+            <span>유저 정보 수정</span>
+            </button>
+
         <div className="card__button" onClick={() => navigate('/myinfo')}>
           유저 정보
         </div>
+
       </section>
     </div>
   );
