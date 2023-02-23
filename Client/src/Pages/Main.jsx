@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import hired from '../assets/Hired.svg';
-import NavBoot from '../components/NavBoot';
+import { Link, useNavigate, NavLink } from 'react-router-dom';
 
 const Maindiv = styled.div`
   background-color: white;
@@ -50,6 +50,8 @@ const MainImg = styled.img`
 `;
 
 export default function Main() {
+  const navigate = useNavigate();
+
   return (
     <Maindiv>
       {/* nav바는 컴포넌트를 이용해서 구현할수도 있고 부트스트랩도 가능 */}
@@ -58,7 +60,11 @@ export default function Main() {
         <Mainp>
           취업을 early하게 하는 <br /> "인생 습관" 만들기
         </Mainp>
-        <Mainbutton>
+        <Mainbutton
+          onClick={() => {
+            navigate('/signup');
+          }}
+        >
           <img
             src="https://img.icons8.com/fluency-systems-filled/48/FFFFFF/play.png"
             width={'20px;'}

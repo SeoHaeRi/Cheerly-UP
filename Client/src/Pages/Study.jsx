@@ -9,6 +9,9 @@ import TodoTemplate from '../components/TodoTemplate';
 import TodoHead from '../components/TodoHead';
 import TodoCreate from '../components/TodoCreate';
 import { TodoProvider } from '../store/module/TodoContext';
+import Typing from '../components/Typing';
+import { Link, useNavigate, NavLink } from 'react-router-dom';
+import '../static/studybutton.css';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -114,8 +117,18 @@ const DiaryDiv = styled.div`
   flex-direction: column;
 `;
 
+const StudyButton = styled.button`
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  width: 140px;
+`;
+
 export default function Group() {
   const [viewCalendar, setViewCalendar] = useState(true);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -130,11 +143,6 @@ export default function Group() {
           {' '}
           공부 기록하러 가기
         </TodoButton>
-
-        <Earlydiv>
-          {/* <Titlediv>시간을 기록해보세요!</Titlediv> */}
-          {/* <Stopwatch /> */}
-        </Earlydiv>
       </Maindiv>
       {viewCalendar ? (
         <TodoProvider>
@@ -150,7 +158,15 @@ export default function Group() {
           {' '}
           <GlobalStyle />
           <Stopwatch />
-          <DiaryDiv> 기록용 다이어리 </DiaryDiv>
+          <Typing />
+          <button
+            class="w-btn-neon2"
+            onClick={() => {
+              navigate('/mystudyrecord');
+            }}
+          >
+            나의 기록 보러가기
+          </button>
         </>
       )}
     </>

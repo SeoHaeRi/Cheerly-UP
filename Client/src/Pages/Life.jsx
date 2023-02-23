@@ -13,7 +13,9 @@ import health from '../assets/health.svg';
 import TodoHeadLife from '../components/TodoHeadLife';
 import TodoListLife from '../components/TodoListLife';
 import TodoCreateLife from '../components/TodoCreateLife';
-
+import Typing from '../components/Typing';
+import { Link, useNavigate, NavLink } from 'react-router-dom';
+import '../static/studybutton.css';
 const GlobalStyle = createGlobalStyle`
   body {
 
@@ -75,6 +77,7 @@ const MainHeader = styled.div`
 
 export default function Life() {
   const [viewCalendar, setViewCalendar] = useState(true);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -109,7 +112,18 @@ export default function Life() {
           </TodoTemplate>
         </TodoProvider>
       ) : (
-        <Stopwatch />
+        <>
+          <Stopwatch />
+          <Typing />
+          <button
+            class="w-btn-neon2"
+            onClick={() => {
+              navigate('/mylife');
+            }}
+          >
+            나의 기록 보러가기
+          </button>
+        </>
       )}
     </>
   );

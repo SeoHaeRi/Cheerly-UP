@@ -53,7 +53,7 @@ body {
   display: flex;
   position: relative;
   left: 25%;
-  top: 10px;
+  top: 20px;
   justify-content: space-between;
   list-style-type: none;
 }

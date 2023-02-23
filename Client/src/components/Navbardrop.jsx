@@ -62,7 +62,7 @@ const Navbardrop = () => {
   const ColorButton = styled.button`
     width: 130px;
     height: 40px;
-
+    bottom: 10px;
     border-radius: 5px;
     padding: 10px 25px;
     font-family: 'Lato', sans-serif;
@@ -82,6 +82,7 @@ const Navbardrop = () => {
   `;
 
   const Logoutbutton = styled.button`
+    bottom: 10px;
     width: 130px;
     height: 40px;
     color: #1363df;
@@ -143,7 +144,7 @@ const Navbardrop = () => {
                   <Dropdown trigger={trigger}>
                     <Dropdown.Menu>
                       <Dropdown.Item
-                        icon="paper plane"
+                        icon="paw"
                         text="로그인"
                         onClick={() => {
                           navigate('/signin');
