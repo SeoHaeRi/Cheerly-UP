@@ -4,6 +4,9 @@ import { UserRepository } from './user.repository';
 import * as bcrypt from 'bcryptjs';
 import { LoginUserDto } from './dto/LoginUser.dto';
 import { JwtService } from '@nestjs/jwt';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { HttpService } from '@nestjs/axios';
+import { UpdateUserDto } from './dto/UpdateUser.dto';
 import axios from 'axios';
 
 @Injectable()
@@ -58,5 +61,19 @@ export class UserService {
           });
       } else return this.userRepository.createKakaoUser(userData);
     }
+  }
+
+  //*********소미 추가**********
+  //PATCH - 유저 프로필 사진
+  async updateUserInfo(file, userId: string, userData: UpdateUserDto) {
+    return await this.userRepository.update(
+      {
+        id: userId,
+      },
+      {
+        ...userData,
+        profile_img: file,
+      },
+    );
   }
 }
