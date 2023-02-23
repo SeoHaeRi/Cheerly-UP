@@ -1,5 +1,5 @@
 * {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 a {
@@ -13,7 +13,7 @@ a {
 }
 
 body {
-  color: #1363DF;
+  color: #1363df;
   overflow-x: hidden;
   display: flex;
   align-items: center;
@@ -48,7 +48,6 @@ body {
   z-index: 1;
 }
 
-
 .card__heading {
   font-size: 1.35rem;
   font-weight: 800;
@@ -57,7 +56,7 @@ body {
 
 .card__input {
   background: rgba(254, 254, 254, 0.075);
-  border: 1px solid #1363DF;
+  border: 1px solid #1363df;
   border-radius: 15px;
   box-sizing: border-box;
   color: #000000;
@@ -71,13 +70,13 @@ body {
 .card__input:focus,
 .card__input:active {
   background: rgba(222, 237, 246, 0.525);
-  border: 1px solid #1363DF;
+  border: 1px solid #1363df;
   outline: none;
 }
 
 .card__button {
   width: 100%;
-  background: #65B1F7;
+  background: #65b1f7;
   border: none;
   border-radius: 20px;
   color: #ffffff;
@@ -88,10 +87,9 @@ body {
   justify-content: center;
 }
 
-
 .card__button1 {
   width: 100%;
-  background: #FFBF00;
+  background: #ffbf00;
   border: none;
   border-radius: 20px;
   color: black;
@@ -104,12 +102,12 @@ body {
 
 .card__button:focus,
 .card__button:active {
-  background: #1363DF;
+  background: #1363df;
   outline: none;
 }
 
-.card__button:hover{
-  background: #1363DF;
+.card__button:hover {
+  background: #1363df;
   cursor: pointer;
 }
 
@@ -119,11 +117,11 @@ body {
 }
 
 .p {
-  color: #1363DF;
+  color: #1363df;
 }
 
 button {
-  background: #FFBF00;
+  background: #ffbf00;
   border: none;
   border-radius: 30px;
   color: white;
