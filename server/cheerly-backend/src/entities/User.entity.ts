@@ -4,14 +4,12 @@ import {
   CreateDateColumn,
   OneToMany,
   PrimaryColumn,
-  Unique,
   Index,
   JoinColumn,
 } from 'typeorm';
 import { Post } from './Post.entity';
 import { Study } from './Study.entity';
 import { Comment } from './Comment.entity';
-import { Chat } from './Chat.entity';
 import { Life } from './Life.entity';
 @Entity({ name: 'User' })
 @Index(['id', 'nickname'], { unique: true })
@@ -48,9 +46,6 @@ export class User {
 
   @OneToMany(() => Study, (comment) => comment.user, { cascade: true })
   comments: Comment[];
-
-  @OneToMany(() => Chat, (chat) => chat.user, { cascade: true })
-  chats: Chat[];
 
   @OneToMany(() => Life, (life) => life.user)
   @JoinColumn([{ name: 'user_id', referencedColumnName: 'id' }])
