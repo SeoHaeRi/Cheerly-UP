@@ -26,7 +26,7 @@ import Error from './Pages/Error';
 import { setUserInfo } from './store/module/user';
 import Chat from './Pages/Chat';
 import Chatroom from './Pages/Chatroom';
-import Chat3 from './Pages/Chat3'
+import Chat3 from './Pages/Chat3';
 
 import BoardDetail from './Pages/BoardDetail';
 import BoardDetailEdit from './Pages/BoardDetailEdit';
@@ -36,6 +36,7 @@ import Life from './Pages/Life';
 import Healing from './Pages/Healing';
 import PrivateRoute from './routes/PrivateRoute';
 import MyPost from './Pages/MyPost';
+import MyStudyRecord from './Pages/MyStudyRecord';
 
 function App() {
   const [init, setInit] = useState(true);
@@ -72,7 +73,6 @@ function App() {
             <Route path="/signup2" element={<Signup />} />
             <Route path="/signup" element={<SignUp2 />} />
             <Route path="/chat3" element={<Chat3 />} />
-            
             <Route
               path="/study"
               element={<PrivateRoute path="/study" component={Study} />}
@@ -94,6 +94,12 @@ function App() {
             <Route
               path="/mypost"
               element={<PrivateRoute path="/mypost" component={MyPost} />}
+            />
+            <Route
+              path="/mystudyrecord"
+              element={
+                <PrivateRoute path="/mystudyrecord" component={MyStudyRecord} />
+              }
             />
             <Route path="/*" element={<Error />} />
           </Routes>
