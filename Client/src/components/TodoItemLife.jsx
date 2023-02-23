@@ -67,7 +67,7 @@ const Text = styled.div`
 `;
 // dispatch 를 사용해서 토글 기능과 삭제 기능
 
-function TodoItem({ id, done, text, study_id }) {
+function TodoItem({ id, done, text, life_id }) {
   const userID = useSelector((state) => state.user.user.data.user_id);
   const userNickname = useSelector(
     (state) => state.user.user.data.user_nickname,
@@ -80,16 +80,16 @@ function TodoItem({ id, done, text, study_id }) {
     dispatch({ type: 'TOGGLE', id });
     if (done === 0) {
       axios
-        .patch(`http://localhost:3030/study/${userID}/${study_id}`, {
-          study_id: Number(study_id),
+        .patch(`http://localhost:3030/life/${userID}/${life_id}`, {
+          life_id: Number(life_id),
           user_id: userID,
           done: 1,
         })
-        .then((res) => alert('짝짝짝!!👏 수고하셨어요!'));
+        .then((res) => alert('짝짝짝!!👏 오늘도 화이팅!'));
     } else {
       axios
-        .patch(`http://localhost:3030/study/${userID}/${study_id}`, {
-          study_id: Number(study_id),
+        .patch(`http://localhost:3030/life/${userID}/${life_id}`, {
+          study_id: Number(life_id),
           user_id: userID,
           done: 0,
         })
@@ -103,8 +103,8 @@ function TodoItem({ id, done, text, study_id }) {
     const confirm = window.confirm('선택한 오늘 할 일을 지우시겠습니까?');
     if (confirm === true) {
       axios
-        .delete(`http://localhost:3030/study/${userID}/${study_id}`, {
-          study_id: Number(study_id),
+        .delete(`http://localhost:3030/life/${userID}/${life_id}`, {
+          study_id: Number(life_id),
           userId: userID,
         })
         .then((res) => {

@@ -124,7 +124,7 @@ function TodoCreateLife() {
     const inputContent = inputRef.current.value;
     console.log(inputContent);
     axios
-      .post('http://localhost:3030/study', {
+      .post('http://localhost:3030/life', {
         user_id: String(userID),
         content: String(inputContent),
       })
@@ -132,7 +132,7 @@ function TodoCreateLife() {
         alert('오늘의 할 일을 추가하였습니다!');
 
         //  새로고침으로 일단 해놨는데, 다른 방법 생각하기
-        window.location.replace('/study');
+        window.location.replace('/life');
       });
 
     ///////////////////
