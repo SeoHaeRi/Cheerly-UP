@@ -34,6 +34,7 @@ import BoardWrite from './Pages/BoardWrite';
 import Life from './Pages/Life';
 //import Healing from './Pages/Healing';
 import PrivateRoute from './routes/PrivateRoute';
+import Healing from './Pages/Healing';
 
 function App() {
   const [init, setInit] = useState(true);
@@ -64,6 +65,7 @@ function App() {
             <Route path="/board/edit/:id" element={<BoardDetailEdit />}></Route>
             <Route path="/board/write" element={<BoardWrite />}></Route>
             <Route path="/studygroup" element={<Group_page />} />
+            <Route path="/healing" element={<Healing />} />
             <Route path="/signin2" element={<Signin />} />
             <Route path="/signin" element={<Signin2 />} />
             <Route path="/signup2" element={<Signup />} />

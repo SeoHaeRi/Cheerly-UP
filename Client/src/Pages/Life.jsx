@@ -10,6 +10,9 @@ import TodoHead from '../components/TodoHead';
 import TodoCreate from '../components/TodoCreate';
 import { TodoProvider } from '../store/module/TodoContext';
 import health from '../assets/health.svg';
+import TodoHeadLife from '../components/TodoHeadLife';
+import TodoListLife from '../components/TodoListLife';
+import TodoCreateLife from '../components/TodoCreateLife';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -100,9 +103,9 @@ export default function Life() {
         <TodoProvider>
           <GlobalStyle />
           <TodoTemplate>
-            <TodoHead />
-            <TodoList />
-            <TodoCreate />
+            <TodoHeadLife />
+            <TodoListLife />
+            <TodoCreateLife />
           </TodoTemplate>
         </TodoProvider>
       ) : (
