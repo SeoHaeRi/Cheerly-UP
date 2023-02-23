@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Light } from '../assets/light.svg';
 import { ReactComponent as Brand } from '../assets/garo_logo.svg';
 import '../static/Navbar.css';
-import { logout } from '../store/module/user';
 import { jwtUtils } from '../utils/jwtUtils';
 import { setToken } from '../store/module/token';
 import { Dropdown } from 'semantic-ui-react';
@@ -13,18 +12,27 @@ import styled from 'styled-components';
 import '../static/LogButton.css';
 
 const Navbardrop = () => {
-  //리덕스 로그인 정보 가져오기!
-  // const user = useSelector((state) => state.user.user.data);
-  // const isLogIn = useSelector((state) => state.user.user.isLogIn);
+  const getCookie = (name) => {
+    const value = document.cookie.match(`(^|;)?${name}=([^;]*)(;|$)`);
+    return value ? value[2] : null;
+  };
+  const deleteCookie = (name) => {
+    const date = new Date();
+    document.cookie = `${name}='';expires=${date.toUTCString()};path=/`;
+  };
+  const kakaoToken = getCookie('kakao');
   const token = useSelector((state) => state.token.token);
   const [isAuth, setIsAuth] = useState(false);
+
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
+      setIsAuth(true);
+    } else if (kakaoToken) {
       setIsAuth(true);
     } else {
       setIsAuth(false);
     }
-  }, [token]);
+  }, [token, kakaoToken]);
   const dispatch = useDispatch();
 
   const [showNavbar, setShowNavbar] = useState(false);
@@ -215,9 +223,15 @@ const Navbardrop = () => {
                   id="logoutbtn"
                   onClick={() => {
                     setLogOut('active');
-                    dispatch(setToken(''));
-                    sessionStorage.clear();
-                    window.location.href = '/';
+                    if (kakaoToken) {
+                      window.location.href =
+                        'http://localhost:3030/user/kakao/logout';
+                      deleteCookie('kakao');
+                    } else {
+                      dispatch(setToken(''));
+                      sessionStorage.clear();
+                    }
+                    // window.location.href = '/';
                   }}
                 >
                   로그아웃

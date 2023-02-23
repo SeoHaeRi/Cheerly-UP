@@ -3,12 +3,9 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Link,
-  NavLink,
-  useParams,
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 
 import Signup from './components/Signup';
@@ -22,7 +19,7 @@ import Navbar from './components/Navbar';
 
 import MyPage from './Pages/MyPage';
 import Group_page from './Pages/Group_page';
-import { useCallback, useRef, useState } from 'react';
+import { useState } from 'react';
 import Error from './Pages/Error';
 import { setUserInfo } from './store/module/user';
 import Chat from './Pages/Chat';
@@ -37,9 +34,10 @@ import Life from './Pages/Life';
 import Healing from './Pages/Healing';
 import PrivateRoute from './routes/PrivateRoute';
 import MyPost from './Pages/MyPost';
- import MyStudyRecord from './Pages/MyStudyRecord';
+import MyStudyRecord from './Pages/MyStudyRecord';
 import MyLifeRecord from './Pages/MyLifeRecord';
- 
+import Navbardrop from './components/Navbardrop';
+
 function App() {
   const [init, setInit] = useState(true);
 
