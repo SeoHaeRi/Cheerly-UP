@@ -63,6 +63,7 @@ export class PostsService {
     const newPost = await this.boardRepository.create({
       ...postDetails,
       date: new Date(),
+      // img: filename,
     });
     // const newPost = this.boardRepository.insert(
     //   Object.assign(CreatePostDto, {}),
@@ -82,4 +83,20 @@ export class PostsService {
   async deletePost(id: string) {
     return await this.boardRepository.delete({ post_id: Number(id) });
   }
+
+  // //POST - 게시판 이미지
+  // uploadFiles(file: Express.Multer.File) {
+  //   return res;
+  // }
+
+  // async uploadImg(filename: string) {
+  //   const newImg = await this.boardRepository.create({
+  //     ...postDetails,
+  //     date: new Date(),
+  //     img: filename
+  //   });
+  //   // const newPost = this.boardRepository.insert(
+  //   //   Object.assign(CreatePostDto, {}),
+  //   // );
+  //   return this.boardRepository.save(newPost);
 }

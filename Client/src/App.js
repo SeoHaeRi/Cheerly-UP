@@ -1,14 +1,7 @@
 import './App.css';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  NavLink,
-  useParams,
-} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 
 import Signup from './components/Signup';
@@ -23,7 +16,7 @@ import MypageEdit from './components/mypageEdit';
 
 import MyPage from './Pages/MyPage';
 import Group_page from './Pages/Group_page';
-import { useCallback, useRef, useState } from 'react';
+import { useState } from 'react';
 import Error from './Pages/Error';
 import { setUserInfo } from './store/module/user';
 import Chat from './Pages/Chat';
@@ -42,6 +35,7 @@ import MyPost from './Pages/MyPost';
 import MyStudyRecord from './Pages/MyStudyRecord';
 import MyLifeRecord from './Pages/MyLifeRecord';
 import Navbardrop from './components/Navbardrop';
+import MypageEdit from './components/mypageEdit';
 
 function App() {
   const [init, setInit] = useState(true);
@@ -111,6 +105,10 @@ function App() {
             <Route
               path="/mylife"
               element={<PrivateRoute path="/mylife" component={MyLifeRecord} />}
+            />
+            <Route
+              path="/myinfo"
+              element={<PrivateRoute path="/myinfo" component={MypageEdit} />}
             />
             <Route path="/*" element={<Error />} />
           </Routes>

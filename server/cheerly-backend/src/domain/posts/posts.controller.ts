@@ -10,10 +10,15 @@ import {
   Put,
   Req,
   Res,
+  UploadedFiles,
+  UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { CreatePostDto } from './dtos/CreatePost.dto';
 import { UpdatePostDto } from './dtos/UpdatePost.dto';
 import { PostsService } from './posts.service';
+import { diskStorage } from 'multer';
+// import { multerOptions } from '../../../lib/multerOptions';
 
 @Controller('board')
 export class PostsController {
@@ -79,4 +84,11 @@ export class PostsController {
 
     await this.postsService.deletePost(param);
   }
+
+  // @Post('/upload')
+  // @UseInterceptors(FilesInterceptor('file', null, multerOptions))
+  // async uploadFile(@UploadedFiles() file) {
+  //   // await this.postsService.uploadImg(file)
+  //   console.log(file[0].filename);
+  // }
 }

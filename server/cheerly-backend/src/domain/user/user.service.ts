@@ -4,6 +4,7 @@ import { UserRepository } from './user.repository';
 import * as bcrypt from 'bcryptjs';
 import { LoginUserDto } from './dto/LoginUser.dto';
 import { JwtService } from '@nestjs/jwt';
+import { UpdateUserDto } from './dto/UpdateUser.dto';
 import axios from 'axios';
 
 @Injectable()
@@ -58,5 +59,22 @@ export class UserService {
           });
       } else return this.userRepository.createKakaoUser(userData);
     }
+  }
+
+  ////**************** */
+  //PATCH - 유저 회원정보 수정
+  async updateUser(userId: string, updateUserDto: UpdateUserDto) {
+    const { id, pw, nickname } = updateUserDto;
+    const salt = await bcrypt.genSalt();
+    const hashedPW = await bcrypt.hash(pw, salt);
+    return await this.userRepository.update(
+      { id: userId },
+      { ...updateUserDto, pw: hashedPW, nickname: nickname },
+    );
+  }
+
+  //DELETE
+  async deleteUser(userId: string) {
+    return await this.userRepository.delete({ id: userId });
   }
 }
