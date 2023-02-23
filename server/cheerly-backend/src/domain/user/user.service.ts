@@ -6,6 +6,7 @@ import { LoginUserDto } from './dto/LoginUser.dto';
 import { JwtService } from '@nestjs/jwt';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
+import { UpdateUserDto } from './dto/UpdateUser.dto';
 
 @Injectable()
 export class UserService {
@@ -49,5 +50,19 @@ export class UserService {
     const token_res = await lastValueFrom(this.http.post(kakao_api_url));
     // const access_token: string = token_res.data.access_token;
     console.log(token_res);
+  }
+
+  //*********소미 추가**********
+  //PATCH - 유저 프로필 사진
+  async updateUserInfo(file, userId: string, userData: UpdateUserDto) {
+    return await this.userRepository.update(
+      {
+        id: userId,
+      },
+      {
+        ...userData,
+        profile_img: file,
+      },
+    );
   }
 }

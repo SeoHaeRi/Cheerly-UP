@@ -2,6 +2,7 @@ import { HttpModule, HttpService } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { MulterModule } from '@nestjs/platform-express';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/entities/User.entity';
 import { JwtStrategy } from './jwt.strategy';
@@ -22,6 +23,10 @@ import { UserService } from './user.service';
     }),
     TypeOrmModule.forFeature([User]),
     HttpModule,
+    //이미지 multer
+    MulterModule.register({
+      dest: './upload',
+    }),
   ],
   controllers: [UserController],
   providers: [UserService, UserRepository, JwtStrategy],

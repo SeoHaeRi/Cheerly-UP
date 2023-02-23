@@ -17,6 +17,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { LifeModule } from './domain/life/life.module';
 import { Life } from './entities/Life.entity';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -35,6 +36,9 @@ import { Life } from './entities/Life.entity';
       entities: [User, Post, Comment, Study, Chat, Life],
       logging: true,
     }),
+    // MulterModule.register({
+    //   dest: './upload',
+    // }),
     UserModule,
     ScrapperModule,
     PostsModule,

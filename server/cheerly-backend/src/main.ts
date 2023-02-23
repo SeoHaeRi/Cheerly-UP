@@ -3,12 +3,20 @@ import { IoAdapter } from '@nestjs/platform-socket.io';
 import { AppModule } from './app.module';
 import { SocketIoAdapter } from './domain/socket/socket-io.adapters';
 import { ValidationPipe } from '@nestjs/common';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
   app.enableCors();
   // app.useWebSocketAdapter(new SocketIoAdapter(app));
   app.useWebSocketAdapter(new IoAdapter(app));
+
+  // app.useStaticAssets(join(__dirname, '..', 'upload'));
+  ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'upload') });
+
   const PORT = process.env.PORT || 3030;
   await app.listen(PORT, () =>
     console.log(`Application running on http://localhost:${PORT}`),

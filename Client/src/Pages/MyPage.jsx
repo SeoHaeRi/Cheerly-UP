@@ -5,22 +5,36 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/logo.svg';
 import ImgUploader from '../components/ImageUploader';
 import { useCallback, useState } from 'react';
+import axios from 'axios';
 
 export default function MyPage() {
+  const userID = useSelector((state) => state.user.user.data.user_id);
+  const userNickname = useSelector(
+    (state) => state.user.user.data.user_nickname,
+  );
+
   const navigate = useNavigate();
   const [image, setImage] = useState({
     image_file: '',
     preview_URL: '../assets/logo.svg',
   });
+
   const canSubmit = useCallback(() => {
-    return image.image_file;
+    return image.image_file !== '';
   }, [image]);
 
   const handleSubmit = useCallback(async () => {
     const formData = new FormData();
     formData.append('file', image.image_file);
-    window.alert('😎프로필 이미지 등록이 완료되었습니다😎');
+
+    console.log(formData.file);
+
+    axios.patch(`http://localhost:3030/user/${userID}`, {
+      formData,
+    });
+    // window.alert('😎프로필 이미지 등록이 완료되었습니다😎');
   }, [canSubmit]);
+
   return (
     <div className="scene flex">
       <section className="card">
@@ -54,8 +68,6 @@ export default function MyPage() {
           <span>나의 라이프 기록</span>
         </button>
         <div className="card__button">유저 정보</div>
-        <div className="card__button">유</div>
-        <div className="card__button"></div>
       </section>
     </div>
   );
