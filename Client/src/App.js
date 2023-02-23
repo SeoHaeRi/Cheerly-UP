@@ -37,9 +37,10 @@ import Life from './Pages/Life';
 import Healing from './Pages/Healing';
 import PrivateRoute from './routes/PrivateRoute';
 import MyPost from './Pages/MyPost';
- import MyStudyRecord from './Pages/MyStudyRecord';
+import MyStudyRecord from './Pages/MyStudyRecord';
 import MyLifeRecord from './Pages/MyLifeRecord';
- 
+import Navbardrop from './components/Navbardrop';
+
 function App() {
   const [init, setInit] = useState(true);
 
