@@ -11,6 +11,10 @@ import {
 import Comment from '../components/Comment';
 import { useSelector } from 'react-redux';
 import { jwtUtils } from '../utils/jwtUtils';
+import { Button, Dialog, DialogContent, IconButton } from '@mui/material';
+import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import DisabledByDefaultOutlinedIcon from '@mui/icons-material/DisabledByDefaultOutlined';
 
 function BoardDetail() {
   const token = useSelector((state) => state.token.token);
@@ -100,30 +104,25 @@ function BoardDetail() {
           <Title> Id: {post.userId} </Title>
           <Body> 내용 : {post.content}</Body>
         </Post>
-        <div>
-          <button
-            style={{
-              background: '#65B1F7',
-              height: '45px',
-              width: '120px',
-            }}
-            onClick={onClickEdit}
-          >
-            다시 지르기
-          </button>
-          <button
-            style={{
-              background: '#65B1F7',
-              height: '45px',
-              width: '120px',
-            }}
-            onClick={onClickDelete}
-          >
-            철회하기
-          </button>
-        </div>
+
+        {/* <Comment /> */}
       </Container>
-      <Comment />
+      <Button
+        onClick={onClickDelete}
+        variant="outlined"
+        color="error"
+        endIcon={<DeleteForeverOutlinedIcon />}
+        className="delete-button"
+      >
+        삭제
+      </Button>
+      <Button
+        onClick={onClickEdit}
+        variant="outlined"
+        endIcon={<BuildOutlinedIcon />}
+      >
+        수정
+      </Button>
     </>
   );
 }

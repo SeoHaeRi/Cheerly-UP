@@ -75,7 +75,10 @@ function Board() {
   return (
     <>
       <MainHeader>대나무 숲</MainHeader>
-      <Button onClick={onClickWrite}>소리 지르기</Button>
+      <Button1 onClick={onClickWrite} className="card_button">
+        소리 지르기
+      </Button1>
+
       <Container>
         {posts.map((post, index) => (
           <div
@@ -86,6 +89,7 @@ function Board() {
           >
             <div className="card-body-text">
               <div className="card-body-text-title">{post.title}</div>
+              <br />
               <div className="card-body-text-content">{post.content}</div>
             </div>
             <div className="card-footer">
@@ -120,4 +124,17 @@ const MainHeader = styled.div`
   color: white;
   font-size: 1.75rem;
   text-align: center;
+`;
+
+const Button1 = styled.div`
+  width: 100%;
+  background: #65b1f7;
+  border: none;
+  border-radius: 20px;
+  color: #ffffff;
+  margin: 15px auto 0 auto;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
