@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
+import 'semantic-ui-css/semantic.min.css';
 
 import Signup from './components/Signup';
 import SignUp2 from './components/Signup2';
@@ -26,7 +27,7 @@ import Error from './Pages/Error';
 import { setUserInfo } from './store/module/user';
 import Chat from './Pages/Chat';
 import Chatroom from './Pages/Chatroom';
-import Chat3 from './Pages/Chat3'
+import Chat3 from './Pages/Chat3';
 
 import BoardDetail from './Pages/BoardDetail';
 import BoardDetailEdit from './Pages/BoardDetailEdit';
@@ -36,6 +37,7 @@ import Life from './Pages/Life';
 import Healing from './Pages/Healing';
 import PrivateRoute from './routes/PrivateRoute';
 import MyPost from './Pages/MyPost';
+import Navbardrop from './components/Navbardrop';
 
 function App() {
   const [init, setInit] = useState(true);
@@ -58,7 +60,8 @@ function App() {
     <>
       {init ? (
         <BrowserRouter>
-          <Navbar />
+          <Navbardrop />
+          {/* <Navbar /> */}
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/board" element={<Board />} />
@@ -72,7 +75,6 @@ function App() {
             <Route path="/signup2" element={<Signup />} />
             <Route path="/signup" element={<SignUp2 />} />
             <Route path="/chat3" element={<Chat3 />} />
-            
             <Route
               path="/study"
               element={<PrivateRoute path="/study" component={Study} />}
