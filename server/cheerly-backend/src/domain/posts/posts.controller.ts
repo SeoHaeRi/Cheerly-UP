@@ -18,7 +18,7 @@ import { CreatePostDto } from './dtos/CreatePost.dto';
 import { UpdatePostDto } from './dtos/UpdatePost.dto';
 import { PostsService } from './posts.service';
 import { diskStorage } from 'multer';
-import { multerOptions } from '../../../lib/multerOptions';
+// import { multerOptions } from '../../../lib/multerOptions';
 
 @Controller('board')
 export class PostsController {

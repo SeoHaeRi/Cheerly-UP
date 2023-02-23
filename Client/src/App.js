@@ -1,9 +1,5 @@
 import './App.css';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
@@ -37,6 +33,7 @@ import MyPost from './Pages/MyPost';
 import MyStudyRecord from './Pages/MyStudyRecord';
 import MyLifeRecord from './Pages/MyLifeRecord';
 import Navbardrop from './components/Navbardrop';
+import MypageEdit from './components/mypageEdit';
 
 function App() {
   const [init, setInit] = useState(true);
@@ -105,6 +102,10 @@ function App() {
             <Route
               path="/mylife"
               element={<PrivateRoute path="/mylife" component={MyLifeRecord} />}
+            />
+            <Route
+              path="/myinfo"
+              element={<PrivateRoute path="/myinfo" component={MypageEdit} />}
             />
             <Route path="/*" element={<Error />} />
           </Routes>
