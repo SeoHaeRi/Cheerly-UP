@@ -1,11 +1,25 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { ReactComponent as Logo } from '../assets/logo.svg';
 import '../static/Signup2.css';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setToken } from '../store/module/token';
 
 export default function MypageEdit() {
+  const getCookie = (name) => {
+    const value = document.cookie.match(`(^|;)?${name}=([^;]*)(;|$)`);
+    return value ? value[2] : null;
+  };
+  const deleteCookie = (name) => {
+    const date = new Date();
+    document.cookie = `${name}='';expires=${date.toUTCString()};path=/`;
+  };
+  const token = useSelector((state) => state.token.token);
+  const [isAuth, setIsAuth] = useState(false);
+  const kakaoToken = getCookie('kakao');
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const userID = useSelector((state) => state.user.user.data.user_id);
   const userNickname = useSelector(
@@ -45,6 +59,14 @@ export default function MypageEdit() {
         })
         .then((res) => {
           alert('회원 탈퇴가 완료되었습니다.');
+
+          if (kakaoToken) {
+            deleteCookie('kakao');
+          } else {
+            dispatch(setToken(''));
+            sessionStorage.clear();
+          }
+
           navigate('/');
         });
     }
