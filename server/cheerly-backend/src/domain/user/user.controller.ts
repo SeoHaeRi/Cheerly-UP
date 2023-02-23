@@ -5,8 +5,6 @@ import {
   HttpCode,
   HttpStatus,
   Post,
-  Query,
-  Redirect,
   Req,
   Res,
   UseGuards,
@@ -47,6 +45,12 @@ export class UserController {
     console.log(req);
     res.cookie('kakao', req.user.accessToken);
     res.redirect('http://localhost:3000');
+  }
+  @Get('/kakao/logout')
+  @HttpCode(200)
+  async viewKakaoLogOut(@Res() res) {
+    const kakaoLogout = `https://kauth.kakao.com/oauth/logout?client_id=${process.env.KAKAO_clientID}&logout_redirect_uri=${process.env.KAKAO_logoutRedirectUri}`;
+    res.redirect(kakaoLogout);
   }
 
   @Post('/verify')
