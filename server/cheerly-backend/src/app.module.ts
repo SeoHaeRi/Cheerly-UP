@@ -36,9 +36,9 @@ import { MulterModule } from '@nestjs/platform-express';
       entities: [User, Post, Comment, Study, Chat, Life],
       logging: true,
     }),
-    // MulterModule.register({
-    //   dest: './upload',
-    // }),
+    MulterModule.register({
+      dest: './upload',
+    }),
     UserModule,
     ScrapperModule,
     PostsModule,

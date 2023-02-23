@@ -29,9 +29,20 @@ export default function MyPage() {
 
     console.log(formData.file);
 
-    axios.patch(`http://localhost:3030/user/${userID}`, {
-      formData,
-    });
+    // axios
+    //   .patch(
+    //     `http://localhost:3030/user/image/${userID}`,
+    //     {
+    //       userId: userID,
+    //       profile_img: formData,
+    //     },
+    //     {
+    //       headers: {
+    //         'Content-Type': 'multipart/form-data',
+    //       },
+    //     },
+    //   )
+    //   .then((res) => alert('수정!'));
     // window.alert('😎프로필 이미지 등록이 완료되었습니다😎');
   }, [canSubmit]);
 
@@ -67,7 +78,9 @@ export default function MyPage() {
         >
           <span>나의 라이프 기록</span>
         </button>
-        <div className="card__button">유저 정보</div>
+        <div className="card__button" onClick={() => navigate('/myinfo')}>
+          유저 정보
+        </div>
       </section>
     </div>
   );

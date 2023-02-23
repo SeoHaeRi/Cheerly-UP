@@ -63,17 +63,20 @@ export class UserService {
     }
   }
 
-  //*********소미 추가**********
-  //PATCH - 유저 프로필 사진
-  async updateUserInfo(file, userId: string, userData: UpdateUserDto) {
+  ////**************** */
+  //PATCH - 유저 회원정보 수정
+  async updateUser(userId: string, updateUserDto: UpdateUserDto) {
+    const { id, pw, nickname } = updateUserDto;
+    const salt = await bcrypt.genSalt();
+    const hashedPW = await bcrypt.hash(pw, salt);
     return await this.userRepository.update(
-      {
-        id: userId,
-      },
-      {
-        ...userData,
-        profile_img: file,
-      },
+      { id: userId },
+      { ...updateUserDto, pw: hashedPW, nickname: nickname },
     );
+  }
+
+  //DELETE
+  async deleteUser(userId: string) {
+    return await this.userRepository.delete({ id: userId });
   }
 }
