@@ -35,7 +35,6 @@ import MyPost from './Pages/MyPost';
 import MyStudyRecord from './Pages/MyStudyRecord';
 import MyLifeRecord from './Pages/MyLifeRecord';
 import Navbardrop from './components/Navbardrop';
-import MypageEdit from './components/mypageEdit';
 
 function App() {
   const [init, setInit] = useState(true);
