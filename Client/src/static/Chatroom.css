@@ -1,159 +1,49 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-body {
-  /* line-height: 1; */
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-/* reset */
-#wrap {
+  width: 700px;
   text-align: center;
-  align-items: center;
-}
-#header {
-  margin: 40px;
-}
-table {
-  margin: auto;
+  border: 1px solid #fff;
+  border-spacing: 1px;
+  font-family: 'Cairo', sans-serif;
+margin: auto;
 }
 
-table,
-th,
-tr,
-td {
-  border: 1px solid #1982fc;
-  padding: 20px;
+caption {
+  font-weight: bold;
 }
 
-#btn {
-  all: unset;
-  background: #65b1f7;
+table td {
+  padding: 10px;
+  background-color: #eee;
+}
+
+table th {
+  background-color: #1363DF;
+  color: #fff;
+  padding: 10px;
+}
+
+img {
+  width: 90px;
+  height: 90px;
+}
+
+.view,
+.delete {
   border: none;
-  border-radius: 20px;
-  color: #ffffff;
-  margin: 15px auto 0 auto;
-  padding: 8px 20px;
+  padding: 5px 10px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.view {
+  background-color: #03A9F4;
+}
+
+.delete {
+  background-color: #E91E63;
+}
+
+.tablefoot {
+  padding: 0;
+  border-bottom: 3px solid #03A9F4;
 }
