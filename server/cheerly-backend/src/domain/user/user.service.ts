@@ -4,15 +4,13 @@ import { UserRepository } from './user.repository';
 import * as bcrypt from 'bcryptjs';
 import { LoginUserDto } from './dto/LoginUser.dto';
 import { JwtService } from '@nestjs/jwt';
-import { firstValueFrom, lastValueFrom } from 'rxjs';
-import { HttpService } from '@nestjs/axios';
+import axios from 'axios';
 
 @Injectable()
 export class UserService {
   constructor(
     private userRepository: UserRepository,
     private jwtService: JwtService,
-    private http: HttpService,
   ) {}
 
   async signUp(userData: CreateUserDto): Promise<void> {
@@ -26,7 +24,6 @@ export class UserService {
       id: id,
     });
     const nickname = user.nickname;
-    console.log('user -login: ', user);
 
     if (user && (await bcrypt.compare(pw, user.pw))) {
       // 유저 토큰 생성 (secret + payload)
@@ -39,15 +36,27 @@ export class UserService {
     }
   }
 
-  async kakaoLogin(code: string) {
-    const kakao_api_url = `https://kauth.kakao.com/oauth/token
-    ?grant_type=authorization_code
-    &client_id=${process.env.KAKAO_clientID}
-    &redirect_url=${process.env.KAKAO_redirectUri}
-    &code=${code}`;
-
-    const token_res = await lastValueFrom(this.http.post(kakao_api_url));
-    // const access_token: string = token_res.data.access_token;
-    console.log(token_res);
+  async kakaoLogin(user): Promise<void> {
+    // 회원 가입 된 유저인지 검사 (db에 저장하기 위해)
+    const isExist = await this.userRepository.findOneBy({ id: user.kakaoID });
+    if (isExist) return;
+    else {
+      const isExistNickname = await this.userRepository.findOneBy({
+        nickname: user.nickname,
+      });
+      const userData = {
+        id: user.kakaoID,
+        pw: user.pw,
+        nickname: user.nickname,
+      };
+      if (isExistNickname) {
+        await axios
+          .get('https://nickname.hwanmoo.kr/?format=json&max_length=30')
+          .then((res) => {
+            userData.nickname = res.data.words[0];
+            return this.userRepository.createKakaoUser(userData);
+          });
+      } else return this.userRepository.createKakaoUser(userData);
+    }
   }
 }
