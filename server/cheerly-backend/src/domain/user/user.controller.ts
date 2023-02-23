@@ -2,6 +2,8 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
+  HttpStatus,
   Post,
   Query,
   Redirect,
@@ -32,16 +34,19 @@ export class UserController {
   }
 
   @Get('/kakao')
-  viewKakaoLogIn(@Res() res) {
-    const kakaoAuthURL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KAKAO_clientID}&redirect_uri=${process.env.KAKAO_redirectUri}&response_type=code`;
-    res.redirect(kakaoAuthURL);
+  @HttpCode(200)
+  @UseGuards(AuthGuard('kakao'))
+  async viewKakaoLogIn() {
+    return HttpStatus.OK;
   }
   @Get('/kakao/redirect')
-  // @Redirect(
-  //   `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KAKAO_clientID}&redirect_uri=${process.env.KAKAO_redirectUri}&response_type=code`,
-  // )
-  kakaoLogIn(@Query('code') code: string) {
-    return this.userService.kakaoLogin(code);
+  @HttpCode(200)
+  @UseGuards(AuthGuard('kakao'))
+  async kakaoLogIn(@Req() req, @Res() res): Promise<void> {
+    await this.userService.kakaoLogin(req.user);
+    console.log(req);
+    res.cookie('kakao', req.user.accessToken);
+    res.redirect('http://localhost:3000');
   }
 
   @Post('/verify')
