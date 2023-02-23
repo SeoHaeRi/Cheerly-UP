@@ -39,6 +39,13 @@ export default function MyPage() {
         >
           <span>내가 쓴 글</span>
         </button>
+        <button
+          className="card__button"
+          type="button"
+          onClick={() => navigate('/mystudyrecord')}
+        >
+          <span>나의 공부 기록</span>
+        </button>
         <div className="card__button">유저 정보</div>
         <div className="card__button">유</div>
         <div className="card__button"></div>

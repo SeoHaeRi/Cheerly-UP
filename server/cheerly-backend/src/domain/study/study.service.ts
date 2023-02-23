@@ -41,6 +41,30 @@ export class StudyService {
     return studyDatabyUser;
   }
 
+  //userId 일치
+  async getStudiesRecord(userId: string) {
+    const TIME_ZONE = 9 * 60 * 60 * 1000; // 9시간
+
+    const koreatime = new Date(Date.now() + TIME_ZONE)
+      .toISOString()
+      .split('T')[0];
+
+    //userId 일치 + done
+    const studyDatabyUserID = await this.studyRepository
+      .createQueryBuilder('s')
+      .select(['s.study_id', 's.done', 's.date', 's.content', 's.user_id'])
+      .where('s.user_id = :user_id', {
+        user_id: String(userId),
+      })
+      .andWhere('s.done = :done', {
+        done: 1,
+      })
+      .getMany();
+
+    console.log(studyDatabyUserID);
+    return studyDatabyUserID;
+  }
+
   // //GET - 날짜에 맞는 스터디 데이터 가져오기(Date)
   // //날짜 클라이언트에서 보내주고 받아오고 수정해야함!
   // async getStudiesByDate() {

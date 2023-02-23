@@ -40,6 +40,14 @@ export class StudyController {
     return studyDataByUser;
   }
 
+  //GET - 특정 스터디 데이터 가져오기(userId + done)
+  @Get('/record/:id')
+  async getStudiesRecord(@Param('id') userId: string, @Req() req, @Res() res) {
+    const studyDataRecord = await this.studyService.getStudiesRecord(userId);
+    res.send(studyDataRecord);
+    return studyDataRecord;
+  }
+
   //GET - 날짜에 맞는 스터디 데이터 가져오기(Date)
   // @Get('/date')
   // async getStudiesByDate(@Req() req, @Res() res) {
