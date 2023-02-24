@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Textdiv = styled.div`
-  font-size: 2.5rem;
+  font-family: 'Jua', sans-serif;
+  font-size: 2.25rem;
   color: #2196f3;
   text-align: center;
   width: 100%;
@@ -11,10 +12,37 @@ const Textdiv = styled.div`
   top: 25rem;
   left: 22%;
   font-weight: 800;
+
+  .text {
+    @media screen and (max-width: 1210px) {
+      font-size: 2.25rem;
+
+      position: absolute;
+      text-align: center;
+      top: 25rem;
+      left: 22%;
+      font-weight: 800;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 1.25rem;
+
+      position: absolute;
+      text-align: center;
+      top: 25rem;
+      left: 22%;
+      font-weight: 800;
+      /* position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 23%;
+    top: 18rem;
+    max-width: 20rem; */
+    }
+  }
 `;
 
 export default function Typing() {
-  const txt = '나의 오늘 기록이 궁금하다면?';
+  const txt = '나의 데일리 기록이 궁금하다면?';
   const [text, setText] = useState('');
   const [count, setCount] = useState(0);
   const [Color, setColor] = useState('black');
