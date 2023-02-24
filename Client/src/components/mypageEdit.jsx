@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { ReactComponent as Logo } from '../assets/logo.svg';
-import '../static/Signup2.css';
+import './signup/Signup2.css';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

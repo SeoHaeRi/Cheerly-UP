@@ -5,12 +5,12 @@ import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Button, TextField } from '@mui/material';
 import { json, useNavigate, useSearchParams } from 'react-router-dom';
-import '../static/Signin2.css';
 import { Cookies } from 'react-cookie';
 import jwt_decode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
-import { setToken } from '../store/module/token';
-import { ReactComponent as Logo } from '../assets/logo.svg';
+import { setToken } from '../../store/module/token';
+import { ReactComponent as Logo } from '../../assets/logo.svg';
+import './Signin2.css';
 
 const SignIn = () => {
   const cookies = new Cookies();

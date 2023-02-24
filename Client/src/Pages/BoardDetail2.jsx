@@ -119,6 +119,9 @@ function BoardDetail2() {
             endIcon={<DeleteForeverOutlinedIcon />}
             className="delete-button"
             onClick={onClickDelete}
+
+            style={{ fontFamily: " 'Jua', sans-serif" }}
+
           >
             삭제
           </Button>
@@ -126,6 +129,9 @@ function BoardDetail2() {
             variant="outlined"
             endIcon={<BuildOutlinedIcon />}
             onClick={onClickEdit}
+
+            style={{ fontFamily: " 'Jua', sans-serif" }}
+
           >
             수정
           </Button>
@@ -143,6 +149,8 @@ function BoardDetail2() {
             <div className="board-title">{post.title}</div>
             <div className="board-content">{post.content}</div>
           </div>
+
+  
         </div>
         <hr />
         <div className="board-footer">
