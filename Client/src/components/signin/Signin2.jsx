@@ -70,7 +70,10 @@ const SignIn = () => {
       });
     }
   };
-
+  // 카카오 로그인 버튼 클릭
+  const viewKakao = () => {
+    window.location.href = 'http://localhost:3030/user/kakao';
+  };
   return (
     <Formik
       initialValues={{
@@ -118,6 +121,13 @@ const SignIn = () => {
               >
                 로그인
               </Button>
+              <button
+                className="card__button1"
+                type="button"
+                onClick={viewKakao}
+              >
+                <span>카카오로 로그인하기</span>
+              </button>
             </div>
           </form>
         </div>

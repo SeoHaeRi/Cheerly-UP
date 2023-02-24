@@ -18,27 +18,22 @@ import DisabledByDefaultOutlinedIcon from '@mui/icons-material/DisabledByDefault
 
 function BoardDetail() {
   const token = useSelector((state) => state.token.token);
-  const kakaoToken = useSelector((state) => state.token.kakaoToken);
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
       setIsAuth(true);
-    } else if (kakaoToken) {
-      setIsAuth(true);
     } else {
       setIsAuth(false);
     }
-  }, [token, kakaoToken]);
+  }, [token]);
 
   axios.interceptors.request.use((config) => {
     /* JWT 토큰 */
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
-    // else if (kakaoToken) {
-    //   config.headers['Authorization'] = `Bearer ${kakaoToken}`;
-    // }
+
     return config;
   });
 

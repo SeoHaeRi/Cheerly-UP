@@ -8,7 +8,9 @@ import {
   Post,
   Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dtos/CreateComment.dto';
 import { UpdateCommentDto } from './dtos/UpdateComment.dto';
@@ -21,7 +23,6 @@ export class CommentController {
   async getPosts(@Req() req, @Res() res) {
     const comments = await this.commentService.getComments();
     res.send(comments);
-    console.log(comments);
     return comments;
   }
 
@@ -29,10 +30,7 @@ export class CommentController {
   @Get('/:id')
   async getCommentById(@Param('id') postId: string, @Req() req, @Res() res) {
     const param = postId.slice(1);
-    console.log(param);
-
     const commentDatabyPostId = await this.commentService.getCommentById(param);
-    console.log(commentDatabyPostId);
 
     res.send(commentDatabyPostId);
     return commentDatabyPostId;
@@ -41,6 +39,7 @@ export class CommentController {
   //POST - 댓글 생성(특정 post_id에 댓글 생성
   //+ 댓글을 쓰는 유저 정보 userId 가져와야함*****)
   @Post('/:id')
+  @UseGuards(AuthGuard('jwt'))
   async createComment(
     @Param('id') postId: string,
     @Body() createCommentDto: CreateCommentDto,
@@ -55,6 +54,7 @@ export class CommentController {
 
   //PATCH - 댓글 수정: 2개의 조건 (content -> date도 수정)
   @Patch('/:id/:cd')
+  @UseGuards(AuthGuard('jwt'))
   async updateCommentById(
     @Param('id') postId: string,
     @Param('cd') commentId: string,
@@ -68,12 +68,12 @@ export class CommentController {
       paramCommentId,
       updateCommentDto,
     );
-    console.log(editComment);
     return editComment;
   }
 
   //DELETE - 댓글 삭제 : 2개의 조건
   @Delete('/:id/:cd')
+  @UseGuards(AuthGuard('jwt'))
   async deletePostById(
     @Param('id') postId: string,
     @Param('cd') commentId: string,

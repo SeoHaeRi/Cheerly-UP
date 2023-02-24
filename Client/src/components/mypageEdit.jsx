@@ -4,7 +4,7 @@ import './signup/Signup2.css';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setKakaoToken, setToken } from '../store/module/token';
+import { setToken } from '../store/module/token';
 
 export default function MypageEdit() {
   const getCookie = (name) => {
@@ -28,6 +28,13 @@ export default function MypageEdit() {
 
   const nicknameRef = useRef();
   const pwRef = useRef();
+  axios.interceptors.request.use((config) => {
+    /* JWT 토큰 */
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  });
 
   const editInfo = async () => {
     const nicknameInput = String(nicknameRef.current.value);
@@ -62,7 +69,7 @@ export default function MypageEdit() {
 
           if (kakaoToken) {
             deleteCookie('kakao');
-            dispatch(setKakaoToken(''));
+            dispatch(setToken(''));
           } else {
             dispatch(setToken(''));
             sessionStorage.clear();

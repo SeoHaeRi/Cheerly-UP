@@ -14,18 +14,15 @@ import { width } from '@mui/system';
 
 function Board() {
   const token = useSelector((state) => state.token.token);
-  const kakaoToken = useSelector((state) => state.token.kakaoToken);
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
       setIsAuth(true);
-    } else if (kakaoToken) {
-      setIsAuth(true);
     } else {
       setIsAuth(false);
     }
-  }, [token, kakaoToken]);
+  }, [token]);
 
   const navigate = useNavigate();
   const postRef = useRef([]);
@@ -145,11 +142,10 @@ const Container = styled.div`
   position: absoulte;
   font-family: 'Jua', sans-serif;
   background-image: url(${boardtree});
-  width:100vw;
-  height:100vh;
+  width: 100vw;
+  height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
-
 `;
 
 const MainHeader = styled.div`
@@ -162,4 +158,3 @@ const MainHeader = styled.div`
   font-size: 1.75rem;
   text-align: center;
 `;
-
