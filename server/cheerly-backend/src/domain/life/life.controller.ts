@@ -10,6 +10,8 @@ import {
   Req,
   Res,
 } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common/decorators';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateLifeDto } from './dtos/CreateLife.dto';
 import { UpdateLifeDto } from './dtos/UpdateLife.dto';
 import { LifeService } from './life.service';
@@ -45,12 +47,14 @@ export class LifeController {
 
   //POST - 라이프 투두리스트 할 일 생성
   @Post()
+  @UseGuards(AuthGuard())
   async createLife(@Body() createLifeDto: CreateLifeDto) {
     await this.lifeService.createLife(createLifeDto);
   }
 
   //PATCH <- user_id, life_id 필요
   @Patch(':id/:ld')
+  @UseGuards(AuthGuard())
   async updateLife(
     @Param('id') userId: string,
     @Param('ld') lifeId: number,
@@ -61,6 +65,7 @@ export class LifeController {
 
   //DELETE
   @Delete('/:id/:ld')
+  @UseGuards(AuthGuard())
   async deleteLife(@Param('id') userId: string, @Param('ld') lifeId: number) {
     await this.lifeService.deleteLife(userId, lifeId);
   }

@@ -7,7 +7,7 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom';
-import "../static/BoardDetail.css";
+import '../static/BoardDetail.css';
 import { useSelector } from 'react-redux';
 import { jwtUtils } from '../utils/jwtUtils';
 import { Button, Dialog, DialogContent, IconButton } from '@mui/material';
@@ -16,19 +16,32 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import DisabledByDefaultOutlinedIcon from '@mui/icons-material/DisabledByDefaultOutlined';
 import Comment from '../components/Comment';
 
-
 function BoardDetail2() {
   const [show, setShow] = useState(false);
   const token = useSelector((state) => state.token.token);
+  const kakaoToken = useSelector((state) => state.token.kakaoToken);
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
       setIsAuth(true);
+    } else if (kakaoToken) {
+      setIsAuth(true);
     } else {
       setIsAuth(false);
     }
-  }, [token]);
+  }, [token, kakaoToken]);
+
+  axios.interceptors.request.use((config) => {
+    /* JWT 토큰 */
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    // else if (kakaoToken) {
+    //   config.headers['Authorization'] = `Bearer ${kakaoToken}`;
+    // }
+    return config;
+  });
 
   const userID = useSelector((state) => state.user.user.data.user_id);
   const userNickname = useSelector(
@@ -98,46 +111,45 @@ function BoardDetail2() {
 
   return (
     <>
-    <div className='board-wrapper'>
-      <div className="edit-delete-button">
-        <Button
-          variant="outlined"
-          color="error"
-          endIcon={<DeleteForeverOutlinedIcon />}
-          className="delete-button"
-          onClick={onClickDelete}
-        >
-          삭제
-        </Button>
-        <Button
-          variant="outlined"
-          endIcon={<BuildOutlinedIcon />}
-          onClick={onClickEdit}
-        >
-          수정
-        </Button>
+      <div className="board-wrapper">
+        <div className="edit-delete-button">
+          <Button
+            variant="outlined"
+            color="error"
+            endIcon={<DeleteForeverOutlinedIcon />}
+            className="delete-button"
+            onClick={onClickDelete}
+          >
+            삭제
+          </Button>
+          <Button
+            variant="outlined"
+            endIcon={<BuildOutlinedIcon />}
+            onClick={onClickEdit}
+          >
+            수정
+          </Button>
+        </div>
+
+        <div className="board-header">
+          <div className="board-header-username">{post.userId}</div>
+        </div>
+        <hr />
+        <div className="board-body">
+          <div className="board-image">
+            {/* <img src={`/api/image/view/${board_id}`}/> */}
+          </div>
+          <div className="board-title-content">
+            <div className="board-title">{post.title}</div>
+            <div className="board-content">{post.content}</div>
+          </div>
+        </div>
+        <hr />
+        <div className="board-footer">
+          <Comment />
+        </div>
       </div>
-
-
-      <div className="board-header">
-            <div className="board-header-username">{post.userId}</div>
-          </div>
-          <hr/>
-          <div className="board-body">
-            <div className="board-image">
-              {/* <img src={`/api/image/view/${board_id}`}/> */}
-            </div>
-            <div className="board-title-content">
-              <div className="board-title">{post.title}</div>
-              <div className="board-content">{post.content}</div>
-            </div>
-          </div>
-          <hr/>
-          <div className="board-footer">
-            <Comment/>
-          </div>
-          </div>
-        </>
+    </>
   );
 }
 
