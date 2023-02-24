@@ -229,6 +229,7 @@ const Navbardrop = () => {
                       window.location.href =
                         'http://localhost:3030/user/kakao/logout';
                       deleteCookie('kakao');
+                      dispatch(setKakaoToken(''));
                     } else {
                       dispatch(setToken(''));
                       sessionStorage.clear();

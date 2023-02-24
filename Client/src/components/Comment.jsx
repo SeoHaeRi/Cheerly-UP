@@ -17,15 +17,18 @@ import '../static/Comment.css';
 export default function WriteComment() {
   const navigate = useNavigate();
   const token = useSelector((state) => state.token.token);
+  const kakaoToken = useSelector((state) => state.token.kakaoToken);
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
       setIsAuth(true);
+    } else if (kakaoToken) {
+      setIsAuth(true);
     } else {
       setIsAuth(false);
     }
-  }, [token]);
+  }, [token, kakaoToken]);
 
   const userID = useSelector((state) => state.user.user.data.user_id);
   const userNickname = useSelector(
