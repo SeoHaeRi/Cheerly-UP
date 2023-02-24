@@ -10,11 +10,9 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { CreatePostDto } from './dtos/CreatePost.dto';
 import { UpdatePostDto } from './dtos/UpdatePost.dto';
 import { PostsService } from './posts.service';
-import { diskStorage } from 'multer';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('board')

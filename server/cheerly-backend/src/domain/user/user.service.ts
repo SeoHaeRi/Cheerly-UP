@@ -64,7 +64,7 @@ export class UserService {
   ////**************** */
   //PATCH - 유저 회원정보 수정
   async updateUser(userId: string, updateUserDto: UpdateUserDto) {
-    const { id, pw, nickname } = updateUserDto;
+    const { pw, nickname } = updateUserDto;
     const salt = await bcrypt.genSalt();
     const hashedPW = await bcrypt.hash(pw, salt);
     return await this.userRepository.update(
@@ -78,13 +78,7 @@ export class UserService {
     return await this.userRepository.delete({ id: userId });
   }
 
-  //
-
   async uploadImg(file, updateUserData, userId) {
-    // const newPost = this.boardRepository.insert(
-    //   Object.assign(CreatePostDto, {}),
-    // );
-
     return await this.userRepository.update(
       { id: userId },
       { ...updateUserData, profile_img: file.filename },
