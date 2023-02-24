@@ -20,7 +20,14 @@ export class CommentService {
   async getCommentById(postId: string) {
     const commentData = await this.commentRepository
       .createQueryBuilder('c')
-      .select(['c.comment_id', 'c.post_id', 'c.content', 'c.date', 'c.userId'])
+      .select([
+        'c.comment_id',
+        'c.post_id',
+        'c.content',
+        'c.date',
+        'c.userId',
+        'c.nickname',
+      ])
       .where('c.post_id = :post_id', {
         post_id: Number(postId),
       })
