@@ -116,7 +116,7 @@ export default function Life() {
           <Stopwatch />
           <Typing />
           <button
-            class="w-btn-neon2"
+            className="w-btn-neon2"
             onClick={() => {
               navigate('/mylife');
             }}

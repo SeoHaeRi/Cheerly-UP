@@ -9,6 +9,98 @@ import moment from 'moment';
 import 'moment/locale/ko';
 import { jwtUtils } from '../utils/jwtUtils';
 import { useSelector } from 'react-redux';
+import '../static/Peelgreen.scss';
+import yoga from '../assets/yoga.svg';
+import heart2 from '../assets/heart2.svg';
+
+const Container = styled.div`
+  font-family: 'Jua', sans-serif;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  -ms-grid-rows: auto;
+  grid-template-rows: 50px;
+  grid-auto-rows: 100px;
+  grid-gap: 30px 10px;
+  justify-content: center;
+  background: #ffffff;
+  box-sizing: border-box;
+
+  p {
+    font-size: 1.25rem;
+    text-align: center;
+    position: relative;
+    top: 20px;
+    color: #ffeb3b;
+  }
+
+  .life {
+    font-size: 1rem;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    /* width: 100%; */
+    padding: 10px;
+    /* top: 20px; */
+    color: #3f51b5;
+    background-color: #ffeb3b;
+  }
+  .contents {
+    font-size: 1.2rem;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    top: 30px;
+    color: #ffeb3b;
+    /* background-color: white; */
+    border-radius: 5px;
+    flex-grow: 1;
+    word-break: break-all;
+    overflow: auto;
+  }
+  .post-date {
+    font-size: 1rem;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    top: 100px;
+    color: #ffeb3b;
+    /* background-color: white; */
+    border-radius: 5px;
+  }
+`;
+
+const Treeimg = styled.img`
+  /* z-index: -1;
+  width: 100%;
+  height: 80%;
+  position: absolute; */
+  z-index: -1;
+  width: 90%;
+  left: -40rem;
+  right: rem;
+  /* height: 80%; */
+  position: absolute;
+`;
+
+const MainHeader = styled.div`
+  font-family: 'Jua', sans-serif;
+  background-color: #009688;
+  width: 100%;
+  margin-top: 30px;
+  padding: 20px;
+  color: #ffffff;
+  font-size: 1.75rem;
+  text-align: center;
+`;
+
+const Img = styled.img`
+  width: 80%;
+  height: 80%;
+  position: relative;
+  margin: 0 auto;
+  left: 30px;
+`;
 
 function MyPost() {
   const userID = useSelector((state) => state.user.user.data.user_id);
@@ -66,20 +158,21 @@ function MyPost() {
       <Container>
         {posts.map((post, index) => (
           <div
-            className="card-wrapper"
+            className="pad-green"
             key={index}
             onClick={() => onClickPost(post.post_id)}
             ref={postRef}
           >
-            <div className="card-body-text">
-              <div className="card-body-text-title">{post.title}</div>
-              <div className="card-body-text-content">{post.content}</div>
-            </div>
-            <div className="card-footer">
-              {' '}
-              작성 날짜
-              <div className="date">{post.date}</div>
-            </div>
+            {/* <p>🐥오늘도 Level UP🐥</p> <br /> */}
+            <p className="life">TITLE : {post.title}</p>
+            {/* <div className="card-body-text-title">{post.title}</div> */}
+            <p className="contents"> {post.content}</p>
+
+            {/* <div className="card-body-text-content">{post.content}</div> */}
+            <div className="post-date"> 작성 날짜 : {post.date}</div>
+            <span className="peel-green">
+              <span className="peel-green-back"></span>
+            </span>
           </div>
         ))}
       </Container>
@@ -87,25 +180,3 @@ function MyPost() {
   );
 }
 export default MyPost;
-const Container = styled.div`
-  padding: 30px 0;
-  display: grid;
-  grid-template-columns: repeat(4, 300px);
-  grid-template-rows: repeat(auto-fit, 300px);
-  grid-auto-rows: 300px;
-  grid-gap: 30px 20px;
-  justify-content: center;
-  background: white;
-  box-sizing: border-box;
-  position: absoulte;
-`;
-
-const MainHeader = styled.div`
-  background-color: #1363df;
-  width: 100%;
-  margin-top: 30px;
-  padding: 20px;
-  color: white;
-  font-size: 1.75rem;
-  text-align: center;
-`;
