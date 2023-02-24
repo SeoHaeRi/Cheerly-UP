@@ -24,12 +24,10 @@ const Navbardrop = () => {
   const token = useSelector((state) => state.token.token);
   const [isAuth, setIsAuth] = useState(false);
   const dispatch = useDispatch();
-  if (kakaoToken) dispatch(setKakaoToken(kakaoToken));
+  if (kakaoToken) dispatch(setToken(kakaoToken));
 
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
-      setIsAuth(true);
-    } else if (kakaoToken) {
       setIsAuth(true);
     } else {
       setIsAuth(false);
@@ -229,7 +227,7 @@ const Navbardrop = () => {
                       window.location.href =
                         'http://localhost:3030/user/kakao/logout';
                       deleteCookie('kakao');
-                      dispatch(setKakaoToken(''));
+                      dispatch(setToken(''));
                     } else {
                       dispatch(setToken(''));
                       sessionStorage.clear();

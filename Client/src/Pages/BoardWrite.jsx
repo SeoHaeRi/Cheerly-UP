@@ -19,9 +19,6 @@ function BoardWrite() {
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
-    // else if (kakaoToken) {
-    //   config.headers['Authorization'] = `Bearer ${kakaoToken}`;
-    // }
     return config;
   });
 

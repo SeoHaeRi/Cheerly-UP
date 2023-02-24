@@ -37,28 +37,41 @@ export class UserService {
     }
   }
 
-  async kakaoLogin(user): Promise<void> {
+  async kakaoLogin(user): Promise<string> {
+    const id = user.kakaoID;
+    const { pw } = user;
+    let { nickname } = user;
+    const userData = {
+      id: id,
+      pw: pw,
+      nickname: nickname,
+    };
+    console.log(userData);
+
     // 회원 가입 된 유저인지 검사 (db에 저장하기 위해)
-    const isExist = await this.userRepository.findOneBy({ id: user.kakaoID });
-    if (isExist) return;
-    else {
+    const isExist = await this.userRepository.findOneBy({ id: id });
+    if (!isExist) {
       const isExistNickname = await this.userRepository.findOneBy({
-        nickname: user.nickname,
+        nickname: nickname,
       });
-      const userData = {
-        id: user.kakaoID,
-        pw: user.pw,
-        nickname: user.nickname,
-      };
+
       if (isExistNickname) {
         await axios
           .get('https://nickname.hwanmoo.kr/?format=json&max_length=30')
           .then((res) => {
             userData.nickname = res.data.words[0];
-            return this.userRepository.createKakaoUser(userData);
+            nickname = res.data.words[0];
+            this.userRepository.createKakaoUser(userData);
           });
-      } else return this.userRepository.createKakaoUser(userData);
+      } else this.userRepository.createKakaoUser(userData);
     }
+    // 로그인
+    // 유저 토큰 생성 (secret + payload)
+    const payload = { id, nickname };
+    const accessToken = await this.jwtService.sign(payload);
+    console.log(accessToken);
+
+    return accessToken;
   }
 
   ////**************** */

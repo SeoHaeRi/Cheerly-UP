@@ -15,6 +15,7 @@ const PrivateRoute = (props) => {
 
   const token = useSelector((state) => state.token.token);
   const kakaoToken = getCookie('kakao');
+
   const { component: RouteComponent, path } = props;
   // redirectUrl은 로그인이 성공후 돌아갈 화면이다.
   if (!jwtUtils.isAuth(token)) {
