@@ -94,7 +94,7 @@ export default function Life() {
         </DiaryButton>
         <TodoButton onClick={() => setViewCalendar(false)}>
           {' '}
-          이전의 활동 보러가기
+          나의 운동 기록하기
         </TodoButton>
 
         <Earlydiv>
