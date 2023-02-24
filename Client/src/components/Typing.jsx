@@ -51,7 +51,7 @@ const Textdiv = styled.div`
   font-weight: 800;
 
   .text {
-    @media screen and (max-width: 1250px) {
+    @media all and (max-width: 1250px) {
       font-size: 2.25rem;
 
       position: absolute;
@@ -60,7 +60,7 @@ const Textdiv = styled.div`
       left: 22%;
       font-weight: 800;
     }
-    @media screen and (max-width: 768px) {
+    @media all and (max-width: 768px) {
       font-size: 1.25rem;
 
       position: absolute;
