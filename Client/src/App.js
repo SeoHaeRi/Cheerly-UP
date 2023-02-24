@@ -1,9 +1,5 @@
 import './App.css';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
@@ -16,6 +12,7 @@ import Main from './Pages/Main';
 import Study from './Pages/Study';
 import Board from './Pages/Board';
 import Navbar from './components/Navbar';
+import MypageEdit from './components/mypageEdit';
 
 import MyPage from './Pages/MyPage';
 import Group_page from './Pages/Group_page';
@@ -29,6 +26,7 @@ import Chat3 from './Pages/Chat3';
 import BoardDetail from './Pages/BoardDetail';
 import BoardDetailEdit from './Pages/BoardDetailEdit';
 import BoardWrite from './Pages/BoardWrite';
+import BoardDetail2 from './Pages/BoardDetail2';
 
 import Life from './Pages/Life';
 import Healing from './Pages/Healing';
@@ -64,7 +62,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/board" element={<Board />} />
-            <Route path="/board/:id" element={<BoardDetail />}></Route>{' '}
+            <Route path="/board/:id" element={<BoardDetail2 />}></Route>{' '}
             <Route path="/board/edit/:id" element={<BoardDetailEdit />}></Route>
             <Route path="/board/write" element={<BoardWrite />}></Route>
             <Route path="/studygroup" element={<Group_page />} />
@@ -74,6 +72,7 @@ function App() {
             <Route path="/signup2" element={<Signup />} />
             <Route path="/signup" element={<SignUp2 />} />
             <Route path="/chat3" element={<Chat3 />} />
+            <Route path="/mypageedit" element={<MypageEdit />} />
             <Route
               path="/study"
               element={<PrivateRoute path="/study" component={Study} />}
@@ -105,6 +104,10 @@ function App() {
             <Route
               path="/mylife"
               element={<PrivateRoute path="/mylife" component={MyLifeRecord} />}
+            />
+            <Route
+              path="/myinfo"
+              element={<PrivateRoute path="/myinfo" component={MypageEdit} />}
             />
             <Route path="/*" element={<Error />} />
           </Routes>

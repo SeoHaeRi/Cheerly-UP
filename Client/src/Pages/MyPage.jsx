@@ -27,11 +27,22 @@ export default function MyPage() {
     const formData = new FormData();
     formData.append('file', image.image_file);
 
-    console.log(formData.file);
+    console.log();
 
-    axios.patch(`http://localhost:3030/user/${userID}`, {
-      formData,
-    });
+    // axios
+    //   .patch(
+    //     `http://localhost:3030/user/image/${userID}`,
+    //     {
+    //       userId: userID,
+    //       profile_img: formData,
+    //     },
+    //     {
+    //       headers: {
+    //         'Content-Type': 'multipart/form-data',
+    //       },
+    //     },
+    //   )
+    //   .then((res) => alert('수정!'));
     // window.alert('😎프로필 이미지 등록이 완료되었습니다😎');
   }, [canSubmit]);
 
@@ -66,8 +77,15 @@ export default function MyPage() {
           onClick={() => navigate('/mylife')}
         >
           <span>나의 라이프 기록</span>
-        </button>
-        <div className="card__button">유저 정보</div>
+        </button>  
+          <button className='card__button' type='button' onClick={() => navigate('/mypageedit')}>
+            <span>유저 정보 수정</span>
+            </button>
+
+        <div className="card__button" onClick={() => navigate('/myinfo')}>
+          유저 정보
+        </div>
+
       </section>
     </div>
   );

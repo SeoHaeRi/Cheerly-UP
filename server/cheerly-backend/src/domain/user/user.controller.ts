@@ -13,14 +13,19 @@ import {
   UseGuards,
   UseInterceptors,
   ValidationPipe,
+  UploadedFile,
+  Delete,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { FilesInterceptor } from '@nestjs/platform-express';
-import { multerOptions } from 'lib/multerOptions';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { imageFileFilter } from 'lib/multerOptions';
+import multer, { diskStorage } from 'multer';
 import { CreateUserDto } from './dto/CreateUser.dto';
 import { LoginUserDto } from './dto/LoginUser.dto';
 import { UpdateUserDto } from './dto/UpdateUser.dto';
 import { UserService } from './user.service';
+import { ApiConsumes, ApiBody } from '@nestjs/swagger';
+import { fileURLToPath } from 'url';
 
 @Controller('user')
 export class UserController {
@@ -66,21 +71,41 @@ export class UserController {
     return req.user;
   }
 
-  //Mypage 프로필 사진 수정
-  @Patch('/:id')
-  @UseInterceptors(FilesInterceptor('file', null, multerOptions))
-  async updateUserInfo(
-    @UploadedFiles() file,
+  //////
+  //회원 정보 수정
+  @Patch('/edit/:id')
+  async updateUserData(
     @Param('id') userId: string,
-    @Body(ValidationPipe) userData: UpdateUserDto,
+    @Body() updateUserDto: UpdateUserDto,
   ) {
-    const updateInfo = await this.userService.updateUserInfo(
-      // file[0].filename,
-      file,
-      userId,
-      userData,
-    );
-    console.log(file);
-    return updateInfo;
+    const editUser = await this.userService.updateUser(userId, updateUserDto);
+    console.log(editUser);
+    return editUser;
+  }
+
+  @Delete('/:id')
+  async deleteUserData(@Param('id') userId: string) {
+    await this.userService.deleteUser(userId);
+  }
+  //multer
+  @Patch('/image/:id')
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(
+    FileInterceptor('image', {
+      storage: diskStorage({
+        destination: './upload',
+      }),
+      fileFilter: imageFileFilter,
+    }),
+  )
+  async updateImage(
+    @UploadedFile() file,
+    @Param('id')
+    userId: string,
+    @Body() data: object,
+  ) {
+    const updateImg = await this.userService.updateImage(file, userId, data);
+    console.log(file, userId, data);
+    return updateImg;
   }
 }

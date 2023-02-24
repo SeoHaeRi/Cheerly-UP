@@ -12,6 +12,7 @@ import CommentDetail from './CommentDetail';
 import { useSelector } from 'react-redux';
 import ModalCommentEdit from './modal/CommentEdit';
 import { jwtUtils } from '../utils/jwtUtils';
+import '../static/Comment.css';
 
 export default function WriteComment() {
   const navigate = useNavigate();
@@ -120,57 +121,62 @@ export default function WriteComment() {
 
   return (
     <>
-      <button onClick={() => setViewcomment(true)}>댓글 목록</button>
+      {/* <button onClick={() => setViewcomment(true)}>댓글 목록</button> */}
       <button onClick={onClickWriteCommentHandler}>댓글 쓰기</button>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+
       {Viewcomment ? (
-        <CommentDiv>
+        <div className="comments-wrapper">
           <div>
             {comments.map((comment, index) => (
-              <div
-                key={index}
-                id="each-comment"
-                // style={{ borderBottom: 'solid 1px #1982fc' }}
-              >
+              <div key={index} id="each-comment">
                 <ModalCommentEdit
                   show={ModalOn}
                   onHide={setModalOn}
                   comment={comment}
                   param={param}
                 />
-                <div>댓글 쓴 사람 아이디: {comment.userId}</div>
-                <div>{comment.date}</div>
-                <div id={`${comment.comment_id}-comment`} ref={commentRef}>
+                <div className="comment-username">Id : {comment.userId}</div>
+                <div className="comment-username-date">{comment.date}</div>
+                <div
+                  className="comments-comment"
+                  id={`${comment.comment_id}-comment`}
+                  ref={commentRef}
+                >
                   내용: {comment.content}
-                  <button
-                    id={`${comment.comment_id}-deletebtn`}
-                    onClick={() =>
-                      deleteCommentHandler(comment, comment.comment_id)
-                    }
-                  >
-                    ❌
-                  </button>
-                  <button
-                    id={`${comment.comment_id}-editbtn`}
-                    onClick={() => onClickEditHandler(comment)}
-                  >
-                    ✏️
-                  </button>
                 </div>
+                <button
+                  className="button"
+                  id={`${comment.comment_id}-deletebtn`}
+                  onClick={() =>
+                    deleteCommentHandler(comment, comment.comment_id)
+                  }
+                >
+                  삭제
+                </button>
+                <button
+                  className="button2"
+                  id={`${comment.comment_id}-editbtn`}
+                  onClick={() => onClickEditHandler(comment)}
+                >
+                  수정
+                </button>
               </div>
             ))}
           </div>
-        </CommentDiv>
+        </div>
       ) : (
-        <div>
-          <CommentDiv>
-            {comments.map((comment, index) => (
-              <div key={index}>
-                <div>댓글 쓴 사람 아이디: {comment.userId}</div>
-                <div>날짜: {comment.date}</div>
-                <div>내용: {comment.content}</div>
-              </div>
-            ))}
-          </CommentDiv>
+        <div className="comments-footer">
+          {comments.map((comment, index) => (
+            <div key={index}>
+              <div>댓글 쓴 사람 아이디: {comment.userId}</div>
+              <div>날짜: {comment.date}</div>
+              <div>내용: {comment.content}</div>
+            </div>
+          ))}
           <CommentDetail />
         </div>
       )}
