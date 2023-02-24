@@ -46,7 +46,6 @@ export default function Chat() {
 
     socket.on('msgToClient', (payload) => {
       console.log(payload);
-
       const container = document.createElement('div');
       container.classList.add('message__bubble');
       container.innerText = payload.msg + ' ' + payload.time;
@@ -61,6 +60,7 @@ export default function Chat() {
 
     if (sendMsg === '' || sendMsg === undefined) {
       alert('메시지를 입력해주세요.');
+      return;
     }
 
     socket.emit('msgToServer', {
@@ -83,7 +83,6 @@ export default function Chat() {
 
         <div className="message-row">
           <div className="message-row__content">
-            <div className="message__author"></div>
             <div className="message-info">
               <div className="message__bubble"></div>
             </div>
@@ -103,7 +102,6 @@ export default function Chat() {
 
       <div className="reply">
         <div className="reply__column">
-        
           <i className="far fa-plus-square fa-lg"></i>
         </div>
         <div className="reply__column">

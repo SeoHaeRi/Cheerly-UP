@@ -85,9 +85,6 @@ export default function Chat() {
           </div>
         </div>
 
-        <select id="members">
-          <option value="전체">전체</option>
-        </select>
         <input
           type="text"
           name="chat-input"

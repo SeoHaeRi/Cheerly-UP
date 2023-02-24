@@ -69,6 +69,7 @@ function App() {
             <Route path="/signin" element={<Signin2 />} />
             <Route path="/signup2" element={<Signup />} />
             <Route path="/signup" element={<SignUp2 />} />
+            <Route path="/chat" element={<Chat />} />
             <Route path="/chat3" element={<Chat3 />} />
             <Route path="/mypageedit" element={<MypageEdit />} />
             <Route
@@ -84,7 +85,7 @@ function App() {
               path="/mypage"
               element={<PrivateRoute path="/mypage" component={MyPage} />}
             />
-            <Route path="/chat3/:roomname" element={<Chat3 />} />
+            <Route path="/chat/:roomname" element={<Chat />} />
             <Route
               path="/chatroom"
               element={<PrivateRoute path="/chatroom" component={Chatroom} />}
