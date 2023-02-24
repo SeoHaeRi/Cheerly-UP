@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import '../static/Chat2.css';
+// import { Reset } from 'styled-reset';
+import '../static/Chat.css';
 import { io } from 'socket.io-client';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 //Chatroom 페이지에서 유저 정보, 방 번호 받아오기
 export default function Chat() {
@@ -17,21 +17,15 @@ export default function Chat() {
   let user_socketID = '';
   const { roomname } = useParams();
   const roomName = roomname;
-
-  const roomNumber = useRef();
-  const [room, setRoom] = useState([]);
-  const [chatlist, setchatlist] = useState([]);
-  useEffect(() => {
-    axios.get('http://localhost:3030/chat/list').then((res) => {
-      setchatlist(res.data);
-    });
-  }, []);
+  const userNickname = useSelector(
+    (state) => state.user.user.data.user_nickname,
+  );
 
   useEffect(() => {
     socket.connect();
 
     socket.emit('join', {
-      user: 'username',
+      user: userNickname,
       room: { id: 1, name: roomName },
     });
 
@@ -46,11 +40,12 @@ export default function Chat() {
 
     socket.on('msgToClient', (payload) => {
       console.log(payload);
+
       const container = document.createElement('div');
       container.classList.add('message__bubble');
       container.innerText = payload.msg + ' ' + payload.time;
-      const chat = document.querySelector('.message-row');
-      chat.appendChild(container);
+      const message = document.querySelector('.message-row');
+      message.appendChild(container);
     });
   }, []);
 
@@ -74,29 +69,17 @@ export default function Chat() {
   return (
     <>
       <div className="main-chat">
-        <div className="chat__timestamp , notice">
-          <h1>Chat</h1>
-          <h5>방번호: 채팅방 이름</h5>
-          <h6>n명 참여중</h6>
+        <div className="chat__timestamp">
+          <div className="notice" ref={noticeRef}></div>
+          <h5>{roomname} 방 입니다</h5>
         </div>
-        <div className="notice" ref={noticeRef}></div>
 
         <div className="message-row">
-          <div className="message-row__content">
-            <div className="message-info">
-              <div className="message__bubble"></div>
-            </div>
-          </div>
+          <span className="message__bubble"></span>
         </div>
 
         <div className="message-row message-row--own">
-          <div className="message-row__content">
-            <div className="message__info">
-              <div className="message__bubble2"></div>
-            </div>
-          </div>
-          {/* <h6 className="receiver">받는 사람 이름</h6> */}
-          {/* <span className="received-time">시간</span> */}
+          <span className="message__bubble2"></span>
         </div>
       </div>
 
@@ -119,14 +102,6 @@ export default function Chat() {
           </button>
         </div>
       </div>
-
-      {/* <select id="members">
-        <option value="전체">전체</option>
-      </select>
-    
-      {/* <button id="msg-btn" onClick={() => handleSubmitNewMessage()}>
-          send
-        </button> */}
     </>
   );
 }

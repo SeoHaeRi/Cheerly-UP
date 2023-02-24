@@ -6,6 +6,7 @@ import '../static/Chatroom.css';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
+import { Button } from '@mui/material';
 
 export default function Chatroom() {
   const roomName = useRef();
@@ -22,24 +23,18 @@ export default function Chatroom() {
 
   const createRoom = () => {
     const roomName = prompt('채팅방 이름을 입력해주세요');
-    if (roomName === '' || roomName === undefined)
+
+    if (roomName === '' || roomName === undefined) {
       alert('채팅방의 이름을 입력해주세요!');
+      return;
+    } else {
+      alert('채팅방이 생성 되었습니다!');
+      window.location.reload([true]);
+    }
+
     axios.post('http://localhost:3030/chat/create', {
       roomName: roomName,
     });
-
-    // axios
-    //   .post('http://localhost:3030/chat/create', {
-    //     chat_id: String(int),
-    //     created_at : date
-    //     roomName : String(inputContent),
-    //   })
-    //   .then(() => {
-    //     window.location.href = '/chat';
-    //   });
-
-    // 이거 완료되면 db요청 (create router 로)
-    // 띄워지는건 createElement로 띄워줘봐 일단
   };
   const enterChatting = (roomName) => {
     navigate(`/chat/${roomName}`);
@@ -48,9 +43,23 @@ export default function Chatroom() {
   return (
     <div>
       <MainHeader>채팅방 💬</MainHeader>
-      <button className="create__room_btn" onClick={createRoom}>
-        채팅 시작
-      </button>
+      <div
+        style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}
+      >
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={createRoom}
+          size="large"
+          style={{
+            fontFamily: "'Jua', sans-serif",
+            backgroundColor: 'navy',
+          }}
+        >
+          채팅 방 만들기
+        </Button>
+      </div>
+
       <table>
         <thead>
           <tr>
@@ -65,7 +74,9 @@ export default function Chatroom() {
             <tr key={index}>
               <td>{e.chat_id}</td>
               <td>{e.roomName}</td>
-              <td>{moment(e.created_at).format('YYYY-MM-DD')}</td>
+              <td>
+                {moment(e.created_at).add(9, 'hour').format('YYYY-MM-DD')}
+              </td>
               <td>
                 <button
                   className="view"

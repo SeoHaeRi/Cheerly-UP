@@ -146,10 +146,9 @@ const Container = styled.div`
   font-family: 'Jua', sans-serif;
   background-image: url(${boardtree});
   width:100vw;
-  height:100vh;
+  height:150vh;
   background-size: cover;
   background-repeat: no-repeat;
-
 `;
 
 const MainHeader = styled.div`

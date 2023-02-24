@@ -1,4 +1,4 @@
-import '../static/Signup.css';
+import '../static/MyPage.css';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -61,46 +61,49 @@ export default function MyPage() {
   }, []);
 
   return (
-    <div className="scene flex">
+    <div className="scene flex" style={{ fontFamily: ' Jua, sans-serif' }}>
       <section className="card">
         <h1 className="card__heading">
           <Logo />
         </h1>
-
-        <ImgUploader setImage={setImage} preview_URL={image.preview_URL} />
         <div>{user.nickname}님, 안녕하세요!</div>
         <div>가입한 날짜: {user.date}</div>
+
+        <ImgUploader setImage={setImage} preview_URL={image.preview_URL} />
+
         <button
           className="card__button"
           type="button"
           onClick={() => navigate('/mypost')}
+          style={{ fontFamily: ' Jua, sans-serif' }}
         >
-          <span>내가 쓴 글</span>
+          <div>내가 쓴 글</div>
         </button>
         <button
           className="card__button"
           type="button"
           onClick={() => navigate('/mystudyrecord')}
+          style={{ fontFamily: ' Jua, sans-serif' }}
         >
-          <span>나의 공부 기록</span>
+          <div>나의 공부 기록</div>
         </button>
         <button
           className="card__button"
           type="button"
           onClick={() => navigate('/mylife')}
+          style={{ fontFamily: ' Jua, sans-serif' }}
         >
-          <span>나의 라이프 기록</span>
+          <div>나의 라이프 기록</div>
         </button>
         <button
           className="card__button"
           type="button"
           onClick={() => navigate('/mypageedit')}
+          style={{ fontFamily: ' Jua, sans-serif' }}
         >
-          <span>유저 정보 수정</span>
+          <div>유저 정보 수정</div>
         </button>
       </section>
     </div>
   );
 }
-
-/* 나의 공부,라이프 기록도 가져올 것인지*/

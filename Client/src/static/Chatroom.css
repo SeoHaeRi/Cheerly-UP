@@ -21,14 +21,9 @@ table td {
 }
 
 table th {
-  background-color: #1363df;
+  background-color: navy;
   color: #fff;
   padding: 10px;
-}
-/* img라고 쓸시 전역에 영향이 있어서 이름 변경, 이미지 태그 안에 이 클래스 네임을 넣어서 사용하세요. */
-.img-css {
-  width: 90px;
-  height: 90px;
 }
 
 .view,
@@ -40,16 +35,16 @@ table th {
 }
 
 .view {
-  background-color: #03a9f4;
+  background-color: navy;
 }
 
 .tablefoot {
   padding: 0;
-  border-bottom: 3px solid #03a9f4;
+  border-bottom: 3px solid navy;
 }
 
 .create__room_btn {
   display: flex;
   justify-content: flex-end;
-  background-color: #03a9f4;
+  background-color: navy;
 }
