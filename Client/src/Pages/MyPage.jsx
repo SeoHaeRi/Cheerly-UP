@@ -60,7 +60,7 @@ export default function MyPage() {
     <div className="scene flex" style={{ fontFamily: ' Jua, sans-serif' }}>
       <section className="card">
         <h1 className="card__heading">
-          <Logo />
+          <Logo/>
         </h1>
         <div>{user.nickname}님, 안녕하세요!</div>
         <div>가입한 날짜: {user.date}</div>
@@ -68,7 +68,7 @@ export default function MyPage() {
         <ImgUploader setImage={setImage} preview_URL={image.preview_URL} />
 
         <button
-          className="card__button"
+          className="card__button1"
           type="button"
           onClick={() => navigate('/mypost')}
           style={{ fontFamily: ' Jua, sans-serif' }}
@@ -76,7 +76,7 @@ export default function MyPage() {
           <div>내가 쓴 글</div>
         </button>
         <button
-          className="card__button"
+          className="card__button2"
           type="button"
           onClick={() => navigate('/mystudyrecord')}
           style={{ fontFamily: ' Jua, sans-serif' }}
@@ -84,7 +84,7 @@ export default function MyPage() {
           <div>나의 공부 기록</div>
         </button>
         <button
-          className="card__button"
+          className="card__button3"
           type="button"
           onClick={() => navigate('/mylife')}
           style={{ fontFamily: ' Jua, sans-serif' }}
@@ -92,7 +92,7 @@ export default function MyPage() {
           <div>나의 라이프 기록</div>
         </button>
         <button
-          className="card__button"
+          className="card__button4"
           type="button"
           onClick={() => navigate('/mypageedit')}
           style={{ fontFamily: ' Jua, sans-serif' }}

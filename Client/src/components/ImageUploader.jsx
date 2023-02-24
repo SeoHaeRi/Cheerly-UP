@@ -130,7 +130,7 @@ const ImageUploader = ({ preview_URL, setImage }) => {
 
       <div className='btn_box'>
       <Button
-        color="success"
+        color="primary"
         variant="contained"
         type="submit"
         onClick={saveImg}
@@ -141,7 +141,7 @@ const ImageUploader = ({ preview_URL, setImage }) => {
       </Button>
       <Button
         onClick={defaultImg}
-        color="warning"
+        color="primary"
         variant="contained"
         type="submit"
         size="large"
