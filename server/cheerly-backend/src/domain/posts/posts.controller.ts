@@ -52,7 +52,7 @@ export class PostsController {
 
   //POST - 게시글 생성
   @Post('/write')
-  @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard('jwt'))
   async createPost(@Req() req, @Body() createPostDto: CreatePostDto) {
     //const {...postDetails, new } = createPostDto;
     //dto에 새로운 key 추가하면 가능
@@ -63,7 +63,7 @@ export class PostsController {
 
   //Patch - 게시글 수정 :id -> 게시글 번호
   @Patch('/:id')
-  @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard('jwt'))
   async updatePostById(
     @Param('id') postId: string,
     // @Param('id', ParseIntPipe) postId: number,
@@ -78,7 +78,7 @@ export class PostsController {
   }
 
   @Delete('/:id')
-  @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard('jwt'))
   async deletePostById(@Param('id') postId: string) {
     const param = postId.slice(1);
     console.log(param);
