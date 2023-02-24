@@ -1,9 +1,7 @@
 const SETTOKEN = 'SETTOKEN';
-const SETKAKAOTOKEN = 'SETKAKAOTOKEN';
 
 const AuthInitialState = {
   token: null,
-  kakaoToken: null,
 };
 
 export const setToken = (token) => ({
@@ -11,10 +9,7 @@ export const setToken = (token) => ({
   token,
 });
 
-export const setKakaoToken = (kakaoToken) => ({
-  type: SETKAKAOTOKEN,
-  kakaoToken,
-});
+
 const token = (state = AuthInitialState, action) => {
   switch (action.type) {
     case SETTOKEN:
@@ -22,11 +17,7 @@ const token = (state = AuthInitialState, action) => {
         ...state,
         token: action.token,
       };
-    case SETKAKAOTOKEN:
-      return {
-        ...state,
-        kakaoToken: action.kakaoToken,
-      };
+
     default:
       return state;
   }

@@ -140,7 +140,7 @@ const SignUp = () => {
                 type="button"
                 onClick={viewKakao}
               >
-                <span>카카오로 로그인 하기</span>
+                <span>카카오로 가입하기</span>
               </button>
             </div>
           </form>

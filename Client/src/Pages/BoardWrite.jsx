@@ -9,7 +9,6 @@ function BoardWrite() {
     (state) => state.user.user.data.user_nickname,
   );
   const token = useSelector((state) => state.token.token);
-  const kakaoToken = useSelector((state) => state.token.kakaoToken);
 
   const titleRef = useRef();
   const contentRef = useRef();

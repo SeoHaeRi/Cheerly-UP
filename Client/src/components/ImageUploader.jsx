@@ -9,16 +9,12 @@ const ImageUploader = ({ preview_URL, setImage }) => {
   let inputRef;
 
   const token = useSelector((state) => state.token.token);
-  const kakaoToken = useSelector((state) => state.token.kakaoToken);
 
   axios.interceptors.request.use((config) => {
     /* JWT 토큰 */
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
-    // else if (kakaoToken) {
-    //   config.headers['Authorization'] = `Bearer ${kakaoToken}`;
-    // }
     return config;
   });
 
