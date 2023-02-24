@@ -49,8 +49,8 @@ export class UserController {
   @HttpCode(200)
   @UseGuards(AuthGuard('kakao'))
   async kakaoLogIn(@Req() req, @Res() res): Promise<void> {
-    await this.userService.kakaoLogin(req.user);
-    res.cookie('kakao', req.user.accessToken);
+    const accessToken = await this.userService.kakaoLogin(req.user);
+    res.cookie('kakao', accessToken);
     res.redirect('http://localhost:3000');
   }
   @Get('/kakao/logout')
@@ -64,6 +64,12 @@ export class UserController {
   @UseGuards(AuthGuard())
   test(@Req() req) {
     return req.user;
+  }
+
+  @Post('/verify/kakao')
+  @UseGuards(AuthGuard())
+  authKakao(@Body() body) {
+    return body;
   }
 
   //////
