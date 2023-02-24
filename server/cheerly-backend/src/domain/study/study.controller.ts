@@ -4,13 +4,13 @@ import {
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
-  Put,
   Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateStudyDto } from './dtos/CreateStudy.dto';
 import { UpdateStudyDto } from './dtos/UpdateStudy.dto';
 import { StudyService } from './study.service';
@@ -57,6 +57,7 @@ export class StudyController {
 
   //POST - 스터디 할 일 생성
   @Post()
+  @UseGuards(AuthGuard('jwt'))
   async createStudy(@Body() createStudyDto: CreateStudyDto) {
     await this.studyService.createStudy(createStudyDto);
   }
@@ -64,6 +65,7 @@ export class StudyController {
   //PATCH - 스터디 content, done, date 업데이트
   //특정 유저의 특정 스터디 id의 정보를 업데이트해야함.
   @Patch('/:id/:sd')
+  @UseGuards(AuthGuard('jwt'))
   async updateStudy(
     @Param('id') userId: string,
     @Param('sd') studyId: number,
@@ -74,6 +76,7 @@ export class StudyController {
 
   //DELETE - 투두 삭제
   @Delete('/:id/:sd')
+  @UseGuards(AuthGuard('jwt'))
   async deleteStudy(@Param('id') userId: string, @Param('sd') studyId: number) {
     await this.studyService.deleteStudy(userId, studyId);
   }

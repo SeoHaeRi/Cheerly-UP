@@ -91,18 +91,15 @@ const Input = styled.input`
 
 function TodoCreateLife() {
   const token = useSelector((state) => state.token.token);
-  const kakaoToken = useSelector((state) => state.token.kakaoToken);
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
       setIsAuth(true);
-    } else if (kakaoToken) {
-      setIsAuth(true);
     } else {
       setIsAuth(false);
     }
-  }, [token, kakaoToken]);
+  }, [token]);
   //유저 정보
   const userID = useSelector((state) => state.user.user.data.user_id);
   const userNickname = useSelector(
@@ -127,9 +124,6 @@ function TodoCreateLife() {
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
-    // else if (kakaoToken) {
-    //   config.headers['Authorization'] = `Bearer ${kakaoToken}`;
-    // }
     return config;
   });
   const onSubmit = (e) => {

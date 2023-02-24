@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Light } from '../assets/light.svg';
 import { ReactComponent as Brand } from '../assets/garo_logo.svg';
 import '../static/Navbar.css';
 import { jwtUtils } from '../utils/jwtUtils';
-import { setKakaoToken, setToken } from '../store/module/token';
+import { setToken } from '../store/module/token';
 import { Dropdown } from 'semantic-ui-react';
+import jwt_decode from 'jwt-decode';
 import defaultImg from '../assets/default.svg';
 import styled from 'styled-components';
 import '../static/LogButton.css';
@@ -20,11 +21,21 @@ const Navbardrop = () => {
     const date = new Date();
     document.cookie = `${name}='';expires=${date.toUTCString()};path=/`;
   };
+
   const kakaoToken = getCookie('kakao');
   const token = useSelector((state) => state.token.token);
   const [isAuth, setIsAuth] = useState(false);
   const dispatch = useDispatch();
-  if (kakaoToken) dispatch(setToken(kakaoToken));
+
+  if (kakaoToken) {
+    const decodedUserInfo = jwt_decode(kakaoToken);
+
+    sessionStorage.setItem('accesstoken', kakaoToken);
+    sessionStorage.setItem('user_id', decodedUserInfo.id);
+    sessionStorage.setItem('user_nickname', decodedUserInfo.nickname);
+
+    dispatch(setToken(kakaoToken));
+  }
 
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {

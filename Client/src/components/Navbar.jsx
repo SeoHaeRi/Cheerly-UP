@@ -26,12 +26,10 @@ const Navbar = () => {
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
       setIsAuth(true);
-    } else if (kakaoToken) {
-      setIsAuth(true);
     } else {
       setIsAuth(false);
     }
-  }, [token, kakaoToken]);
+  }, [token]);
   const dispatch = useDispatch();
 
   const [showNavbar, setShowNavbar] = useState(false);

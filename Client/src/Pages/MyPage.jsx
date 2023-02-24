@@ -13,7 +13,6 @@ export default function MyPage() {
   //   (state) => state.user.user.data.user_nickname,
   // );
   const token = useSelector((state) => state.token.token);
-  const kakaoToken = useSelector((state) => state.token.kakaoToken);
 
   const navigate = useNavigate();
   const [image, setImage] = useState({
@@ -41,9 +40,6 @@ export default function MyPage() {
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
-    // else if (kakaoToken) {
-    //   config.headers['Authorization'] = `Bearer ${kakaoToken}`;
-    // }
     return config;
   });
 
