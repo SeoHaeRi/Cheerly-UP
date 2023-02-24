@@ -11,6 +11,7 @@ import {
   Req,
   Res,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
@@ -19,6 +20,7 @@ import { UpdatePostDto } from './dtos/UpdatePost.dto';
 import { PostsService } from './posts.service';
 import { diskStorage } from 'multer';
 import { multerOptions } from '../../../lib/multerOptions';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('board')
 export class PostsController {
@@ -55,9 +57,12 @@ export class PostsController {
 
   //POST - 게시글 생성
   @Post('/write')
-  async createPost(@Body() createPostDto: CreatePostDto) {
+  @UseGuards(AuthGuard())
+  async createPost(@Req() req, @Body() createPostDto: CreatePostDto) {
     //const {...postDetails, new } = createPostDto;
     //dto에 새로운 key 추가하면 가능
+    console.log(req.user);
+
     const newPost = await this.postsService.createPost(createPostDto);
     return newPost;
   }
