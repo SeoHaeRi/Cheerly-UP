@@ -55,6 +55,7 @@ function BoardDetailEdit() {
           date: new Date(),
           userId: String(post.userId),
           post_id: Number(post.post_id),
+          nickname: String(post.nickname),
         })
         .then((res) => {
           // console.log(res.data);

@@ -74,6 +74,7 @@ function BoardDetail() {
         content: res.data.content,
         date: convertDate,
         userId: res.data.userId,
+        nickname: res.data.nickname,
       };
 
       setPost(postDataArr);
@@ -115,7 +116,7 @@ function BoardDetail() {
         <Post>
           <Title>제목 : {post.title}</Title>
           <Title> {post.date} </Title>
-          <Title> Id: {post.userId} </Title>
+          <Title> 닉네임: {post.nickname} </Title>
           <Body> 내용 : {post.content}</Body>
         </Post>
 

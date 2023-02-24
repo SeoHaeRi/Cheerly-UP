@@ -75,11 +75,14 @@ function BoardDetail2() {
         content: res.data.content,
         date: convertDate,
         userId: res.data.userId,
+        nickname: res.data.nickname,
       };
 
       setPost(postDataArr);
     });
   }, []);
+
+  console.log(post);
 
   const onClickEdit = () => {
     if (post.userId !== userID || !isAuth) {
@@ -119,9 +122,7 @@ function BoardDetail2() {
             endIcon={<DeleteForeverOutlinedIcon />}
             className="delete-button"
             onClick={onClickDelete}
-
             style={{ fontFamily: " 'Jua', sans-serif" }}
-
           >
             삭제
           </Button>
@@ -129,16 +130,14 @@ function BoardDetail2() {
             variant="outlined"
             endIcon={<BuildOutlinedIcon />}
             onClick={onClickEdit}
-
             style={{ fontFamily: " 'Jua', sans-serif" }}
-
           >
             수정
           </Button>
         </div>
 
         <div className="board-header">
-          <div className="board-header-username">{post.userId}</div>
+          <div className="board-header-username">{post.nickname}</div>
         </div>
         <hr />
         <div className="board-body">
@@ -149,8 +148,6 @@ function BoardDetail2() {
             <div className="board-title">{post.title}</div>
             <div className="board-content">{post.content}</div>
           </div>
-
-  
         </div>
         <hr />
         <div className="board-footer">
