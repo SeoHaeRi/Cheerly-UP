@@ -4,7 +4,7 @@ import './signup/Signup2.css';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setToken } from '../store/module/token';
+import { setKakaoToken, setToken } from '../store/module/token';
 
 export default function MypageEdit() {
   const getCookie = (name) => {
@@ -62,6 +62,7 @@ export default function MypageEdit() {
 
           if (kakaoToken) {
             deleteCookie('kakao');
+            dispatch(setKakaoToken(''));
           } else {
             dispatch(setToken(''));
             sessionStorage.clear();

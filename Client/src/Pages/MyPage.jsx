@@ -8,10 +8,12 @@ import { useCallback, useState } from 'react';
 import axios from 'axios';
 
 export default function MyPage() {
-  const userID = useSelector((state) => state.user.user.data.user_id);
-  const userNickname = useSelector(
-    (state) => state.user.user.data.user_nickname,
-  );
+  // const userID = useSelector((state) => state.user.user.data.user_id);
+  // const userNickname = useSelector(
+  //   (state) => state.user.user.data.user_nickname,
+  // );
+  const token = useSelector((state) => state.token.token);
+  const kakaoToken = useSelector((state) => state.token.kakaoToken);
 
   const navigate = useNavigate();
   const [image, setImage] = useState({
@@ -34,6 +36,16 @@ export default function MyPage() {
     };
     return new Date(string).toLocaleDateString([], options);
   }
+  axios.interceptors.request.use((config) => {
+    /* JWT 토큰 */
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    // else if (kakaoToken) {
+    //   config.headers['Authorization'] = `Bearer ${kakaoToken}`;
+    // }
+    return config;
+  });
 
   useEffect(() => {
     axios.post(`http://localhost:3030/user/verify`).then((res) => {
