@@ -18,7 +18,7 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { imageFileFilter } from 'lib/multerOptions';
+import { imageFileFilter, multerOptions } from 'lib/multerOptions';
 import multer, { diskStorage } from 'multer';
 import { CreateUserDto } from './dto/CreateUser.dto';
 import { LoginUserDto } from './dto/LoginUser.dto';
@@ -26,6 +26,7 @@ import { UpdateUserDto } from './dto/UpdateUser.dto';
 import { UserService } from './user.service';
 import { ApiConsumes, ApiBody } from '@nestjs/swagger';
 import { fileURLToPath } from 'url';
+import { extname } from 'path';
 
 @Controller('user')
 export class UserController {
@@ -87,24 +88,53 @@ export class UserController {
     await this.userService.deleteUser(userId);
   }
   //multer
-  @Patch('/image/:id')
-  @ApiConsumes('multipart/form-data')
+  // @Patch('/image/:id')
+  // @UseInterceptors(
+  //   FileInterceptor('image', {
+  //     storage: diskStorage({
+  //       destination: './upload',
+  //     }),
+  //     fileFilter: imageFileFilter,
+  //   }),
+  // )
+  // async updateImage(
+  //   @UploadedFile() file,
+  //   @Param('id')
+  //   userId: string,
+  //   @Body() data: object,
+  // ) {
+  //   const updateImg = await this.userService.updateImage(file, userId, data);
+  //   console.log(file, userId, data);
+  //   return updateImg;
+  // }
+
+  @Patch('/upload/:id')
   @UseInterceptors(
-    FileInterceptor('image', {
+    FilesInterceptor('file', 1, {
       storage: diskStorage({
         destination: './upload',
+        filename: (request, file, callback) => {
+          callback(null, `${Date.now()}${extname(file.originalname)}`);
+        },
       }),
-      fileFilter: imageFileFilter,
     }),
   )
-  async updateImage(
-    @UploadedFile() file,
-    @Param('id')
-    userId: string,
-    @Body() data: object,
+  async uploadFile(
+    // @UploadedFiles() file,
+    @Param('id') userId: string,
+    @Req() req,
   ) {
-    const updateImg = await this.userService.updateImage(file, userId, data);
-    console.log(file, userId, data);
-    return updateImg;
+    await this.userService.uploadImg(req.files[0], req.body, userId);
+  }
+
+  @Get(':imgpath')
+  seeUploadedFile(@Param('imgpath') image, @Res() res) {
+    return res.sendFile(image, { root: './upload' });
+  }
+
+  @Patch('/image/:id')
+  async defaultImg(@Param('id') userId: string, @Body() userData) {
+    const editUser = await this.userService.defaultImg(userId, userData);
+    return editUser;
   }
 }
