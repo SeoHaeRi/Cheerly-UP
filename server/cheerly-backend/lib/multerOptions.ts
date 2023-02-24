@@ -61,20 +61,20 @@ import { diskStorage } from 'multer';
 //   }),
 // };
 
-export const imageFileFilter = (req: any, file: any, callback: any) => {
-  // if (file.mimetype.match(/\/(jpg|jpeg|png)$/)) {
-  //   cb(null, true);
-  // } else {
-  //   cb(
-  //     new HttpException(
-  //       `Unsupported file type ${file.originalname}`,
-  //       HttpStatus.BAD_REQUEST,
-  //     ),
-  //     false,
-  //   );
-  // }
-  if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-    return callback(new Error('Only image files are allowed!'), false);
+export const imageFileFilter = (req: any, file: any, cb: any) => {
+  if (file.mimetype.match(/\/(jpg|jpeg|png)$/)) {
+    cb(null, true);
+  } else {
+    cb(
+      new HttpException(
+        `Unsupported file type ${file.originalname}`,
+        HttpStatus.BAD_REQUEST,
+      ),
+      false,
+    );
   }
-  callback(null, true);
+  // if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+  //   return callback(new Error('Only image files are allowed!'), false);
+  // }
+  // callback(null, true);
 };

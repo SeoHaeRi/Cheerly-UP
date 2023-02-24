@@ -27,7 +27,7 @@ export default function MyPage() {
     const formData = new FormData();
     formData.append('file', image.image_file);
 
-    console.log(formData.file);
+    console.log();
 
     // axios
     //   .patch(
