@@ -35,6 +35,7 @@ export default function CommentDetail() {
           content: commentInput,
           userId: String(userID),
           date: new Date(),
+          nickname: userNickname
         })
         .then((res) => {
           alert('댓글 작성이 완료되었습니다.');

@@ -1,67 +1,65 @@
-import {Component} from 'react'
+import { Component } from 'react';
 
-import '../static/Stopwatch.css'
+import '../static/Stopwatch.css';
 
 class Stopwatch extends Component {
   state = {
     isTimerRunning: false,
     timeElapsedInSeconds: 0,
-  }
+  };
 
   componentWillUnmount() {
-    clearInterval(this.timeInterval)
+    clearInterval(this.timeInterval);
   }
 
   onResetTimer = () => {
-    clearInterval(this.timeInterval)
-    this.setState({isTimerRunning: false, timeElapsedInSeconds: 0})
-  }
+    clearInterval(this.timeInterval);
+    this.setState({ isTimerRunning: false, timeElapsedInSeconds: 0 });
+  };
 
   onStopTimer = () => {
-    clearInterval(this.timeInterval)
-    this.setState({isTimerRunning: false})
-  }
+    clearInterval(this.timeInterval);
+    this.setState({ isTimerRunning: false });
+  };
 
   updateTime = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       timeElapsedInSeconds: prevState.timeElapsedInSeconds + 1,
-    }))
-  }
+    }));
+  };
 
   onStartTimer = () => {
-    this.timeInterval = setInterval(this.updateTime, 1000)
-    this.setState({isTimerRunning: true})
-  }
+    this.timeInterval = setInterval(this.updateTime, 1000);
+    this.setState({ isTimerRunning: true });
+  };
 
   renderSeconds = () => {
-    const {timeElapsedInSeconds} = this.state
-    const seconds = Math.floor(timeElapsedInSeconds % 60)
+    const { timeElapsedInSeconds } = this.state;
+    const seconds = Math.floor(timeElapsedInSeconds % 60);
 
     if (seconds < 10) {
-      return `0${seconds}`
+      return `0${seconds}`;
     }
-    return seconds
-  }
+    return seconds;
+  };
 
   renderMinutes = () => {
-    const {timeElapsedInSeconds} = this.state
-    const minutes = Math.floor(timeElapsedInSeconds / 60)
+    const { timeElapsedInSeconds } = this.state;
+    const minutes = Math.floor(timeElapsedInSeconds / 60);
 
     if (minutes < 10) {
-      return `0${minutes}`
+      return `0${minutes}`;
     }
-    return minutes
-  }
-
- 
+    return minutes;
+  };
 
   resetTime() {
-    this.setState({records: [], curTime: 0, curTimeStr: '00:00:00'})
+    this.setState({ records: [], curTime: 0, curTimeStr: '00:00:00' });
   }
 
   render() {
-    const {isTimerRunning} = this.state
-    const time = `${this.renderMinutes()}:${this.renderSeconds()}`
+    const { isTimerRunning } = this.state;
+    const time = `${this.renderMinutes()}:${this.renderSeconds()}`;
 
     return (
       <div className="app-container">
@@ -104,8 +102,8 @@ class Stopwatch extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Stopwatch
+export default Stopwatch;
