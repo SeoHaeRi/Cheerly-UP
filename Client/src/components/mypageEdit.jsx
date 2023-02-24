@@ -106,7 +106,7 @@ export default function MypageEdit() {
             type="text"
             name="id"
             required
-            placeholder="nickname"
+            placeholder="닉네임을 입력하세요"
             ref={nicknameRef}
           />
           <label htmlFor="id">새 비밀번호</label>
@@ -115,25 +115,16 @@ export default function MypageEdit() {
             className="card__input"
             type="password"
             required
-            placeholder="PW"
+            placeholder="8자리 이상 입력하세요"
             name="pw"
             ref={pwRef}
           />
-          {/* <label htmlFor="id">새 비밀번호 확인</label>
-          <input
-            id="password"
-            className="card__input"
-            type="password"
-            required
-            placeholder="PW"
-            name="pw"
-          /> */}
 
-          <button className="card__button" type="button" onClick={editInfo}>
+          <button className="card__button" type="button" onClick={editInfo} style={{marginTop:"40px"}}>
             <span>수정 하기</span>
           </button>
 
-          <button className="card__button" type="button" onClick={deleteInfo}>
+          <button className="card__button" type="button" onClick={deleteInfo} style={{backgroundColor: "red"}}>
             <span>회원 탈퇴</span>
           </button>
         </form>
