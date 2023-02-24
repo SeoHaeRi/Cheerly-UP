@@ -3,4 +3,5 @@ export class CreatePostDto {
   title: string;
   content: string;
   date: Date;
+  nickname: string;
 }
