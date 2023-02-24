@@ -157,14 +157,13 @@ export default function Group() {
         <>
           {' '}
           <GlobalStyle />
-          <Stopwatch />
           <Typing />
+          <Stopwatch />
           <button
             className="w-btn-neon2"
             onClick={() => {
               navigate('/mystudyrecord');
-            }}
-          >
+            }}>
             나의 기록 보러가기
           </button>
         </>

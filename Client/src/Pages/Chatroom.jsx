@@ -42,12 +42,12 @@ export default function Chatroom() {
     // 띄워지는건 createElement로 띄워줘봐 일단
   };
   const enterChatting = (roomName) => {
-    navigate(`/chat3/${roomName}`);
+    navigate(`/chat/${roomName}`);
   };
 
   return (
     <div>
-      <MainHeader>채팅방</MainHeader>
+      <MainHeader>채팅방 💬</MainHeader>
 
       <button
         className="create__room_btn"
@@ -63,13 +63,12 @@ export default function Chatroom() {
             <th>채팅방 이름</th>
             <th>만들어진 날짜</th>
             <th>참여</th>
+            <th>이미지?</th>
           </tr>
         </thead>
         <tbody>
-
           {chatlist.map((e, index) => (
             <tr key={index}>
-              {/* <td><img src={img_url}/></td> */}
               <td>{e.chat_id}</td>
               <td>{e.roomName}</td>
               <td>{moment(e.created_at).format('YYYY-MM-DD')}</td>
@@ -81,18 +80,9 @@ export default function Chatroom() {
                   참여하기
                 </button>
               </td>
+              <td>이미지 되면 넣기 </td>
             </tr>
           ))}
-
-          <tr>
-            <td>{/* <img src={img_url}/> */}</td>
-            <td>Ninja</td>
-            <td>Asma Ad</td>
-            <td>120</td>
-            <td>
-              <button class="view">view</button>
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>
@@ -100,7 +90,7 @@ export default function Chatroom() {
 }
 
 const MainHeader = styled.div`
-  background-color: green;
+  background-color: navy;
   width: 100%;
   margin-top: 30px;
   padding: 20px;
