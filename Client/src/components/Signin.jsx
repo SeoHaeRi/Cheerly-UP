@@ -36,6 +36,7 @@ export default function Signin() {
 
           <button className="card__button1" type="button">
             <span>카카오로 로그인 하기</span>
+            <span>zkzkdh</span>
           </button>
         </form>
       </section>

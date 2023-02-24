@@ -83,6 +83,7 @@ export default function Signin() {
 
           <button className="card__button1" type="button" onClick={submit}>
             <span>카카오로 로그인 하기</span>
+            <div>카카오</div>
           </button>
         </form>
       </section>
