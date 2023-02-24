@@ -65,6 +65,8 @@ const ImageUploader = ({ preview_URL, setImage }) => {
         image_file: e.target.files[0],
         preview_URL: fileReader.result,
       });
+
+      setRoute(fileReader.result);
     };
     ///////
 
