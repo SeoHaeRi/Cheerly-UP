@@ -43,9 +43,7 @@ export default function Chatroom() {
         </thead>
         <tbody>
           <tr>
-            <td>
-              <img src="https://i.postimg.cc/yYYd1HV1/katara.jpg" alt="img" />
-            </td>
+            <td>{/* <img src={img_url}/> */}</td>
             <td>Ninja</td>
             <td>Asma Ad</td>
             <td>120</td>
