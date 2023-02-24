@@ -85,13 +85,25 @@ body {
   background-color: #1363df;
 }
 
-@media (max-width: 768px) {
-  .nav-elements ul li:not(:last-child) {
+@media screen and (max-width: 1210px) {
+  /* .nav-elements ul li:not(:last-child) {
     margin-right: 30px;
+  } */
+  .logo {
+    width: 50%;
   }
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 768px) {
+  .nav-elements ul li:not(:last-child) {
+    margin-right: 30px;
+  }
+  .logo {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
   .menu-icon {
     display: block;
     cursor: pointer;

@@ -15,6 +15,7 @@
   .stopwatch-container {
     align-items: flex-start;
     margin-left: 160px;
+    left: 53rem;
   }
 }
 
@@ -37,6 +38,7 @@
   align-items: center;
   position: absolute;
   top: 40%;
+  /* left: 53rem; */
   right: 20rem;
   background-color: #ffffff;
   margin-left: -30px;

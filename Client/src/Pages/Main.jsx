@@ -23,6 +23,21 @@ const Mainp = styled.p`
   left: 30%;
   color: #1363df;
   font-size: 3.5rem;
+  @media screen and (max-width: 1250px) {
+    position: relative;
+    top: 15rem;
+    left: 30%;
+    color: #1363df;
+    font-size: 2.5rem;
+  }
+  @media screen and (max-width: 768px) {
+    position: relative;
+    top: 30rem;
+    left: 10%;
+    text-align: center;
+    color: #1363df;
+    font-size: 2rem;
+  }
 `;
 const Mainbutton = styled.button`
   position: relative;
@@ -35,6 +50,18 @@ const Mainbutton = styled.button`
   font-size: 1.25rem;
   border-radius: 20px;
   border: none;
+  @media screen and (max-width: 768px) {
+    position: relative;
+    background-color: #1363df;
+    color: white;
+    top: 31rem;
+    left: 20%;
+    width: 12rem;
+    height: 3rem;
+    font-size: 1.25rem;
+    border-radius: 20px;
+    border: none;
+  }
 `;
 
 const Imgdiv = styled.img`
@@ -43,6 +70,13 @@ const Imgdiv = styled.img`
   left: 50%;
   width: 60rem;
   height: 50rem;
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 22rem;
+    height: 13rem;
+  }
 `;
 
 const MainImg = styled.img`
