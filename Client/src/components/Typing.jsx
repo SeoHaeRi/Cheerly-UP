@@ -17,8 +17,10 @@ const Textp = styled.p`
     font-size: 2.25rem;
     position: relative;
     text-align: center;
-    top: 300px;
+    top: 22rem;
     left: 21rem;
+    /* top: 300px;
+    left: 21rem; */
     font-weight: 800;
   }
   @media screen and (max-width: 768px) {
