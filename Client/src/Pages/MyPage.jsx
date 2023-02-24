@@ -1,5 +1,5 @@
 import '../static/Signup.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/logo.svg';
@@ -77,15 +77,18 @@ export default function MyPage() {
           onClick={() => navigate('/mylife')}
         >
           <span>나의 라이프 기록</span>
-        </button>  
-          <button className='card__button' type='button' onClick={() => navigate('/mypageedit')}>
-            <span>유저 정보 수정</span>
-            </button>
+        </button>
+        <button
+          className="card__button"
+          type="button"
+          onClick={() => navigate('/mypageedit')}
+        >
+          <span>유저 정보 수정</span>
+        </button>
 
         <div className="card__button" onClick={() => navigate('/myinfo')}>
           유저 정보
         </div>
-
       </section>
     </div>
   );

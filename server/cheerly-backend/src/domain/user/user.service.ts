@@ -78,5 +78,23 @@ export class UserService {
     return await this.userRepository.delete({ id: userId });
   }
 
-  async updateImage(file, userId: string, data) {}
+  //
+
+  async uploadImg(file, updateUserData, userId) {
+    // const newPost = this.boardRepository.insert(
+    //   Object.assign(CreatePostDto, {}),
+    // );
+
+    return await this.userRepository.update(
+      { id: userId },
+      { ...updateUserData, profile_img: file.filename },
+    );
+  }
+
+  async defaultImg(userId: string, userData) {
+    return await this.userRepository.update(
+      { id: userId },
+      { ...userData, profile_img: 'user_default_img.jpg' },
+    );
+  }
 }
