@@ -24,7 +24,14 @@ export class PostsService {
   async getOne(postId: string) {
     const post = await this.boardRepository
       .createQueryBuilder('p')
-      .select(['p.post_id', 'p.title', 'p.content', 'p.date', 'p.userId'])
+      .select([
+        'p.post_id',
+        'p.title',
+        'p.content',
+        'p.date',
+        'p.userId',
+        'p.nickname',
+      ])
       .where('p.post_id = :post_id', {
         post_id: Number(postId),
       })
@@ -40,7 +47,14 @@ export class PostsService {
   async getMany(userId: string) {
     const postbyUser = await this.boardRepository
       .createQueryBuilder('p')
-      .select(['p.post_id', 'p.title', 'p.content', 'p.date', 'p.userId'])
+      .select([
+        'p.post_id',
+        'p.title',
+        'p.content',
+        'p.date',
+        'p.userId',
+        'p.nickname',
+      ])
       .where('p.userId = :userId', {
         userId: String(userId),
       })

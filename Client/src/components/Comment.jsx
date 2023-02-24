@@ -79,12 +79,14 @@ export default function WriteComment() {
           date: convertDate,
           userId: commentData.userId,
           post_id: commentData.post_id,
+          nickname: commentData.nickname,
         };
         data.push(commentDataArr);
       }
       setComments(data);
     });
   }, []);
+  console.log(comments);
 
   const EditInput = () => {
     return <textarea placeholder="수정할 댓글 내용을 입력해주세요." />;
@@ -153,7 +155,7 @@ export default function WriteComment() {
                   param={param}
                 />
                 <div className="comment-username">
-                  Id : {comment.userNickname}
+                  닉네임: {comment.nickname}
                 </div>
                 <div className="comment-username-date">{comment.date}</div>
                 <div
