@@ -86,10 +86,6 @@ export default function MyPage() {
         >
           <span>유저 정보 수정</span>
         </button>
-
-        <div className="card__button" onClick={() => navigate('/myinfo')}>
-          유저 정보
-        </div>
       </section>
     </div>
   );

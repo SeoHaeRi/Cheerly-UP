@@ -1,0 +1,9 @@
+.comment__container {
+  display : flex;
+  flex-direction: column;
+}
+
+.comment__write__button {
+  background-color: blue;
+}
+
