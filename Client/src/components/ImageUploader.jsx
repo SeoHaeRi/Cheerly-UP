@@ -127,8 +127,29 @@ const ImageUploader = ({ preview_URL, setImage }) => {
           😎사진 고르기😎
         </Button>
       </div>
-      <button onClick={saveImg}>저장</button>
-      <button onClick={defaultImg}>기본 이미지</button>
+
+      <div className='btn_box'>
+      <Button
+        color="success"
+        variant="contained"
+        type="submit"
+        onClick={saveImg}
+        size="large"
+        style={{ fontFamily: "'Jua', sans-serif" ,marginTop:"40px"}}
+      >
+        저장
+      </Button>
+      <Button
+        onClick={defaultImg}
+        color="warning"
+        variant="contained"
+        type="submit"
+        size="large"
+        style={{ fontFamily: "'Jua', sans-serif", marginLeft:"20px" , marginTop:"39px" }}
+      >
+        기본 이미지
+      </Button>
+      </div>
     </div>
   );
 };

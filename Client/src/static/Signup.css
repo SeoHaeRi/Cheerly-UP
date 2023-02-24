@@ -1,34 +1,7 @@
-* {
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-a {
-  text-decoration: none;
-}
-
-#result {
-  margin-top: 20px;
-  color: red;
-  font-size: 11px;
-}
-
-body {
-  color: #1363df;
-  overflow-x: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
 .flex {
   align-items: center;
   display: flex;
   justify-content: center;
-}
-
-.scene {
-  height: 100vh;
 }
 
 .card {

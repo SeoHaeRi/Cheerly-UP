@@ -12,7 +12,6 @@ export default function Chat() {
   const user_name = '유저네임';
   const msgRef = useRef();
   const noticeRef = useRef();
- 
 
   //info - 사용자 소켓 아이디 가져오기
   let user_socketID = '';
@@ -42,11 +41,16 @@ export default function Chat() {
     socket.on('msgToClient', (payload) => {
       console.log(payload);
 
-      const container = document.createElement('div');
-      container.classList.add('received');
-      container.innerText = payload.msg + ' ' + payload.time;
-      const chat = document.querySelector('#chat');
-      chat.appendChild(container);
+      const container = document.querySelector('.message-row--own');
+      const outer_div = document.createElement('div');
+      const div = document.createElement('div');
+      div.textContent = payload.msg + ' ' + payload.time;
+
+      outer_div.classList.add('message__bubble');
+      outer_div.appendChild(div);
+      container.appendChild(outer_div);
+      // const message = document.querySelector('.message-row--own');
+      // message.append(container);
     });
   }, []);
 
@@ -68,40 +72,46 @@ export default function Chat() {
   };
 
   return (
-    <>
-      <div className="chat-wrap">
-        <div className="header">
-          <h1>Chat</h1>
-          <h5>방번호: 채팅방 이름</h5>
-          <h6>n명 참여중</h6>
-        </div>
-        <div className="notice" ref={noticeRef}></div>
-        <div id="chat">
-          <div className="send-container">
-            {/* <div className="usr-sender">보내는 사람 이름</div> */}
-            <div className="send"> 안녕하세요.</div>
-            {/* <span className="send-time">시간</span> */}
-          </div>
+    <div className='chat-screen'>
 
-          <div className="received-container">
-            {/* <h6 className="receiver">받는 사람 이름</h6> */}
-            <div className="received"> 누구세요</div>
-            {/* <span className="received-time">시간</span> */}
-          </div>
+      <div className="main-chat">
+
+        <div className="chat__timestamp">
+          <div className="notice" ref={noticeRef}></div>
+          <h5>{roomname} 방 입니다</h5>
         </div>
 
-        <input
-          type="text"
-          name="chat-input"
-          id="chat-input"
-          placeholder="채팅을 입력하세요"
-          ref={msgRef}
-        />
+        <div className="message-row">
+          <div className="message__bubble">안녕하세요 오후 12:30:09</div>
+        </div>
 
-        <button id="msg-btn" onClick={() => handleSubmitNewMessage()}>
-          send
-        </button>
+        <div className="message-row message-row--own">
+          <div className="message__bubble"></div>
+        </div>
+
+        <div className="reply">
+          
+          <div className="reply__column">
+            <i className="far fa-plus-square fa-lg"></i>
+          </div>
+
+          <div className="reply__column">
+            <input
+              type="text"
+              placeholder="메시지를 입력하세요"
+              name="chat-input"
+              ref={msgRef}
+            />
+            <button
+              className="card__button"
+              onClick={() => handleSubmitNewMessage()}
+            >
+              <i className="far fa-smile-wink fa-lg"></i>
+            </button>
+          </div>
+        </div>
+
       </div>
-    </>
+    </div>
   );
 }

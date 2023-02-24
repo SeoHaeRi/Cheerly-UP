@@ -142,8 +142,10 @@ const Container = styled.div`
   position: absoulte;
   font-family: 'Jua', sans-serif;
   background-image: url(${boardtree});
-  width: 100vw;
-  height: 100vh;
+
+  width:100vw;
+  height:150vh;
+
   background-size: cover;
   background-repeat: no-repeat;
 `;
