@@ -8,10 +8,12 @@ import { useCallback, useState } from 'react';
 import axios from 'axios';
 
 export default function MyPage() {
-  const userID = useSelector((state) => state.user.user.data.user_id);
-  const userNickname = useSelector(
-    (state) => state.user.user.data.user_nickname,
-  );
+  // const userID = useSelector((state) => state.user.user.data.user_id);
+  // const userNickname = useSelector(
+  //   (state) => state.user.user.data.user_nickname,
+  // );
+  const token = useSelector((state) => state.token.token);
+  const kakaoToken = useSelector((state) => state.token.kakaoToken);
 
   const navigate = useNavigate();
   const [image, setImage] = useState({
@@ -23,28 +25,40 @@ export default function MyPage() {
     return image.image_file !== '';
   }, [image]);
 
-  const handleSubmit = useCallback(async () => {
-    const formData = new FormData();
-    formData.append('file', image.image_file);
+  ///유저 정보 불러오기
+  const [user, setUser] = useState('');
 
-    console.log();
+  function formatDate(string) {
+    var options = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    };
+    return new Date(string).toLocaleDateString([], options);
+  }
+  axios.interceptors.request.use((config) => {
+    /* JWT 토큰 */
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    // else if (kakaoToken) {
+    //   config.headers['Authorization'] = `Bearer ${kakaoToken}`;
+    // }
+    return config;
+  });
 
-    // axios
-    //   .patch(
-    //     `http://localhost:3030/user/image/${userID}`,
-    //     {
-    //       userId: userID,
-    //       profile_img: formData,
-    //     },
-    //     {
-    //       headers: {
-    //         'Content-Type': 'multipart/form-data',
-    //       },
-    //     },
-    //   )
-    //   .then((res) => alert('수정!'));
-    // window.alert('😎프로필 이미지 등록이 완료되었습니다😎');
-  }, [canSubmit]);
+  useEffect(() => {
+    axios.post(`http://localhost:3030/user/verify`).then((res) => {
+      const convertDate = formatDate(res.data.created_at);
+
+      const userData = {
+        id: res.data.id,
+        date: convertDate,
+        nickname: res.data.nickname,
+      };
+      setUser(userData);
+    });
+  }, []);
 
   return (
     <div className="scene flex">
@@ -54,9 +68,8 @@ export default function MyPage() {
         </h1>
 
         <ImgUploader setImage={setImage} preview_URL={image.preview_URL} />
-        <button className="card_button" onClick={handleSubmit}>
-          등록
-        </button>
+        <div>{user.nickname}님, 안녕하세요!</div>
+        <div>가입한 날짜: {user.date}</div>
         <button
           className="card__button"
           type="button"

@@ -56,6 +56,7 @@ function Board() {
           content: postData.content,
           date: convertDate,
           userId: postData.userId,
+          nickname: postData.nickname,
         };
 
         data.push(postDataArr);
@@ -117,6 +118,7 @@ function Board() {
             <div className="card-body-text">
               <div className="card-body-text-title">{post.title}</div>
               <br />
+              <div>{post.nickname}</div>
               <div className="card-body-text-content">{post.content}</div>
             </div>
             <div className="card-footer">

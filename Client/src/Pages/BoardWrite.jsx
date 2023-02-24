@@ -42,7 +42,7 @@ function BoardWrite() {
           content: String(inputContent),
           date: new Date(),
           userId: String(userID),
-          nickname: String('닉네임'),
+          nickname: String(userNickname),
         })
         .then(() => {
           alert('완료되었습니다.');

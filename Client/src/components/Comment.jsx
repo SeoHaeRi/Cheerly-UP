@@ -80,12 +80,14 @@ export default function WriteComment() {
           date: convertDate,
           userId: commentData.userId,
           post_id: commentData.post_id,
+          nickname: commentData.nickname,
         };
         data.push(commentDataArr);
       }
       setComments(data);
     });
   }, []);
+  console.log(comments);
 
   const EditInput = () => {
     return <textarea placeholder="수정할 댓글 내용을 입력해주세요." />;
@@ -141,27 +143,28 @@ export default function WriteComment() {
       <br></br>
       <br></br>
 
-      {/* {Viewcomment ? ( */}
-      <div className="comments-wrapper">
-        <div>
-          {comments.map((comment, index) => (
-            <div key={index} id="each-comment">
-              <ModalCommentEdit
-                show={ModalOn}
-                onHide={setModalOn}
-                comment={comment}
-                param={param}
-              />
-              <div className="comment-username">{comment.userNickname}</div>
-              <div className="comment-username-date">{comment.date}</div>
-              <div
-                className="comments-comment"
-                id={`${comment.comment_id}-comment`}
-                ref={commentRef}
-              >
-                내용: {comment.content}
-              </div>
-              <div className='btn__box'>
+
+        <div className="comments-wrapper">
+          <div>
+            {comments.map((comment, index) => (
+              <div key={index} id="each-comment">
+                <ModalCommentEdit
+                  show={ModalOn}
+                  onHide={setModalOn}
+                  comment={comment}
+                  param={param}
+                />
+                <div className="comment-username">
+                  닉네임: {comment.nickname}
+                </div>
+                <div className="comment-username-date">{comment.date}</div>
+                <div
+                  className="comments-comment"
+                  id={`${comment.comment_id}-comment`}
+                  ref={commentRef}
+                >
+                  내용: {comment.content}
+                </div>
                 <button
                   className="delete__btn"
                   id={`${comment.comment_id}-deletebtn`}

@@ -25,6 +25,7 @@ const ImageUploader = ({ preview_URL, setImage }) => {
   const [img, setImg] = useState('');
   const [user, setUser] = useState('');
   const [route, setRoute] = useState('');
+  const [Viewbutton, SetViewButton] = useState(false);
 
   useEffect(() => {
     axios.post(`http://localhost:3030/user/verify`).then((res) => {
@@ -35,20 +36,6 @@ const ImageUploader = ({ preview_URL, setImage }) => {
       setRoute('http://localhost:3030/user/' + data.profile_img);
     });
   }, []);
-
-  // const saveImage = (e) => {
-  //   e.preventDefault();
-  //   const fileReader = new FileReader();
-  //   if (e.target.files[0]) {
-  //     fileReader.readAsDataURL(e.target.files[0]);
-  //   }
-  //   fileReader.onload = () => {
-  //     setImage({
-  //       image_file: e.target.files[0],
-  //       preview_URL: fileReader.result,
-  //     });
-  //   };
-  // };
 
   const [file, setFile] = useState([]);
   const [isValid, setIsValid] = useState(false);
@@ -65,6 +52,8 @@ const ImageUploader = ({ preview_URL, setImage }) => {
         image_file: e.target.files[0],
         preview_URL: fileReader.result,
       });
+
+      setRoute(fileReader.result);
     };
     ///////
 
@@ -76,30 +65,34 @@ const ImageUploader = ({ preview_URL, setImage }) => {
 
   //사진 저장 버튼 누르면
   const saveImg = async () => {
-    const formData = new FormData();
+    if (Viewbutton === true) {
+      const formData = new FormData();
 
-    formData.append('id', String(userID));
-    formData.append('pw', String(user.pw));
-    formData.append('nickname', String(user.nickname));
-    formData.append('file', pickedFile);
-    console.log(pickedFile);
+      formData.append('id', String(userID));
+      formData.append('pw', String(user.pw));
+      formData.append('nickname', String(user.nickname));
+      formData.append('file', pickedFile);
+      console.log(pickedFile);
 
-    const Data = {
-      id: formData.get('id'),
-      pw: formData.get('pw'),
-      nickname: formData.get('nickname'),
-      file: formData.get('file'),
-    };
+      const Data = {
+        id: formData.get('id'),
+        pw: formData.get('pw'),
+        nickname: formData.get('nickname'),
+        file: formData.get('file'),
+      };
 
-    axios
-      .patch(`http://localhost:3030/user/upload/${userID}`, Data, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((res) => {
-        alert('이미지를 수정하였습니다.');
-      });
+      axios
+        .patch(`http://localhost:3030/user/upload/${userID}`, Data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then((res) => {
+          alert('이미지를 수정하였습니다.');
+        });
+    } else {
+      alert('사진을 골라주세요!');
+    }
   };
 
   console.log(route);
@@ -109,14 +102,13 @@ const ImageUploader = ({ preview_URL, setImage }) => {
     axios
       .patch(`http://localhost:3030/user/image/${userID}`, { id: userID })
       .then((res) => {
-        alert('이미지를 수정하였습니다.');
+        alert('이미지를 기본 이미지로 변경하였습니다.');
         setRoute('http://localhost:3030/user/user_default_img.jpg');
       });
   };
 
   return (
     <div className="uploader-wrapper">
-      {/* <form encType="multipart/form-data"> */}
       <input
         type="file"
         accept="image/*"
@@ -124,7 +116,6 @@ const ImageUploader = ({ preview_URL, setImage }) => {
         ref={(refParam) => (inputRef = refParam)}
         style={{ display: 'none' }}
       />
-      {/* </form> */}
       <div className="img-wrapper">
         <img src={route}></img>
       </div>
@@ -132,7 +123,10 @@ const ImageUploader = ({ preview_URL, setImage }) => {
         <Button
           variant="outlined"
           color="primary"
-          onClick={() => inputRef.click()}
+          onClick={() => {
+            inputRef.click();
+            SetViewButton(true);
+          }}
         >
           😎사진 고르기😎
         </Button>

@@ -9,23 +9,18 @@ import {
   Post,
   Req,
   Res,
-  UploadedFiles,
   UseGuards,
   UseInterceptors,
   ValidationPipe,
-  UploadedFile,
   Delete,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { imageFileFilter, multerOptions } from 'lib/multerOptions';
-import multer, { diskStorage } from 'multer';
+import { FilesInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
 import { CreateUserDto } from './dto/CreateUser.dto';
 import { LoginUserDto } from './dto/LoginUser.dto';
 import { UpdateUserDto } from './dto/UpdateUser.dto';
 import { UserService } from './user.service';
-import { ApiConsumes, ApiBody } from '@nestjs/swagger';
-import { fileURLToPath } from 'url';
 import { extname } from 'path';
 
 @Controller('user')
@@ -74,6 +69,7 @@ export class UserController {
   //////
   //회원 정보 수정
   @Patch('/edit/:id')
+  @UseGuards(AuthGuard())
   async updateUserData(
     @Param('id') userId: string,
     @Body() updateUserDto: UpdateUserDto,
@@ -87,26 +83,6 @@ export class UserController {
   async deleteUserData(@Param('id') userId: string) {
     await this.userService.deleteUser(userId);
   }
-  //multer
-  // @Patch('/image/:id')
-  // @UseInterceptors(
-  //   FileInterceptor('image', {
-  //     storage: diskStorage({
-  //       destination: './upload',
-  //     }),
-  //     fileFilter: imageFileFilter,
-  //   }),
-  // )
-  // async updateImage(
-  //   @UploadedFile() file,
-  //   @Param('id')
-  //   userId: string,
-  //   @Body() data: object,
-  // ) {
-  //   const updateImg = await this.userService.updateImage(file, userId, data);
-  //   console.log(file, userId, data);
-  //   return updateImg;
-  // }
 
   @Patch('/upload/:id')
   @UseInterceptors(
