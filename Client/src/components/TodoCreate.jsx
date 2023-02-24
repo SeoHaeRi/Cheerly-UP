@@ -91,14 +91,18 @@ const Input = styled.input`
 
 function TodoCreate() {
   const token = useSelector((state) => state.token.token);
+  const kakaoToken = useSelector((state) => state.token.kakaoToken);
   const [isAuth, setIsAuth] = useState(false);
+
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
+      setIsAuth(true);
+    } else if (kakaoToken) {
       setIsAuth(true);
     } else {
       setIsAuth(false);
     }
-  }, [token]);
+  }, [token, kakaoToken]);
   //유저 정보
   const userID = useSelector((state) => state.user.user.data.user_id);
   const userNickname = useSelector(
@@ -117,6 +121,17 @@ function TodoCreate() {
   //open이라는 props가 존재할 때(true) css로 정의된 스타일이 적용
   const onChange = (e) => setValue(e.target.value);
   //onSubmit 에서는 새로운 항목을 추가하는 액션을 dispatch 한 후, value 초기화 및 open 값을 false 로 전환
+
+  axios.interceptors.request.use((config) => {
+    /* JWT 토큰 */
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    // else if (kakaoToken) {
+    //   config.headers['Authorization'] = `Bearer ${kakaoToken}`;
+    // }
+    return config;
+  });
   const onSubmit = (e) => {
     e.preventDefault(); // 새로고침 방지
     ///////////////

@@ -37,6 +37,19 @@ button {
   transition: 0.3s;
 }
 
+@media screen and (max-width: 1800px) {
+  .w-btn-neon2 {
+    position: relative;
+    border: none;
+    top: 20rem;
+    left: 50rem;
+    padding: 20px;
+    width: 31rem;
+    min-width: 200px;
+    min-height: 50px;
+  }
+}
+
 .w-btn-neon2:hover {
   transform: scale(1.2);
 }

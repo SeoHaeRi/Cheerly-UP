@@ -11,7 +11,6 @@ import Signin2 from './components/signin/Signin2';
 import Main from './Pages/Main';
 import Study from './Pages/Study';
 import Board from './Pages/Board';
-import Navbar from './components/Navbar';
 import MypageEdit from './components/mypageEdit';
 
 import MyPage from './Pages/MyPage';
@@ -23,7 +22,6 @@ import Chat from './Pages/Chat';
 import Chatroom from './Pages/Chatroom';
 import Chat3 from './Pages/Chat3';
 
-import BoardDetail from './Pages/BoardDetail';
 import BoardDetailEdit from './Pages/BoardDetailEdit';
 import BoardWrite from './Pages/BoardWrite';
 import BoardDetail2 from './Pages/BoardDetail2';

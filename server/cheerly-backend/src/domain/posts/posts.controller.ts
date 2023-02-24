@@ -4,21 +4,18 @@ import {
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
-  Put,
   Req,
   Res,
-  UploadedFiles,
-  UseInterceptors,
+  UseGuards,
 } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { CreatePostDto } from './dtos/CreatePost.dto';
 import { UpdatePostDto } from './dtos/UpdatePost.dto';
 import { PostsService } from './posts.service';
 import { diskStorage } from 'multer';
-// import { multerOptions } from '../../../lib/multerOptions';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('board')
 export class PostsController {
@@ -55,15 +52,18 @@ export class PostsController {
 
   //POST - 게시글 생성
   @Post('/write')
-  async createPost(@Body() createPostDto: CreatePostDto) {
+  @UseGuards(AuthGuard())
+  async createPost(@Req() req, @Body() createPostDto: CreatePostDto) {
     //const {...postDetails, new } = createPostDto;
     //dto에 새로운 key 추가하면 가능
+
     const newPost = await this.postsService.createPost(createPostDto);
     return newPost;
   }
 
   //Patch - 게시글 수정 :id -> 게시글 번호
   @Patch('/:id')
+  @UseGuards(AuthGuard())
   async updatePostById(
     @Param('id') postId: string,
     // @Param('id', ParseIntPipe) postId: number,
@@ -78,6 +78,7 @@ export class PostsController {
   }
 
   @Delete('/:id')
+  @UseGuards(AuthGuard())
   async deletePostById(@Param('id') postId: string) {
     const param = postId.slice(1);
     console.log(param);

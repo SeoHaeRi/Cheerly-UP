@@ -25,6 +25,7 @@ import { LoginUserDto } from './dto/LoginUser.dto';
 import { UpdateUserDto } from './dto/UpdateUser.dto';
 import { UserService } from './user.service';
 import { ApiConsumes, ApiBody } from '@nestjs/swagger';
+import { fileURLToPath } from 'url';
 
 @Controller('user')
 export class UserController {
@@ -53,7 +54,6 @@ export class UserController {
   @UseGuards(AuthGuard('kakao'))
   async kakaoLogIn(@Req() req, @Res() res): Promise<void> {
     await this.userService.kakaoLogin(req.user);
-    console.log(req);
     res.cookie('kakao', req.user.accessToken);
     res.redirect('http://localhost:3000');
   }
@@ -85,5 +85,26 @@ export class UserController {
   @Delete('/:id')
   async deleteUserData(@Param('id') userId: string) {
     await this.userService.deleteUser(userId);
+  }
+  //multer
+  @Patch('/image/:id')
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(
+    FileInterceptor('image', {
+      storage: diskStorage({
+        destination: './upload',
+      }),
+      fileFilter: imageFileFilter,
+    }),
+  )
+  async updateImage(
+    @UploadedFile() file,
+    @Param('id')
+    userId: string,
+    @Body() data: object,
+  ) {
+    const updateImg = await this.userService.updateImage(file, userId, data);
+    console.log(file, userId, data);
+    return updateImg;
   }
 }

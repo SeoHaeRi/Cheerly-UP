@@ -3,12 +3,7 @@ import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { stringify } from 'querystring';
 import { Post } from 'src/entities/Post.entity';
 import { User } from 'src/entities/User.entity';
-import {
-  CreateDateColumn,
-  DataSource,
-  FindOneOptions,
-  Repository,
-} from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreatePostDto } from './dtos/CreatePost.dto';
 
 import { CreatePostParams, UpdatePostParams } from './utils/types';
@@ -63,11 +58,7 @@ export class PostsService {
     const newPost = await this.boardRepository.create({
       ...postDetails,
       date: new Date(),
-      // img: filename,
     });
-    // const newPost = this.boardRepository.insert(
-    //   Object.assign(CreatePostDto, {}),
-    // );
     return this.boardRepository.save(newPost);
   }
 

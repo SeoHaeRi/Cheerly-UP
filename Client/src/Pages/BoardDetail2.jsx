@@ -19,15 +19,29 @@ import Comment from '../components/Comment';
 function BoardDetail2() {
   const [show, setShow] = useState(false);
   const token = useSelector((state) => state.token.token);
+  const kakaoToken = useSelector((state) => state.token.kakaoToken);
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
       setIsAuth(true);
+    } else if (kakaoToken) {
+      setIsAuth(true);
     } else {
       setIsAuth(false);
     }
-  }, [token]);
+  }, [token, kakaoToken]);
+
+  axios.interceptors.request.use((config) => {
+    /* JWT 토큰 */
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    // else if (kakaoToken) {
+    //   config.headers['Authorization'] = `Bearer ${kakaoToken}`;
+    // }
+    return config;
+  });
 
   const userID = useSelector((state) => state.user.user.data.user_id);
   const userNickname = useSelector(
@@ -105,7 +119,9 @@ function BoardDetail2() {
             endIcon={<DeleteForeverOutlinedIcon />}
             className="delete-button"
             onClick={onClickDelete}
+
             style={{ fontFamily: " 'Jua', sans-serif" }}
+
           >
             삭제
           </Button>
@@ -113,7 +129,9 @@ function BoardDetail2() {
             variant="outlined"
             endIcon={<BuildOutlinedIcon />}
             onClick={onClickEdit}
+
             style={{ fontFamily: " 'Jua', sans-serif" }}
+
           >
             수정
           </Button>
@@ -131,6 +149,8 @@ function BoardDetail2() {
             <div className="board-title">{post.title}</div>
             <div className="board-content">{post.content}</div>
           </div>
+
+  
         </div>
         <hr />
         <div className="board-footer">

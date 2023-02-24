@@ -5,7 +5,7 @@ import { ReactComponent as Light } from '../assets/light.svg';
 import { ReactComponent as Brand } from '../assets/garo_logo.svg';
 import '../static/Navbar.css';
 import { jwtUtils } from '../utils/jwtUtils';
-import { setToken } from '../store/module/token';
+import { setKakaoToken, setToken } from '../store/module/token';
 import { Dropdown } from 'semantic-ui-react';
 import defaultImg from '../assets/default.svg';
 import styled from 'styled-components';
@@ -23,6 +23,8 @@ const Navbardrop = () => {
   const kakaoToken = getCookie('kakao');
   const token = useSelector((state) => state.token.token);
   const [isAuth, setIsAuth] = useState(false);
+  const dispatch = useDispatch();
+  if (kakaoToken) dispatch(setKakaoToken(kakaoToken));
 
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
@@ -33,7 +35,6 @@ const Navbardrop = () => {
       setIsAuth(false);
     }
   }, [token, kakaoToken]);
-  const dispatch = useDispatch();
 
   const [showNavbar, setShowNavbar] = useState(false);
   const [logOut, setLogOut] = useState('');
@@ -228,6 +229,7 @@ const Navbardrop = () => {
                       window.location.href =
                         'http://localhost:3030/user/kakao/logout';
                       deleteCookie('kakao');
+                      dispatch(setKakaoToken(''));
                     } else {
                       dispatch(setToken(''));
                       sessionStorage.clear();

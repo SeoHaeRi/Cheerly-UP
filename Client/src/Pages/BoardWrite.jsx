@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
-import {
-  useNavigate,
-  Link,
-  NavLink,
-  useLocation,
-  useParams,
-} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function BoardWrite() {
@@ -15,9 +8,22 @@ function BoardWrite() {
   const userNickname = useSelector(
     (state) => state.user.user.data.user_nickname,
   );
+  const token = useSelector((state) => state.token.token);
+  const kakaoToken = useSelector((state) => state.token.kakaoToken);
 
   const titleRef = useRef();
   const contentRef = useRef();
+
+  axios.interceptors.request.use((config) => {
+    /* JWT 토큰 */
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    // else if (kakaoToken) {
+    //   config.headers['Authorization'] = `Bearer ${kakaoToken}`;
+    // }
+    return config;
+  });
 
   const onClickWrite = () => {
     const inputTitle = titleRef.current.value;
@@ -36,6 +42,7 @@ function BoardWrite() {
           content: String(inputContent),
           date: new Date(),
           userId: String(userID),
+          nickname: String('닉네임'),
         })
         .then(() => {
           alert('완료되었습니다.');
@@ -49,7 +56,7 @@ function BoardWrite() {
         <GlobalStyle />
         <Post>
           <Title>
-            제목 
+            제목
             <input ref={titleRef}></input>
           </Title>
           <Body>

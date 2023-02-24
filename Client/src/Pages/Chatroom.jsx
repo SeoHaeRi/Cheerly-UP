@@ -66,6 +66,7 @@ export default function Chatroom() {
           </tr>
         </thead>
         <tbody>
+
           {chatlist.map((e, index) => (
             <tr key={index}>
               {/* <td><img src={img_url}/></td> */}
@@ -82,6 +83,16 @@ export default function Chatroom() {
               </td>
             </tr>
           ))}
+
+          <tr>
+            <td>{/* <img src={img_url}/> */}</td>
+            <td>Ninja</td>
+            <td>Asma Ad</td>
+            <td>120</td>
+            <td>
+              <button class="view">view</button>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

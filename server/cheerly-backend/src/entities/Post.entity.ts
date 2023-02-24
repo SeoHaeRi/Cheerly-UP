@@ -27,6 +27,9 @@ export class Post {
   @Column({ nullable: false })
   userId: string;
 
+  @Column({ nullable: false })
+  nickname: string;
+
   @ManyToOne(() => User, (user) => user.posts)
   @JoinColumn([{ name: 'userId', referencedColumnName: 'id' }])
   user: User;
