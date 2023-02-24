@@ -48,6 +48,15 @@ function BoardDetail2() {
     (state) => state.user.user.data.user_nickname,
   );
 
+  const [src, setSrc] = useState('');
+
+  useEffect(() => {
+    axios.post(`http://localhost:3030/user/verify`).then((res) => {
+      const data = res.data;
+      setSrc('http://localhost:3030/user/' + data.profile_img);
+    });
+  }, []);
+
   const navigate = useNavigate();
   const [post, setPost] = useState([]);
 
@@ -142,7 +151,7 @@ function BoardDetail2() {
         <hr />
         <div className="board-body">
           <div className="board-image">
-            {/* <img src={`/api/image/view/${board_id}`}/> */}
+            <img src={src}></img>
           </div>
           <div className="board-title-content">
             <div className="board-title">{post.title}</div>
