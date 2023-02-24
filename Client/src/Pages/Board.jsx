@@ -9,6 +9,8 @@ import { jwtUtils } from '../utils/jwtUtils';
 import { useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import boardtree from '../assets/boardtree.svg';
+import { width } from '@mui/system';
 
 function Board() {
   const token = useSelector((state) => state.token.token);
@@ -142,6 +144,12 @@ const Container = styled.div`
   box-sizing: border-box;
   position: absoulte;
   font-family: 'Jua', sans-serif;
+  background-image: url(${boardtree});
+  width:100vw;
+  height:100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+
 `;
 
 const MainHeader = styled.div`
@@ -154,3 +162,4 @@ const MainHeader = styled.div`
   font-size: 1.75rem;
   text-align: center;
 `;
+
