@@ -48,12 +48,7 @@ export default function Chatroom() {
   return (
     <div>
       <MainHeader>채팅방 💬</MainHeader>
-
-      <button
-        className="create__room_btn"
-        onClick={createRoom}
-        style={{ display: 'flex', justifyContent: 'center' }}
-      >
+      <button className="create__room_btn" onClick={createRoom}>
         채팅 시작
       </button>
       <table>
@@ -63,7 +58,6 @@ export default function Chatroom() {
             <th>채팅방 이름</th>
             <th>만들어진 날짜</th>
             <th>참여</th>
-            <th>이미지?</th>
           </tr>
         </thead>
         <tbody>
@@ -80,7 +74,6 @@ export default function Chatroom() {
                   참여하기
                 </button>
               </td>
-              <td>이미지 되면 넣기 </td>
             </tr>
           ))}
         </tbody>
