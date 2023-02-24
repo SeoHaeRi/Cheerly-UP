@@ -11,7 +11,7 @@ const Maindiv = styled.div`
   /* font-family: 'DM Serif Text', serif; */
 `;
 const Earlydiv = styled.div`
-  background-color: white;
+  background-color: transparent;
   /* position: absolute; */
   position: absolute;
   left: 40px;

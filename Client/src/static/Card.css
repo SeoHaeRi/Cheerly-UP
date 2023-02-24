@@ -44,6 +44,7 @@
   transition: width 1s, height 1s, box-shadow 1s;
   cursor: pointer;
   text-align: center;
+  font-family: 'Jua', sans-serif;
 }
 .card-wrapper .card-body-img {
   width: 100%;

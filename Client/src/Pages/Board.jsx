@@ -85,7 +85,7 @@ function Board() {
 
   return (
     <>
-      <MainHeader>대나무 숲</MainHeader>
+      <MainHeader>대나무 숲 🐼</MainHeader>
       <br></br>
       <ToastContainer />
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -95,6 +95,7 @@ function Board() {
           type="submit"
           onClick={onClickWrite}
           size="large"
+          style={{ fontFamily: "'Jua', sans-serif" }}
         >
           소리 지르기
         </Button>
@@ -135,6 +136,7 @@ const Container = styled.div`
   background: white;
   box-sizing: border-box;
   position: absoulte;
+  font-family: 'Jua', sans-serif;
 `;
 
 const MainHeader = styled.div`
@@ -143,6 +145,7 @@ const MainHeader = styled.div`
   margin-top: 30px;
   padding: 20px;
   color: white;
+  font-family: 'Jua', sans-serif;
   font-size: 1.75rem;
   text-align: center;
 `;

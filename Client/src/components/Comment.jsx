@@ -170,13 +170,13 @@ export default function WriteComment() {
         </div>
       ) : (
         <div className="comments-footer">
-          {comments.map((comment, index) => (
-            <div key={index}>
-              <div>댓글 쓴 사람 아이디: {comment.userId}</div>
-              <div>날짜: {comment.date}</div>
-              <div>내용: {comment.content}</div>
-            </div>
-          ))}
+          {/* {comments.map((comment, index) => (
+            // <div key={index}>
+            //   <div>댓글 쓴 사람 아이디: {comment.userId}</div>
+            //   <div>날짜: {comment.date}</div>
+            //   <div>내용: {comment.content}</div>
+            // </div>
+          ))} */}
           <CommentDetail />
         </div>
       )}

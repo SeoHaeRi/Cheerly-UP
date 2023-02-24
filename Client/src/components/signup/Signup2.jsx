@@ -5,8 +5,8 @@ import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import '../static/Signup2.css';
-import { ReactComponent as Logo } from '../assets/logo.svg';
+import './Signup2.css';
+import { ReactComponent as Logo } from '../../assets/logo.svg';
 
 const SignUp = () => {
   const navigate = useNavigate();

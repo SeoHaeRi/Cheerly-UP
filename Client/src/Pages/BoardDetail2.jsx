@@ -7,7 +7,7 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom';
-import "../static/BoardDetail.css";
+import '../static/BoardDetail.css';
 import { useSelector } from 'react-redux';
 import { jwtUtils } from '../utils/jwtUtils';
 import { Button, Dialog, DialogContent, IconButton } from '@mui/material';
@@ -15,7 +15,6 @@ import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import DisabledByDefaultOutlinedIcon from '@mui/icons-material/DisabledByDefaultOutlined';
 import Comment from '../components/Comment';
-
 
 function BoardDetail2() {
   const [show, setShow] = useState(false);
@@ -98,46 +97,47 @@ function BoardDetail2() {
 
   return (
     <>
-    <div className='board-wrapper'>
-      <div className="edit-delete-button">
-        <Button
-          variant="outlined"
-          color="error"
-          endIcon={<DeleteForeverOutlinedIcon />}
-          className="delete-button"
-          onClick={onClickDelete}
-        >
-          삭제
-        </Button>
-        <Button
-          variant="outlined"
-          endIcon={<BuildOutlinedIcon />}
-          onClick={onClickEdit}
-        >
-          수정
-        </Button>
+      <div className="board-wrapper">
+        <div className="edit-delete-button">
+          <Button
+            variant="outlined"
+            color="error"
+            endIcon={<DeleteForeverOutlinedIcon />}
+            className="delete-button"
+            onClick={onClickDelete}
+            style={{ fontFamily: " 'Jua', sans-serif" }}
+          >
+            삭제
+          </Button>
+          <Button
+            variant="outlined"
+            endIcon={<BuildOutlinedIcon />}
+            onClick={onClickEdit}
+            style={{ fontFamily: " 'Jua', sans-serif" }}
+          >
+            수정
+          </Button>
+        </div>
+
+        <div className="board-header">
+          <div className="board-header-username">{post.userId}</div>
+        </div>
+        <hr />
+        <div className="board-body">
+          <div className="board-image">
+            {/* <img src={`/api/image/view/${board_id}`}/> */}
+          </div>
+          <div className="board-title-content">
+            <div className="board-title">{post.title}</div>
+            <div className="board-content">{post.content}</div>
+          </div>
+        </div>
+        <hr />
+        <div className="board-footer">
+          <Comment />
+        </div>
       </div>
-
-
-      <div className="board-header">
-            <div className="board-header-username">{post.userId}</div>
-          </div>
-          <hr/>
-          <div className="board-body">
-            <div className="board-image">
-              {/* <img src={`/api/image/view/${board_id}`}/> */}
-            </div>
-            <div className="board-title-content">
-              <div className="board-title">{post.title}</div>
-              <div className="board-content">{post.content}</div>
-            </div>
-          </div>
-          <hr/>
-          <div className="board-footer">
-            <Comment/>
-          </div>
-          </div>
-        </>
+    </>
   );
 }
 

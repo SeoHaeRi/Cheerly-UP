@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 
 import Signup from './components/Signup';
-import SignUp2 from './components/Signup2';
+import SignUp2 from './components/signup/Signup2';
 import Signin from './components/Signin';
-import Signin2 from './components/Signin2';
+import Signin2 from './components/signin/Signin2';
 import Main from './Pages/Main';
 import Study from './Pages/Study';
 import Board from './Pages/Board';
@@ -86,7 +86,7 @@ function App() {
               path="/mypage"
               element={<PrivateRoute path="/mypage" component={MyPage} />}
             />
-            <Route path="/chat/:roomname" element={<Chat />} />
+            <Route path="/chat3/:roomname" element={<Chat3 />} />
             <Route
               path="/chatroom"
               element={<PrivateRoute path="/chatroom" component={Chatroom} />}

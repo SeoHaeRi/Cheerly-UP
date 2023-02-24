@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import '../static/Chat2.css';
 import { io } from 'socket.io-client';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 //Chatroom 페이지에서 유저 정보, 방 번호 받아오기
 export default function Chat() {
@@ -16,6 +17,15 @@ export default function Chat() {
   let user_socketID = '';
   const { roomname } = useParams();
   const roomName = roomname;
+
+  const roomNumber = useRef();
+  const [room, setRoom] = useState([]);
+  const [chatlist, setchatlist] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:3030/chat/list').then((res) => {
+      setchatlist(res.data);
+    });
+  }, []);
 
   useEffect(() => {
     socket.connect();
@@ -93,9 +103,7 @@ export default function Chat() {
 
       <div className="reply">
         <div className="reply__column">
-          <select className="members">
-            <option value="전체">전체</option>
-          </select>
+        
           <i className="far fa-plus-square fa-lg"></i>
         </div>
         <div className="reply__column">
