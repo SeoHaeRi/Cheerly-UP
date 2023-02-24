@@ -154,7 +154,7 @@ function MyPost() {
 
   return (
     <>
-      <MainHeader>나의 아우성들</MainHeader>
+      <MainHeader>나의 아우성들 🤹</MainHeader>
       <Container>
         {posts.map((post, index) => (
           <div

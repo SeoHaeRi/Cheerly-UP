@@ -50,7 +50,7 @@ const TodoButton = styled.button`
   height: 4rem;
   position: absolute;
   font-size: 1.2rem;
-  top: 80%;
+  top: 44rem;
   left: 18%;
 `;
 
@@ -60,7 +60,7 @@ const DiaryButton = styled.button`
   height: 4rem;
   position: absolute;
   font-size: 1.2rem;
-  top: 70%;
+  top: 50rem;
   left: 18%;
 `;
 

@@ -33,7 +33,7 @@ const TodoHeadBlock = styled.div`
     width: 60%;
     height: 60px;
     text-align: center;
-    padding: 15px;
+    padding: 20px;
     font-size: 18px;
     margin-top: 25px;
     /* font-weight: bold; */

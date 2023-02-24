@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const TodoTemplateBlock = styled.div`
   width: 35rem;
-  height: 45rem;
+  height: 40rem;
   position: relative; //버튼 위치를 위한 설정
   right: -25%;
   bottom: 50px;
