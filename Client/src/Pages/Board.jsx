@@ -12,15 +12,18 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Board() {
   const token = useSelector((state) => state.token.token);
+  const kakaoToken = useSelector((state) => state.token.kakaoToken);
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
       setIsAuth(true);
+    } else if (kakaoToken) {
+      setIsAuth(true);
     } else {
       setIsAuth(false);
     }
-  }, [token]);
+  }, [token, kakaoToken]);
 
   const navigate = useNavigate();
   const postRef = useRef([]);

@@ -54,7 +54,6 @@ export class UserController {
   @UseGuards(AuthGuard('kakao'))
   async kakaoLogIn(@Req() req, @Res() res): Promise<void> {
     await this.userService.kakaoLogin(req.user);
-    console.log(req);
     res.cookie('kakao', req.user.accessToken);
     res.redirect('http://localhost:3000');
   }
