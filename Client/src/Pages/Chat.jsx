@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState , useSelector} from 'react';
 // import { Reset } from 'styled-reset';
 import styled from 'styled-components';
 import '../static/Chat.css';
@@ -13,6 +13,9 @@ export default function Chat() {
   const user_name = '유저네임';
   const msgRef = useRef();
   const noticeRef = useRef();
+  const userNickname = useSelector(
+    (state) => state.user.user.data.user_nickname,
+  );
 
   //info - 사용자 소켓 아이디 가져오기
   let user_socketID = '';
@@ -56,6 +59,7 @@ export default function Chat() {
 
     if (sendMsg === '' || sendMsg === undefined) {
       alert('메시지를 입력해주세요.');
+      return;
     }
 
     socket.emit('msgToServer', {

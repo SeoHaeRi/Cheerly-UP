@@ -30,6 +30,17 @@ export default function WriteComment() {
     }
   }, [token, kakaoToken]);
 
+  axios.interceptors.request.use((config) => {
+    /* JWT 토큰 */
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    // else if (kakaoToken) {
+    //   config.headers['Authorization'] = `Bearer ${kakaoToken}`;
+    // }
+    return config;
+  });
+
   const userID = useSelector((state) => state.user.user.data.user_id);
   const userNickname = useSelector(
     (state) => state.user.user.data.user_nickname,
@@ -142,7 +153,7 @@ export default function WriteComment() {
                   comment={comment}
                   param={param}
                 />
-                <div className="comment-username">Id : {comment.userId}</div>
+                <div className="comment-username">Id : {comment.userNickname}</div>
                 <div className="comment-username-date">{comment.date}</div>
                 <div
                   className="comments-comment"
