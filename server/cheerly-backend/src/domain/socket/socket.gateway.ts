@@ -10,7 +10,7 @@ import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway({
   cors: {
-    origin: ['http://localhost:3000', 'http://localhost:8000'],
+    origin: ['http://localhost:3000'],
   },
 })
 export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -30,7 +30,7 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
   enterChatRoom(client: Socket, payload) {
     const roomname = payload.room.name;
     client.join(roomname);
-    this.server.to(roomname).emit('info', client.id);
+    this.server.to(roomname).emit('info', payload.user);
   }
   // 채팅방 안에 사람에게 메시지 보내기
   @SubscribeMessage('msgToServer')

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import '../static/Chat.css';
 import { io } from 'socket.io-client';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 //Chatroom 페이지에서 유저 정보, 방 번호 받아오기
 export default function Chat() {
@@ -17,12 +18,15 @@ export default function Chat() {
   let user_socketID = '';
   const { roomname } = useParams();
   const roomName = roomname;
+  const userNickname = useSelector(
+    (state) => state.user.user.data.user_nickname,
+  );
 
   useEffect(() => {
     socket.connect();
 
     socket.emit('join', {
-      user: 'username',
+      user: userNickname,
       room: { id: 1, name: roomName },
     });
 
