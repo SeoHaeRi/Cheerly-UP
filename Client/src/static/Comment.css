@@ -46,3 +46,19 @@
   cursor: pointer;
   align-items: center;
 }
+
+.delete__btn {
+  position: relative;
+  left: 30px;
+  background-color: red;
+}
+
+.edit__btn {
+  background-color: #1363df;
+}
+
+.btn__box {
+  display: flex;
+  position: relative;
+  left: 170px;
+}

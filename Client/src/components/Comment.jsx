@@ -14,6 +14,7 @@ import ModalCommentEdit from './modal/CommentEdit';
 import { jwtUtils } from '../utils/jwtUtils';
 import '../static/Comment.css';
 
+
 export default function WriteComment() {
   const navigate = useNavigate();
   const token = useSelector((state) => state.token.token);
@@ -139,32 +140,30 @@ export default function WriteComment() {
       {/* <button onClick={onClickWriteCommentHandler}>댓글 쓰기</button> */}
       <br></br>
       <br></br>
-   
 
       {/* {Viewcomment ? ( */}
-        <div className="comments-wrapper">
-          <div>
-            {comments.map((comment, index) => (
-              <div key={index} id="each-comment">
-                <ModalCommentEdit
-                  show={ModalOn}
-                  onHide={setModalOn}
-                  comment={comment}
-                  param={param}
-                />
-                <div className="comment-username">
-                  Id : {comment.userNickname}
-                </div>
-                <div className="comment-username-date">{comment.date}</div>
-                <div
-                  className="comments-comment"
-                  id={`${comment.comment_id}-comment`}
-                  ref={commentRef}
-                >
-                  내용: {comment.content}
-                </div>
+      <div className="comments-wrapper">
+        <div>
+          {comments.map((comment, index) => (
+            <div key={index} id="each-comment">
+              <ModalCommentEdit
+                show={ModalOn}
+                onHide={setModalOn}
+                comment={comment}
+                param={param}
+              />
+              <div className="comment-username">{comment.userNickname}</div>
+              <div className="comment-username-date">{comment.date}</div>
+              <div
+                className="comments-comment"
+                id={`${comment.comment_id}-comment`}
+                ref={commentRef}
+              >
+                내용: {comment.content}
+              </div>
+              <div className='btn__box'>
                 <button
-                  className="button"
+                  className="delete__btn"
                   id={`${comment.comment_id}-deletebtn`}
                   onClick={() =>
                     deleteCommentHandler(comment, comment.comment_id)
@@ -173,19 +172,20 @@ export default function WriteComment() {
                   삭제
                 </button>
                 <button
-                  className="button2"
+                  className="edit__btn"
                   id={`${comment.comment_id}-editbtn`}
                   onClick={() => onClickEditHandler(comment)}
                 >
                   수정
                 </button>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-        <div className="comments-footer">
-          <CommentDetail />
-        </div>
+      </div>
+      <div className="comments-footer">
+        <CommentDetail />
+      </div>
     </>
   );
 }

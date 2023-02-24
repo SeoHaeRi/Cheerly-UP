@@ -34,11 +34,27 @@ export default function CommentDetail() {
 
   const commentRef = useRef();
 
-  const onClickWriteCommentHandler = () => {
+  const onClickWriteComment = () => {
+    const commentInput = commentRef.current.value;
     if (!isAuth) {
       alert('로그인한 사용자만 댓글을 쓸 수 있습니다!');
     } else {
-      setViewcomment(false);
+      if (commentInput === '' || commentInput === undefined) {
+        alert('작성할 댓글의 내용을 입력해주세요!');
+      } else {
+        axios
+          .post(`http://localhost:3030/comment/:${param}`, {
+            post_id: Number(param),
+            content: commentInput,
+            userId: String(userID),
+            date: new Date(),
+            nickname: userNickname,
+          })
+          .then((res) => {
+            alert('댓글 작성이 완료되었습니다.');
+            window.location.href = `/board/:${param}`;
+          });
+      }
     }
   };
 
@@ -51,27 +67,6 @@ export default function CommentDetail() {
 
   const [comment, setComment] = useState('');
 
-  const onClickWriteComment = () => {
-    const commentInput = commentRef.current.value;
-
-    if (commentInput === '' || commentInput === undefined) {
-      alert('작성할 댓글의 내용을 입력해주세요!');
-    } else {
-      axios
-        .post(`http://localhost:3030/comment/:${param}`, {
-          post_id: Number(param),
-          content: commentInput,
-          userId: String(userID),
-          date: new Date(),
-          nickname: userNickname,
-        })
-        .then((res) => {
-          alert('댓글 작성이 완료되었습니다.');
-          window.location.href = `/board/:${param}`;
-        });
-    }
-  };
-
   return (
     <div className="comment__container">
       댓글 작성
@@ -83,7 +78,7 @@ export default function CommentDetail() {
         // onChange={handleInputChange}
         className="comment__box"
       ></textarea>
-      <button className="" onClick={onClickWriteComment}>
+      <button className="comment__write__button" onClick={onClickWriteComment}>
         댓글 쓰기
       </button>
     </div>
