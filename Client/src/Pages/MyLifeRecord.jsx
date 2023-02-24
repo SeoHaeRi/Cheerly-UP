@@ -9,8 +9,7 @@ import moment from 'moment';
 import 'moment/locale/ko';
 import { jwtUtils } from '../utils/jwtUtils';
 import { useSelector } from 'react-redux';
-import goal from '../assets/goal.svg';
-import heart from '../assets/heart.svg';
+
 import yoga from '../assets/yoga.svg';
 import heart2 from '../assets/heart2.svg';
 import '../static/Peelred.scss';

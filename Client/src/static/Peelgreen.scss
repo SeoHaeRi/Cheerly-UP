@@ -1,0 +1,170 @@
+// @import 'compass/css3';
+@import '~compass-mixins/lib/compass/css3';
+
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
+
+@mixin shadow($xOff, $yOff, $blur, $spread, $color) {
+  -webkit-box-shadow: $xOff $yOff $blur $spread $color;
+  -moz-box-shadow: $xOff $yOff $blur $spread $color;
+  box-shadow: $xOff $yOff $blur $spread $color;
+}
+
+@mixin rotate($deg) {
+  transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  -webkit-transform: rotate($deg);
+}
+
+@mixin round($uL, $uR, $bR, $bL) {
+  -webkit-border-radius: $uL $uR $bR $bL;
+  -moz-border-radius: $uL $uR $bR $bL;
+  border-radius: $uL $uR $bR $bL;
+}
+
+$yellow: #ffff66;
+
+// .body {
+//   background-color: #2196f363;
+//   // font-family: 'Permanent Marker';
+// }
+
+.pad-green {
+  position: relative;
+  padding: 20px;
+  z-index: 2;
+  /* display: block; */
+  /* margin: 10px 10px 20px 20px; */
+  margin-top: 50px;
+  width: 18rem;
+  /* width: 20rem; */
+  height: 20rem;
+  background-color: #009688;
+  box-shadow: 0 -1px 7px 1px #333;
+  border-bottom: 3px solid #009688;
+
+  h1 {
+    position: absolute;
+    z-index: 20;
+    left: 20px;
+    font-weight: normal;
+  }
+}
+
+.peel-green {
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  right: 0;
+  height: 60px;
+  width: 60px;
+  background-color: #0f7168;
+  -webkit-transition: width 500ms, height 500ms, -webkit-transform 500ms;
+  -moz-transition: width 500ms, height 500ms;
+  -o-transition: width 500ms, height 500ms;
+  transition: width 500ms, height 500ms;
+
+  &:hover {
+    height: 200px;
+    width: 200px;
+    -webkit-transition: width 500ms, height 500ms, -webkit-transform 500ms;
+    -moz-transition: width 500ms, height 500ms;
+    -o-transition: width 500ms, height 500ms;
+    transition: width 500ms, height 500ms;
+
+    &::before {
+      height: 100px;
+      width: 200px;
+      -webkit-transition: width 500ms, height 500ms, -webkit-transform 500ms;
+      -moz-transition: width 500ms, height 500ms;
+      -o-transition: width 500ms, height 500ms;
+      transition: width 500ms, height 500ms;
+    }
+
+    &::after {
+      height: 200px;
+      width: 100px;
+      right: 100px;
+      -webkit-transition: width 500ms, height 500ms, right 500ms,
+        -webkit-transform 500ms;
+      -moz-transition: width 500ms, height 500ms, right 500ms;
+      -o-transition: width 500ms, height 500ms, right 500ms;
+      transition: width 500ms, height 500ms, right 500ms;
+    }
+
+    .peel-green-back {
+      bottom: 17px;
+      right: 65px;
+      width: 80px;
+      height: 155px;
+      -webkit-transition: width 500ms, height 500ms, right 500ms, bottom 500ms,
+        -webkit-transform 500ms;
+      -moz-transition: width 500ms, height 500ms, right 500ms, bottom 500ms;
+      -o-transition: width 500ms, height 500ms, right 500ms, bottom 500ms;
+      transition: width 500ms, height 500ms, right 500ms, bottom 500ms;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    right: 0;
+    content: '';
+    height: 31px;
+    width: 61px;
+    background-color: #ffff66;
+    border-bottom: 1px #009688 solid;
+    border-radius: 0 0 50% 0;
+    transition: width 500ms, height 500ms;
+    background: -webkit-gradient(
+      linear,
+      76% 85%,
+      82% 100%,
+      from(#009688),
+      to(#0a403b)
+    );
+  }
+
+  &::after {
+    position: absolute;
+    z-index: 6;
+    bottom: 0px;
+    right: 30px;
+    content: '';
+    height: 61px;
+    width: 31px;
+    background-color: $yellow;
+    @include round(0, 0, 50%, 0);
+    -webkit-transition: width 500ms, height 500ms, right 500ms,
+      -webkit-transform 500ms;
+    -moz-transition: width 500ms, height 500ms, right 500ms,
+      -webkit-transform 500ms;
+    -o-transition: width 500ms, height 500ms, right 500ms,
+      -webkit-transform 500ms;
+    transition: width 500ms, height 500ms, right 500ms;
+    background: -webkit-gradient(
+      linear,
+      56% 94%,
+      67% 100%,
+      from(#009688),
+      to(#053530)
+    );
+  }
+}
+
+.peel-green-back {
+  position: absolute;
+  z-index: 2;
+  bottom: 5px;
+  right: 19px;
+  width: 20px;
+  height: 46px;
+  background-color: #0b6058;
+  @include rotate(45deg);
+  -webkit-transition: width 500ms, height 500ms, right 500ms, bottom 500ms,
+    -webkit-transform 500ms;
+  -moz-transition: width 500ms, height 500ms, right 500ms, bottom 500ms;
+  -o-transition: width 500ms, height 500ms, right 500ms, bottom 500ms;
+  transition: width 500ms, height 500ms, right 500ms, bottom 500ms;
+  @include shadow(0, 0, 5px, 2px, #808033);
+}
