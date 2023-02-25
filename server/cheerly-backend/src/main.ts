@@ -16,9 +16,7 @@ async function bootstrap() {
   ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'upload') });
 
   const PORT = process.env.PORT || 3030;
-  await app.listen(PORT, () =>
-    console.log(`Application running on http://localhost:${PORT}`),
-  );
+  await app.listen(PORT, () => console.log(`Application running on`));
 
   app.useGlobalPipes(new ValidationPipe());
 }
