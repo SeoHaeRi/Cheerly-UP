@@ -6,15 +6,12 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 //Chatroom 페이지에서 유저 정보, 방 번호 받아오기
+
 export default function Chat() {
-
   <MainHeader>채팅방 💬</MainHeader>;
-  const socket = io('http://localhost:3030', { autoConnect: false });
-
   const socket = io(`${process.env.REACT_APP_SERVER_HOST}`, {
     autoConnect: false,
   });
-
 
   const user_name = '유저네임';
   const msgRef = useRef();
@@ -130,3 +127,4 @@ const MainHeader = styled.div`
   font-size: 1.75rem;
   text-align: center;
 `;
+
