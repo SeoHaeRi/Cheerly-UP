@@ -32,12 +32,10 @@ export default function Chat() {
     });
 
     socket.on('info', (socketID) => {
-      user_socketID = socketID;
       const userEnterMsg = document.createElement('h5');
       userEnterMsg.textContent = socketID + '님이 입장하셨습니다.';
       const notice = document.querySelector('.notice');
       notice.appendChild(userEnterMsg);
-      console.log(socketID);
     });
 
     socket.on('msgToClient', (payload) => {
