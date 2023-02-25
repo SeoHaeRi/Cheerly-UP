@@ -1,7 +1,7 @@
 @media screen and (min-width: 992px) {
   .stopwatch-container {
     align-items: flex-start;
-    margin-left: 160px;
+    /* margin-left: 160px; */
     left: 53rem;
   }
 }
@@ -19,18 +19,32 @@
   }
 }
 
+@media screen and (max-width: 1800px) {
+  .app-container {
+    position: absolute;
+    top: 20rem;
+    left: 57.5rem;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .app-container {
+    position: absolute;
+    top: 21rem;
+    left: 74rem;
+  }
+}
+
 .timer-container {
   display: flex;
   flex-direction: column;
   padding: 20px 20px 20px 20px;
   align-items: center;
-  position: absolute;
   /* top: 18rem;
-  left: 54rem; */
-  top: 20rem;
-  left: 53.2rem;
+  left: 53.2rem; */
+
   background-color: #ffffff;
   /* width: 350px; */
+  width: 450px;
   border-radius: 20px;
   box-shadow: 0px 4px 40px rgba(23, 31, 70, 0.16);
 }
