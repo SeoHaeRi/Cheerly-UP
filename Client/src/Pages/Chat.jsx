@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-// import { Reset } from 'styled-reset';
 import '../static/Chat.css';
 import { io } from 'socket.io-client';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 
 //Chatroom 페이지에서 유저 정보, 방 번호 받아오기
 export default function Chat() {
+  <MainHeader>채팅방 💬</MainHeader>;
   const socket = io('http://localhost:3030', { autoConnect: false });
 
   const user_name = '유저네임';
@@ -44,10 +45,12 @@ export default function Chat() {
       const container = document.querySelector('.message-row--own');
       const outer_div = document.createElement('div');
       const div = document.createElement('div');
-      div.textContent = payload.msg + ' ' + payload.time;
-
+      const timediv = document.createElement('span');
+      div.textContent = payload.msg;
+      timediv.textContent = payload.time;
       outer_div.classList.add('message__bubble');
       outer_div.appendChild(div);
+      outer_div.appendChild(timediv);
       container.appendChild(outer_div);
       // const message = document.querySelector('.message-row--own');
       // message.append(container);
@@ -72,25 +75,25 @@ export default function Chat() {
   };
 
   return (
-    <div className='chat-screen'>
-
+    <div className="chat-screen">
+      <MainHeader>채팅방 💬</MainHeader>
       <div className="main-chat">
-
         <div className="chat__timestamp">
           <div className="notice" ref={noticeRef}></div>
           <h5>{roomname} 방 입니다</h5>
         </div>
 
         <div className="message-row">
-          <div className="message__bubble">안녕하세요 오후 12:30:09</div>
+          <div className="message__bubble">안녕하세요</div>
+          <div className="message__time1"></div>
         </div>
 
         <div className="message-row message-row--own">
-          <div className="message__bubble"></div>
+          <div className="message__bubble">반갑습니다</div>
         </div>
+        <div className="message__time"></div>
 
         <div className="reply">
-          
           <div className="reply__column">
             <i className="far fa-plus-square fa-lg"></i>
           </div>
@@ -110,8 +113,17 @@ export default function Chat() {
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );
 }
+const MainHeader = styled.div`
+  background-color: navy;
+  width: 100%;
+  margin-top: 30px;
+  padding: 20px;
+  color: white;
+  font-family: 'Jua', sans-serif;
+  font-size: 1.75rem;
+  text-align: center;
+`;

@@ -127,7 +127,7 @@ table {
 */
 
 .chat-screen {
-  background-color: whitesmoke;
+  background-color: white;
   height: 100vh;
 }
 
@@ -164,9 +164,9 @@ table {
   font-size: 18px;
   border-radius: 15px;
   border-top-left-radius: 0px;
-  margin-right: 1200px;
-  display: flex; 
-  flex-direction: column; 
+  margin-right: 1300px;
+  display: flex;
+  flex-direction: column;
 }
 
 .message-row--own {
@@ -179,9 +179,12 @@ table {
   border-top-left-radius: 15px;
   margin-right: 0px;
   margin-top: 20px;
-  margin-left: 1200px;
+  margin-left: 1300px;
 }
 
+.message__time {
+  margin-top : 20px;
+}
 .message__bubble__own {
   background-color: salmon;
   border-top-right-radius: 0px;

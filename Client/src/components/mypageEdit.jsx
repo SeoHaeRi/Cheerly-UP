@@ -40,6 +40,17 @@ export default function MypageEdit() {
     const nicknameInput = String(nicknameRef.current.value);
     const pwInput = String(pwRef.current.value);
     console.log(nicknameInput, pwInput);
+
+    if(nicknameInput === "" ) {
+      alert("닉네임 값을 입력해주세요 ! ")
+      return;
+    } else if (pwInput.length < 8 ) {
+      alert("비밀번호는 8자 이상이여야 합니다")
+      return;
+    } else if(nicknameInput.length < 2) {
+      alert("닉네임은 2자 이상이여야 합니다 !")
+    }
+
     try {
       await axios.patch(`http://localhost:3030/user/edit/${userID}`, {
         id: userID,
