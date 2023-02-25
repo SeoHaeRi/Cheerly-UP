@@ -48,12 +48,13 @@ function BoardWrite() {
   };
   return (
     <>
+      <MainHeader>대나무 숲 🐼</MainHeader>
+
       <Container>
         <GlobalStyle />
         <Post>
           <Title>
-            제목
-            <input ref={titleRef}></input>
+            제목 :<input ref={titleRef}></input>
           </Title>
           <Body>
             {' '}
@@ -62,18 +63,22 @@ function BoardWrite() {
               ref={contentRef}
               style={{ width: '380px', height: '300px' }}
             ></textarea>{' '}
+            <button
+              style={{
+                background: 'green',
+                height: '50px',
+                width: '350px',
+                fontFamily: 'Jua, sans-serif',
+                position: 'relative',
+                bottom: '-5px',
+                left: '-8px',
+              }}
+              onClick={onClickWrite}
+            >
+              등록
+            </button>
           </Body>
         </Post>
-        <button
-          style={{
-            background: '#65B1F7',
-            height: '45px',
-            width: '100px',
-          }}
-          onClick={onClickWrite}
-        >
-          등록
-        </button>
       </Container>
     </>
   );
@@ -88,36 +93,47 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
-  min-height: 100vh;
-  padding: 200px 0;
+  padding: 100px 0;
   display: grid;
   grid-template-columns: repeat(1, 400px);
   grid-template-rows: repeat(auto-fit, 500px);
   grid-auto-rows: 300px;
   grid-gap: 30px 20px;
   justify-content: center;
-  background: white;
   box-sizing: border-box;
 `;
 
 const Post = styled.div`
   border: 1px solid black;
-  border-radius: 20px;
+  border-radius: 30px;
   background: white;
   box-shadow: 10px 5px 5px #7f8fa6;
 `;
 
 const Title = styled.div`
-  height: 20%;
+  height: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid black;
   font-weight: 600;
+  font-family: 'Jua', sans-serif;
 `;
 
 const Body = styled.div`
   height: 90%;
   padding: 11px;
   border-radius: 20px;
+  font-family: 'Jua', sans-serif;
+`;
+
+const MainHeader = styled.div`
+  background-color: green;
+  width: 100%;
+  margin-top: 30px;
+  padding: 20px;
+  color: white;
+  font-family: 'Jua', sans-serif;
+  font-size: 1.75rem;
+  text-align: center;
 `;
