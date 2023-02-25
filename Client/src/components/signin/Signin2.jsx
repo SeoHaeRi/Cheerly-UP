@@ -125,7 +125,7 @@ const SignIn = () => {
                 로그인
               </Button>
               <button
-                className="card__button1"
+                className="kakao__button"
                 type="button"
                 onClick={viewKakao}
               >

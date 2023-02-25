@@ -136,7 +136,7 @@ const SignUp = () => {
                 회원가입
               </Button>
               <button
-                className="card__button1"
+                className="kakao__button"
                 type="button"
                 onClick={viewKakao}
               >
