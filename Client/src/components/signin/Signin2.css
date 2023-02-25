@@ -54,3 +54,15 @@ body {
   font-weight: bold;
 }
 
+.kakao__button {
+  width: 100%;
+  background: #F5E942;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  margin: 15px auto 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
