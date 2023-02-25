@@ -7,8 +7,14 @@ import styled from 'styled-components';
 
 //Chatroom 페이지에서 유저 정보, 방 번호 받아오기
 export default function Chat() {
+
   <MainHeader>채팅방 💬</MainHeader>;
   const socket = io('http://localhost:3030', { autoConnect: false });
+
+  const socket = io(`${process.env.REACT_APP_SERVER_HOST}`, {
+    autoConnect: false,
+  });
+
 
   const user_name = '유저네임';
   const msgRef = useRef();
@@ -31,12 +37,10 @@ export default function Chat() {
     });
 
     socket.on('info', (socketID) => {
-      user_socketID = socketID;
       const userEnterMsg = document.createElement('h5');
       userEnterMsg.textContent = socketID + '님이 입장하셨습니다.';
       const notice = document.querySelector('.notice');
       notice.appendChild(userEnterMsg);
-      console.log(socketID);
     });
 
     socket.on('msgToClient', (payload) => {
@@ -76,7 +80,6 @@ export default function Chat() {
 
   return (
     <div className="chat-screen">
-      <MainHeader>채팅방 💬</MainHeader>
       <div className="main-chat">
         <div className="chat__timestamp">
           <div className="notice" ref={noticeRef}></div>

@@ -30,10 +30,13 @@ const SignIn = () => {
   const submit = async (values) => {
     const { id, pw } = values;
     try {
-      const { data } = await axios.post('http://localhost:3030/user/login', {
-        id,
-        pw,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_SERVER_HOST}/user/login`,
+        {
+          id,
+          pw,
+        },
+      );
 
       const decodedUserInfo = jwt_decode(data.accessToken);
 
@@ -72,7 +75,7 @@ const SignIn = () => {
   };
   // 카카오 로그인 버튼 클릭
   const viewKakao = () => {
-    window.location.href = 'http://localhost:3030/user/kakao';
+    window.location.href = `${process.env.REACT_APP_SERVER_HOST}/user/kakao`;
   };
   return (
     <Formik

@@ -133,7 +133,7 @@ function TodoCreate() {
     const inputContent = inputRef.current.value;
     console.log(inputContent);
     axios
-      .post('http://localhost:3030/study', {
+      .post(`${process.env.REACT_APP_SERVER_HOST}/study`, {
         user_id: String(userID),
         content: String(inputContent),
       })

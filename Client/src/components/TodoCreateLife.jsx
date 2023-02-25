@@ -133,7 +133,7 @@ function TodoCreateLife() {
     const inputContent = inputRef.current.value;
     console.log(inputContent);
     axios
-      .post('http://localhost:3030/life', {
+      .post(`${process.env.REACT_APP_SERVER_HOST}/life`, {
         user_id: String(userID),
         content: String(inputContent),
       })

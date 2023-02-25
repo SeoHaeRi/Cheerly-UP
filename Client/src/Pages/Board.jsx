@@ -30,7 +30,7 @@ function Board() {
 
   let data = [];
   useEffect(() => {
-    axios.get('http://localhost:3030/board').then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_HOST}/board`).then((res) => {
       for (let i = 0; i < res.data.length; i++) {
         function formatDate(string) {
           var options = {
@@ -143,8 +143,8 @@ const Container = styled.div`
   font-family: 'Jua', sans-serif;
   background-image: url(${boardtree});
 
-  width:100vw;
-  height:150vh;
+  width: 100vw;
+  height: 150vh;
 
   background-size: cover;
   background-repeat: no-repeat;

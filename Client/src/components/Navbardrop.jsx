@@ -235,8 +235,7 @@ const Navbardrop = () => {
                   onClick={() => {
                     setLogOut('active');
                     if (kakaoToken) {
-                      window.location.href =
-                        'http://localhost:3030/user/kakao/logout';
+                      window.location.href = `${process.env.REACT_APP_SERVER_HOST}/user/kakao/logout`;
                       deleteCookie('kakao');
                       dispatch(setToken(''));
                     } else {
