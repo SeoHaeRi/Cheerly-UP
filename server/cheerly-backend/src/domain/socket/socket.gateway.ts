@@ -10,7 +10,7 @@ import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway({
   cors: {
-    origin: ['http://localhost:3000'],
+    origin: [process.env.CLIENT_HOST],
   },
 })
 export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {

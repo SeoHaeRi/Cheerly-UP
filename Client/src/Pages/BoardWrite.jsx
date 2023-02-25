@@ -33,7 +33,7 @@ function BoardWrite() {
       alert('내용을 입력해주세요!');
     } else {
       axios
-        .post('http://localhost:3030/board/write', {
+        .post(`${process.env.REACT_APP_SERVER_HOST}/board/write`, {
           title: String(inputTitle),
           content: String(inputContent),
           date: new Date(),

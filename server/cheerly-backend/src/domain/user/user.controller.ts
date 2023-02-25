@@ -51,7 +51,7 @@ export class UserController {
   async kakaoLogIn(@Req() req, @Res() res): Promise<void> {
     const accessToken = await this.userService.kakaoLogin(req.user);
     res.cookie('kakao', accessToken);
-    res.redirect('http://localhost:3000');
+    res.redirect(process.env.CLIENT_HOST);
   }
   @Get('/kakao/logout')
   @HttpCode(200)

@@ -49,7 +49,7 @@ function BoardDetail2() {
   useEffect(() => {
     axios.post(`http://localhost:3030/user/verify`).then((res) => {
       const data = res.data;
-      setSrc('http://localhost:3030/user/' + data.profile_img);
+      setSrc(`${process.env.REACT_APP_SERVER_HOST}/user/` + data.profile_img);
     });
   }, []);
 

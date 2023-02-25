@@ -19,14 +19,14 @@ export default function TodoList() {
   // const [study, setStudy] = useState([]);
   // const {id, text, done} = values;
   // try {
-  //   await axios.post('http://localhost:3030/study', {
+  //   await axios.post(${process.env.REACT_APP_SERVER_HOST}/study', {
   //     id, text, done,
   //   });
   //   catch(e) {}
   // }
   // useEffect(() => {
   //   axios
-  //     .post('http://localhost:3030/study', { id, text, done })
+  //     .post(${process.env.REACT_APP_SERVER_HOST}/study', { id, text, done })
   //     .then((res) => {
   //       setTodos(res.data);
   //       console.log(res.data);

@@ -14,7 +14,7 @@ export default function Chatroom() {
   const [room, setRoom] = useState([]);
   const [chatlist, setchatlist] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:3030/chat/list').then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_HOST}/chat/list`).then((res) => {
       setchatlist(res.data);
     });
   }, []);
@@ -32,7 +32,7 @@ export default function Chatroom() {
       window.location.reload([true]);
     }
 
-    axios.post('http://localhost:3030/chat/create', {
+    axios.post(`${process.env.REACT_APP_SERVER_HOST}/chat/create`, {
       roomName: roomName,
     });
   };

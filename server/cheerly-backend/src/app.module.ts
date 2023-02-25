@@ -31,7 +31,6 @@ import { MulterModule } from '@nestjs/platform-express';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWD,
       database: process.env.DB_DATABASE,
-      // entities: [__dirname + '/entities/*.entity.js'],
       entities: [User, Post, Comment, Study, Chat, Life],
       logging: true,
     }),
