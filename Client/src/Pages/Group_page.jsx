@@ -150,7 +150,7 @@ export default function Group_page() {
     setLoading(true);
 
     axios
-      .get('http://localhost:3030/studygroup')
+      .get(`${process.env.REACT_APP_SERVER_HOST}/studygroup`)
       .then((res) => {
         setLoading(false);
         setGroups(res.data);

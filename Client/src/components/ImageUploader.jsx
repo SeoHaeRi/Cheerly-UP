@@ -24,13 +24,17 @@ const ImageUploader = ({ preview_URL, setImage }) => {
   const [Viewbutton, SetViewButton] = useState(false);
 
   useEffect(() => {
-    axios.post(`http://localhost:3030/user/verify`).then((res) => {
-      console.log(res.data);
-      const data = res.data;
-      setImg(data.profile_img);
-      setUser(res.data);
-      setRoute('http://localhost:3030/user/' + data.profile_img);
-    });
+    axios
+      .post(`${process.env.REACT_APP_SERVER_HOST}/user/verify`)
+      .then((res) => {
+        console.log(res.data);
+        const data = res.data;
+        setImg(data.profile_img);
+        setUser(res.data);
+        setRoute(
+          `${process.env.REACT_APP_SERVER_HOST}/user/` + data.profile_img,
+        );
+      });
   }, []);
 
   const [file, setFile] = useState([]);
@@ -96,10 +100,14 @@ const ImageUploader = ({ preview_URL, setImage }) => {
   //기본 이미지로 변경 PATCH
   const defaultImg = () => {
     axios
-      .patch(`http://localhost:3030/user/image/${userID}`, { id: userID })
+      .patch(`${process.env.REACT_APP_SERVER_HOST}/user/image/${userID}`, {
+        id: userID,
+      })
       .then((res) => {
         alert('이미지를 기본 이미지로 변경하였습니다.');
-        setRoute('http://localhost:3030/user/user_default_img.jpg');
+        setRoute(
+          `${process.env.REACT_APP_SERVER_HOST}/user/user_default_img.jpg`,
+        );
       });
   };
 
@@ -128,27 +136,31 @@ const ImageUploader = ({ preview_URL, setImage }) => {
         </Button>
       </div>
 
-      <div className='btn_box'>
-      <Button
-        color="primary"
-        variant="contained"
-        type="submit"
-        onClick={saveImg}
-        size="large"
-        style={{ fontFamily: "'Jua', sans-serif" ,marginTop:"40px"}}
-      >
-        저장
-      </Button>
-      <Button
-        onClick={defaultImg}
-        color="primary"
-        variant="contained"
-        type="submit"
-        size="large"
-        style={{ fontFamily: "'Jua', sans-serif", marginLeft:"20px" , marginTop:"39px" }}
-      >
-        기본 이미지
-      </Button>
+      <div className="btn_box">
+        <Button
+          color="primary"
+          variant="contained"
+          type="submit"
+          onClick={saveImg}
+          size="large"
+          style={{ fontFamily: "'Jua', sans-serif", marginTop: '40px' }}
+        >
+          저장
+        </Button>
+        <Button
+          onClick={defaultImg}
+          color="primary"
+          variant="contained"
+          type="submit"
+          size="large"
+          style={{
+            fontFamily: "'Jua', sans-serif",
+            marginLeft: '20px',
+            marginTop: '39px',
+          }}
+        >
+          기본 이미지
+        </Button>
       </div>
     </div>
   );

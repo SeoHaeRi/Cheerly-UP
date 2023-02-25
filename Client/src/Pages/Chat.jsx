@@ -7,7 +7,9 @@ import { useSelector } from 'react-redux';
 
 //Chatroom 페이지에서 유저 정보, 방 번호 받아오기
 export default function Chat() {
-  const socket = io('http://localhost:3030', { autoConnect: false });
+  const socket = io(`${process.env.REACT_APP_SERVER_HOST}`, {
+    autoConnect: false,
+  });
 
   const user_name = '유저네임';
   const msgRef = useRef();
@@ -72,10 +74,8 @@ export default function Chat() {
   };
 
   return (
-    <div className='chat-screen'>
-
+    <div className="chat-screen">
       <div className="main-chat">
-
         <div className="chat__timestamp">
           <div className="notice" ref={noticeRef}></div>
           <h5>{roomname} 방 입니다</h5>
@@ -90,7 +90,6 @@ export default function Chat() {
         </div>
 
         <div className="reply">
-          
           <div className="reply__column">
             <i className="far fa-plus-square fa-lg"></i>
           </div>
@@ -110,7 +109,6 @@ export default function Chat() {
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );

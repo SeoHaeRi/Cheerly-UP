@@ -96,7 +96,7 @@ export default function Group() {
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3030/studygroup').then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_HOST}/studygroup`).then((res) => {
       setGroups(res.data);
     });
   }, []);

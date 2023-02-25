@@ -35,7 +35,7 @@ const SignUp = () => {
   const submit = async (values) => {
     const { id, nickname, pw } = values;
     try {
-      await axios.post('http://localhost:3030/user/signup', {
+      await axios.post(`${process.env.REACT_APP_SERVER_HOST}/user/signup`, {
         id,
         nickname,
         pw,
@@ -64,7 +64,7 @@ const SignUp = () => {
 
   // 카카오 로그인 버튼 클릭
   const viewKakao = () => {
-    window.location.href = 'http://localhost:3030/user/kakao';
+    window.location.href = `${process.env.REACT_APP_SERVER_HOST}/user/kakao`;
   };
 
   return (
