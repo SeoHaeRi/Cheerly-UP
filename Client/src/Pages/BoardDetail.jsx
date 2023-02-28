@@ -60,7 +60,7 @@ function BoardDetail() {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:3030/board/${id}`).then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_HOST}/${id}`).then((res) => {
       const convertDate = formatDate(res.data.date);
 
       const postDataArr = {
@@ -93,7 +93,7 @@ function BoardDetail() {
       );
       if (confirm === true) {
         axios
-          .delete(`http://localhost:3030/board/${id}`, {
+          .delete(`${process.env.REACT_APP_SERVER_HOST}/board/${id}`, {
             post_id: Number(post.post_id),
           })
           .then((res) => {

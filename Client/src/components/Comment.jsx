@@ -62,23 +62,25 @@ export default function WriteComment() {
   let data = [];
 
   useEffect(() => {
-    axios.get(`http://localhost:3030/comment/:${param}`).then((res) => {
-      for (let i = 0; i < res.data.length; i++) {
-        const commentData = res.data[i];
-        const convertDate = formatDate(commentData.date);
+    axios
+      .get(`${process.env.REACT_APP_SERVER_HOST}/comment/:${param}`)
+      .then((res) => {
+        for (let i = 0; i < res.data.length; i++) {
+          const commentData = res.data[i];
+          const convertDate = formatDate(commentData.date);
 
-        const commentDataArr = {
-          comment_id: commentData.comment_id,
-          content: commentData.content,
-          date: convertDate,
-          userId: commentData.userId,
-          post_id: commentData.post_id,
-          nickname: commentData.nickname,
-        };
-        data.push(commentDataArr);
-      }
-      setComments(data);
-    });
+          const commentDataArr = {
+            comment_id: commentData.comment_id,
+            content: commentData.content,
+            date: convertDate,
+            userId: commentData.userId,
+            post_id: commentData.post_id,
+            nickname: commentData.nickname,
+          };
+          data.push(commentDataArr);
+        }
+        setComments(data);
+      });
   }, []);
   console.log(comments);
 
@@ -94,10 +96,13 @@ export default function WriteComment() {
       const confirm = window.confirm('정말로 댓글을 삭제하시겠습니까?');
       if (confirm === true) {
         axios
-          .delete(`http://localhost:3030/comment/:${param}/:${commentID}`, {
-            post_id: Number(comments.post_id),
-            comment_id: Number(commentID),
-          })
+          .delete(
+            `${process.env.REACT_APP_SERVER_HOST}/comment/:${param}/:${commentID}`,
+            {
+              post_id: Number(comments.post_id),
+              comment_id: Number(commentID),
+            },
+          )
           .then((res) => {
             alert('삭제가 완료되었습니다.');
             navigate(`/board/:${param}`);

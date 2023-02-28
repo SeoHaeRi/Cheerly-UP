@@ -41,22 +41,25 @@ export default function MypageEdit() {
     const pwInput = String(pwRef.current.value);
     console.log(nicknameInput, pwInput);
 
-    if(nicknameInput === "" ) {
-      alert("닉네임 값을 입력해주세요 ! ")
+    if (nicknameInput === '') {
+      alert('닉네임 값을 입력해주세요 ! ');
       return;
-    } else if (pwInput.length < 8 ) {
-      alert("비밀번호는 8자 이상이여야 합니다")
+    } else if (pwInput.length < 8) {
+      alert('비밀번호는 8자 이상이여야 합니다');
       return;
-    } else if(nicknameInput.length < 2) {
-      alert("닉네임은 2자 이상이여야 합니다 !")
+    } else if (nicknameInput.length < 2) {
+      alert('닉네임은 2자 이상이여야 합니다 !');
     }
 
     try {
-      await axios.patch(`http://localhost:3030/user/edit/${userID}`, {
-        id: userID,
-        nickname: nicknameInput,
-        pw: pwInput,
-      });
+      await axios.patch(
+        `${process.env.REACT_APP_SERVER_HOST}/user/edit/${userID}`,
+        {
+          id: userID,
+          nickname: nicknameInput,
+          pw: pwInput,
+        },
+      );
       sessionStorage.setItem('user_nickname', nicknameInput);
 
       alert('회원정보 수정이 완료되었습니다');
@@ -72,7 +75,7 @@ export default function MypageEdit() {
     );
     if (confirm === true) {
       axios
-        .delete(`http://localhost:3030/user/${userID}`, {
+        .delete(`${process.env.REACT_APP_SERVER_HOST}/user/${userID}`, {
           id: String(userID),
         })
         .then((res) => {
@@ -131,11 +134,21 @@ export default function MypageEdit() {
             ref={pwRef}
           />
 
-          <button className="card__button" type="button" onClick={editInfo} style={{marginTop:"40px"}}>
+          <button
+            className="card__button"
+            type="button"
+            onClick={editInfo}
+            style={{ marginTop: '40px' }}
+          >
             <span>수정 하기</span>
           </button>
 
-          <button className="card__button" type="button" onClick={deleteInfo} style={{backgroundColor: "red"}}>
+          <button
+            className="card__button"
+            type="button"
+            onClick={deleteInfo}
+            style={{ backgroundColor: 'red' }}
+          >
             <span>회원 탈퇴</span>
           </button>
         </form>

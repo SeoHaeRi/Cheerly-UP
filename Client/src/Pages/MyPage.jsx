@@ -44,23 +44,25 @@ export default function MyPage() {
   });
 
   useEffect(() => {
-    axios.post(`http://localhost:3030/user/verify`).then((res) => {
-      const convertDate = formatDate(res.data.created_at);
+    axios
+      .post(`${process.env.REACT_APP_SERVER_HOST}/user/verify`)
+      .then((res) => {
+        const convertDate = formatDate(res.data.created_at);
 
-      const userData = {
-        id: res.data.id,
-        date: convertDate,
-        nickname: res.data.nickname,
-      };
-      setUser(userData);
-    });
+        const userData = {
+          id: res.data.id,
+          date: convertDate,
+          nickname: res.data.nickname,
+        };
+        setUser(userData);
+      });
   }, []);
 
   return (
     <div className="scene flex" style={{ fontFamily: ' Jua, sans-serif' }}>
       <section className="card">
         <h1 className="card__heading">
-          <Logo/>
+          <Logo />
         </h1>
         <div>{user.nickname}님, 안녕하세요!</div>
         <div>가입한 날짜: {user.date}</div>

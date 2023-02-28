@@ -13,7 +13,7 @@ export default function ModalCommentEdit({ show, onHide, comment, param }) {
     } else {
       axios
         .patch(
-          `http://localhost:3030/comment/:${param}/:${comment.comment_id}`,
+          `${process.env.REACT_APP_SERVER_HOST}/comment/:${param}/:${comment.comment_id}`,
           {
             content: String(inputText),
             post_id: Number(comment.post_id),

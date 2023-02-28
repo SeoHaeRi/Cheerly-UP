@@ -82,11 +82,15 @@ const ImageUploader = ({ preview_URL, setImage }) => {
       };
 
       axios
-        .patch(`http://localhost:3030/user/upload/${userID}`, Data, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
+        .patch(
+          `${process.env.REACT_APP_SERVER_HOST}/user/upload/${userID}`,
+          Data,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
           },
-        })
+        )
         .then((res) => {
           alert('이미지를 수정하였습니다.');
         });

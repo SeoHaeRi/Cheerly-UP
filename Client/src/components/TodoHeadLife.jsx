@@ -63,9 +63,11 @@ export default function TodoHeadLife() {
   );
 
   const [undoneNumber, setUndoneNumber] = useState('');
-  axios.get(`http://localhost:3030/life/${userID}`).then((res) => {
-    setUndoneNumber(res.data.filter((el) => el.done === 0).length);
-  });
+  axios
+    .get(`${process.env.REACT_APP_SERVER_HOST}/life/${userID}`)
+    .then((res) => {
+      setUndoneNumber(res.data.filter((el) => el.done === 0).length);
+    });
 
   return (
     <TodoHeadBlock>
