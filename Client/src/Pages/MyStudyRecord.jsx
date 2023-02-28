@@ -98,36 +98,38 @@ function MyStudyRecord() {
 
   let data = [];
   useEffect(() => {
-    axios.get(`http://localhost:3030/study/record/${userID}`).then((res) => {
-      for (let i = 0; i < res.data.length; i++) {
-        function formatDate(string) {
-          var options = {
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric',
+    axios
+      .get(`${process.env.REACT_APP_SERVER_HOST}/study/record/${userID}`)
+      .then((res) => {
+        for (let i = 0; i < res.data.length; i++) {
+          function formatDate(string) {
+            var options = {
+              year: 'numeric',
+              month: 'numeric',
+              day: 'numeric',
+            };
+            return new Date(string).toLocaleDateString([], options);
+          }
+
+          const studyData = res.data[i];
+
+          const convertDate = formatDate(studyData.date);
+
+          const postDataArr = {
+            study_id: studyData.study_id,
+            content: studyData.content,
+            date: convertDate,
+            userId: studyData.user_id,
           };
-          return new Date(string).toLocaleDateString([], options);
+
+          data.push(postDataArr);
+
+          console.log(postDataArr);
         }
 
-        const studyData = res.data[i];
-
-        const convertDate = formatDate(studyData.date);
-
-        const postDataArr = {
-          study_id: studyData.study_id,
-          content: studyData.content,
-          date: convertDate,
-          userId: studyData.user_id,
-        };
-
-        data.push(postDataArr);
-
-        console.log(postDataArr);
-      }
-
-      console.log();
-      setStudies(data);
-    });
+        console.log();
+        setStudies(data);
+      });
   }, []);
 
   //  공부 페이지에서 해당 날짜에 성취한(done=1) 값만 불러옵니다.

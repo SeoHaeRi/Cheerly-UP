@@ -113,35 +113,37 @@ function MyPost() {
 
   let data = [];
   useEffect(() => {
-    axios.get(`http://localhost:3030/board/mypost/${userID}`).then((res) => {
-      for (let i = 0; i < res.data.length; i++) {
-        function formatDate(string) {
-          var options = {
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
+    axios
+      .get(`${process.env.REACT_APP_SERVER_HOST}/board/mypost/${userID}`)
+      .then((res) => {
+        for (let i = 0; i < res.data.length; i++) {
+          function formatDate(string) {
+            var options = {
+              year: 'numeric',
+              month: 'numeric',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+            };
+            return new Date(string).toLocaleDateString([], options);
+          }
+
+          const postData = res.data[i];
+
+          const convertDate = formatDate(postData.date);
+
+          const postDataArr = {
+            post_id: postData.post_id,
+            title: postData.title,
+            content: postData.content,
+            date: convertDate,
+            userId: postData.userId,
           };
-          return new Date(string).toLocaleDateString([], options);
+
+          data.push(postDataArr);
         }
-
-        const postData = res.data[i];
-
-        const convertDate = formatDate(postData.date);
-
-        const postDataArr = {
-          post_id: postData.post_id,
-          title: postData.title,
-          content: postData.content,
-          date: convertDate,
-          userId: postData.userId,
-        };
-
-        data.push(postDataArr);
-      }
-      setPosts(data);
-    });
+        setPosts(data);
+      });
   }, []);
 
   const onClickPost = (post_id) => {

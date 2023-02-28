@@ -47,10 +47,12 @@ function BoardDetail2() {
   const [src, setSrc] = useState('');
 
   useEffect(() => {
-    axios.post(`http://localhost:3030/user/verify`).then((res) => {
-      const data = res.data;
-      setSrc(`${process.env.REACT_APP_SERVER_HOST}/user/` + data.profile_img);
-    });
+    axios
+      .post(`${process.env.REACT_APP_SERVER_HOST}/user/verify`)
+      .then((res) => {
+        const data = res.data;
+        setSrc(`${process.env.REACT_APP_SERVER_HOST}/user/` + data.profile_img);
+      });
   }, []);
 
   const navigate = useNavigate();
@@ -71,20 +73,22 @@ function BoardDetail2() {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:3030/board/${id}`).then((res) => {
-      const convertDate = formatDate(res.data.date);
+    axios
+      .get(`${process.env.REACT_APP_SERVER_HOST}/board/${id}`)
+      .then((res) => {
+        const convertDate = formatDate(res.data.date);
 
-      const postDataArr = {
-        post_id: res.data.post_id,
-        title: res.data.title,
-        content: res.data.content,
-        date: convertDate,
-        userId: res.data.userId,
-        nickname: res.data.nickname,
-      };
+        const postDataArr = {
+          post_id: res.data.post_id,
+          title: res.data.title,
+          content: res.data.content,
+          date: convertDate,
+          userId: res.data.userId,
+          nickname: res.data.nickname,
+        };
 
-      setPost(postDataArr);
-    });
+        setPost(postDataArr);
+      });
   }, []);
 
   console.log(post);
@@ -106,7 +110,7 @@ function BoardDetail2() {
       );
       if (confirm === true) {
         axios
-          .delete(`http://localhost:3030/board/${id}`, {
+          .delete(`${process.env.REACT_APP_SERVER_HOST}/board/${id}`, {
             post_id: Number(post.post_id),
           })
           .then((res) => {

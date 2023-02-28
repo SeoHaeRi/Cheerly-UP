@@ -25,7 +25,7 @@ export default function TodoList() {
   useEffect(() => {
     async function getData() {
       await axios
-        .get(`http://localhost:3030/study/${userID}`, {
+        .get(`${process.env.REACT_APP_SERVER_HOST}/study/${userID}`, {
           user_id: userID,
         })
         .then((res) => setTodoData(res.data));

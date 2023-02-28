@@ -80,19 +80,25 @@ function TodoItem({ id, done, text, life_id }) {
     dispatch({ type: 'TOGGLE', id });
     if (done === 0) {
       axios
-        .patch(`http://localhost:3030/life/${userID}/${life_id}`, {
-          life_id: Number(life_id),
-          user_id: userID,
-          done: 1,
-        })
+        .patch(
+          `${process.env.REACT_APP_SERVER_HOST}/life/${userID}/${life_id}`,
+          {
+            life_id: Number(life_id),
+            user_id: userID,
+            done: 1,
+          },
+        )
         .then((res) => alert('짝짝짝!!👏 오늘도 화이팅!'));
     } else {
       axios
-        .patch(`http://localhost:3030/life/${userID}/${life_id}`, {
-          study_id: Number(life_id),
-          user_id: userID,
-          done: 0,
-        })
+        .patch(
+          `${process.env.REACT_APP_SERVER_HOST}/life/${userID}/${life_id}`,
+          {
+            study_id: Number(life_id),
+            user_id: userID,
+            done: 0,
+          },
+        )
         .then();
     }
   };
@@ -103,10 +109,13 @@ function TodoItem({ id, done, text, life_id }) {
     const confirm = window.confirm('선택한 오늘 할 일을 지우시겠습니까?');
     if (confirm === true) {
       axios
-        .delete(`http://localhost:3030/life/${userID}/${life_id}`, {
-          study_id: Number(life_id),
-          userId: userID,
-        })
+        .delete(
+          `${process.env.REACT_APP_SERVER_HOST}/life/${userID}/${life_id}`,
+          {
+            study_id: Number(life_id),
+            userId: userID,
+          },
+        )
         .then((res) => {
           alert('삭제가 완료되었습니다.');
         });

@@ -39,7 +39,7 @@ export default function CommentDetail() {
         alert('작성할 댓글의 내용을 입력해주세요!');
       } else {
         axios
-          .post(`http://localhost:3030/comment/:${param}`, {
+          .post(`${process.env.REACT_APP_SERVER_HOST}/comment/:${param}`, {
             post_id: Number(param),
             content: commentInput,
             userId: String(userID),

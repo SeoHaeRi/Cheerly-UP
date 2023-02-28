@@ -98,32 +98,34 @@ function MyLifeRecord() {
 
   let data = [];
   useEffect(() => {
-    axios.get(`http://localhost:3030/life/record/${userID}`).then((res) => {
-      for (let i = 0; i < res.data.length; i++) {
-        function formatDate(string) {
-          var options = {
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric',
+    axios
+      .get(`${process.env.REACT_APP_SERVER_HOST}/life/record/${userID}`)
+      .then((res) => {
+        for (let i = 0; i < res.data.length; i++) {
+          function formatDate(string) {
+            var options = {
+              year: 'numeric',
+              month: 'numeric',
+              day: 'numeric',
+            };
+            return new Date(string).toLocaleDateString([], options);
+          }
+
+          const lifeData = res.data[i];
+
+          const convertDate = formatDate(lifeData.date);
+
+          const DataArr = {
+            life_id: lifeData.study_id,
+            content: lifeData.content,
+            date: convertDate,
+            userId: lifeData.user_id,
           };
-          return new Date(string).toLocaleDateString([], options);
+
+          data.push(DataArr);
         }
-
-        const lifeData = res.data[i];
-
-        const convertDate = formatDate(lifeData.date);
-
-        const DataArr = {
-          life_id: lifeData.study_id,
-          content: lifeData.content,
-          date: convertDate,
-          userId: lifeData.user_id,
-        };
-
-        data.push(DataArr);
-      }
-      setLifeRecord(data);
-    });
+        setLifeRecord(data);
+      });
   }, []);
 
   //life 페이지 투두리스트에서 해당 유저의 성취한(done=1) 값만 불러옵니다.

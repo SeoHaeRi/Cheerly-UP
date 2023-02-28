@@ -23,7 +23,7 @@ export default function TodoListLife() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3030/life/${userID}`, {
+      .get(`${process.env.REACT_APP_SERVER_HOST}/life/${userID}`, {
         user_id: userID,
       })
       .then((res) => {

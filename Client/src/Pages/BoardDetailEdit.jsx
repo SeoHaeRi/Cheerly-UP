@@ -28,10 +28,12 @@ function BoardDetailEdit() {
   const route = '/board/' + id;
 
   useEffect(() => {
-    axios.get(`http://localhost:3030/board/:${param}`).then((res) => {
-      setPost(res.data);
-      console.log(res.data);
-    });
+    axios
+      .get(`${process.env.REACT_APP_SERVER_HOST}/board/:${param}`)
+      .then((res) => {
+        setPost(res.data);
+        console.log(res.data);
+      });
   }, []);
 
   const editPostHandler = () => {
@@ -49,7 +51,7 @@ function BoardDetailEdit() {
       alert('수정할 글의 제목과 내용을 입력해주세요!');
     } else {
       axios
-        .patch(`http://localhost:3030/board/:${param}`, {
+        .patch(`${process.env.REACT_APP_SERVER_HOST}/board/:${param}`, {
           title: String(inputTitle),
           content: String(inputContent),
           date: new Date(),

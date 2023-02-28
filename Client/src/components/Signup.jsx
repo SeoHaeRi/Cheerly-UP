@@ -1,13 +1,12 @@
 import React from 'react';
 import { ReactComponent as Logo } from '../assets/logo.svg';
 import '../static/Signup.css';
-import axios from "axios";
+import axios from 'axios';
 
 const submit = async (values) => {
-  const {id, password, nickname} = values;
+  const { id, password, nickname } = values;
   try {
-    await axios.post("http://localhost:3030/user/signup", {
-      
+    await axios.post('${process.env.REACT_APP_SERVER_HOST}/user/signup', {
       id,
       password,
       nickname,
@@ -19,7 +18,6 @@ const submit = async (values) => {
     // setTimeout(()=> {
     //   navigate("/login");
     // }, 2000);
-
   } catch (e) {
     // 서버에서 받은 에러 메시지 출력
     // toast.error(e.response.data.message + "😭", {
