@@ -4,9 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 
-import Signup from './components/Signup';
+import Signup from './components/signup/Signup';
 import SignUp2 from './components/signup/Signup2';
-import Signin from './components/Signin';
+import Signin from './components/signin/Signin';
 import Signin2 from './components/signin/Signin2';
 import Main from './Pages/Main';
 import Study from './Pages/Study';

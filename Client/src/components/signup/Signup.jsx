@@ -1,6 +1,6 @@
 import React from 'react';
-import { ReactComponent as Logo } from '../assets/logo.svg';
-import '../static/Signup.css';
+import { ReactComponent as Logo } from '../../assets/logo.svg';
+import './Signup.css';
 import axios from 'axios';
 
 const submit = async (values) => {
