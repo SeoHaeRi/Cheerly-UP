@@ -56,7 +56,6 @@ function App() {
       {init ? (
         <BrowserRouter>
           <Navbardrop />
-          {/* <Navbar /> */}
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/board" element={<Board />} />

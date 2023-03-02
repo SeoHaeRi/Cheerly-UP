@@ -22,14 +22,11 @@
     width: 300px;
   }
 }
-
 body {
   background-color: #ffffff;
 }
-
 .signin-wrapper {
-  font-family: "Noto Sans KR", sans-serif;
-
+  font-family: 'Noto Sans KR', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,4 +50,15 @@ body {
   color: blue;
   font-weight: bold;
 }
-
+.kakao__button {
+  width: 100%;
+  background: #f5e942;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  margin: 15px auto 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
