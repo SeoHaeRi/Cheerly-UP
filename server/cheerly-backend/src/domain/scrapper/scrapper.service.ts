@@ -9,6 +9,7 @@ export class ScrapperService {
     //headless: true -> 개발 모드일 때만 false 새창이 뜨고,
     //배포 모드일 때는 크롤링할 사이트가 뜨지 않는다.
     const browser = await puppeteer.launch({
+      executablePath: '/usr/bin/google-chrome',
       headless: true,
       args: ['--fast-start', '--disable-extensions', '--no-sandbox'],
       ignoreHTTPSErrors: true,
