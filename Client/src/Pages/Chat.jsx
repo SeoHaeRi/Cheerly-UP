@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 export default function Chat() {
   <MainHeader>채팅방 💬</MainHeader>;
+
   const socket = io(`${process.env.REACT_APP_SERVER_HOST}`, {
     withCredentials: true,
     transports: ['websocket'],
@@ -55,8 +56,6 @@ export default function Chat() {
       outer_div.appendChild(div);
       outer_div.appendChild(timediv);
       container.appendChild(outer_div);
-      // const message = document.querySelector('.message-row--own');
-      // message.append(container);
     });
   }, []);
 
@@ -129,4 +128,3 @@ const MainHeader = styled.div`
   font-size: 1.75rem;
   text-align: center;
 `;
-
