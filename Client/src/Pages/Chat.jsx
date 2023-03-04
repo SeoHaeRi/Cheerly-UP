@@ -54,8 +54,6 @@ export default function Chat() {
       outer_div.appendChild(div);
       outer_div.appendChild(timediv);
       container.appendChild(outer_div);
-      // const message = document.querySelector('.message-row--own');
-      // message.append(container);
     });
   }, []);
 

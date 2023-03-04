@@ -17,12 +17,6 @@ export class ScrapperService {
 
     const page = await browser.newPage();
 
-    // await page.setViewport({
-    //   width: 1280,
-    //   height: 800,
-    //   deviceScaleFactor: 1,
-    // });
-
     const data = [];
 
     for (let index = 1; index < 3; index++) {
