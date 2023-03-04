@@ -10,6 +10,8 @@ import styled from 'styled-components';
 export default function Chat() {
   <MainHeader>채팅방 💬</MainHeader>;
   const socket = io(`${process.env.REACT_APP_SERVER_HOST}`, {
+    withCredentials: true,
+    transports: ['websocket'],
     autoConnect: false,
   });
 
