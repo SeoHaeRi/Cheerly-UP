@@ -11,6 +11,8 @@ export default function Chat() {
   // const socket = io('${process.env.REACT_APP_SERVER_HOST}', { autoConnect: false });
 
   const socket = io(`${process.env.REACT_APP_SERVER_HOST}`, {
+    withCredentials: true,
+    transports: ['websocket'],
     autoConnect: false,
   });
 

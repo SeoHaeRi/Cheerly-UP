@@ -72,7 +72,6 @@ const ImageUploader = ({ preview_URL, setImage }) => {
       formData.append('pw', String(user.pw));
       formData.append('nickname', String(user.nickname));
       formData.append('file', pickedFile);
-      console.log(pickedFile);
 
       const Data = {
         id: formData.get('id'),
