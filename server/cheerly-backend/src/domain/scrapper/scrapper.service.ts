@@ -1,26 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import puppeteer from 'puppeteer';
-
 @Injectable()
 export class ScrapperService {
   async getDataViaPuppeteer() {
     const URL = `https://www.inflearn.com/community/studies`;
 
-    //headless: true -> 개발 모드일 때만 false 새창이 뜨고,
-    //배포 모드일 때는 크롤링할 사이트가 뜨지 않는다.
     const browser = await puppeteer.launch({
       headless: true,
-      args: ['--fast-start', '--disable-extensions', '--no-sandbox'],
+      executablePath: '/usr/bin/chromium-browser',
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+      ],
       ignoreHTTPSErrors: true,
     });
 
     const page = await browser.newPage();
-
-    // await page.setViewport({
-    //   width: 1280,
-    //   height: 800,
-    //   deviceScaleFactor: 1,
-    // });
 
     const data = [];
 
@@ -29,26 +26,27 @@ export class ScrapperService {
         'https://www.inflearn.com/community/studies?page=' +
           index +
           '&order=recent',
-        {
-          waitUntil: 'networkidle2',
-        },
+        { waitUntil: 'networkidle2' },
       );
 
-      //const content = await page.content();
-      // const content = await page.waitForSelector('li.question_container');
-
-      //$ - 엘리먼트 반환, $eval - 콜백함수 전달, element를 인자로 받음
-
+      await page.waitForSelector('div.question-list-container > ul > li');
       const lists = await page.$$('div.question-list-container > ul > li');
 
       for (let i = 0; i < lists.length; i++) {
         const list = lists[i];
 
-        const title = await list.$eval('h3', (element) => element.innerText);
-        const url = await list.$eval('a', (element) => element.href);
+        const title = await list.$eval(
+          'h3',
+          (element: HTMLElement) => element.innerText,
+        );
+        const url = await list.$eval(
+          'a',
+          (element) => (element as HTMLAnchorElement).href,
+        );
+
         const badge = await list.$eval(
           'a > div > div > div.question__title > div > div > span',
-          (element) => element.innerText,
+          (element: HTMLElement) => element.innerText,
         );
 
         const dataArr = {
@@ -60,13 +58,6 @@ export class ScrapperService {
         data.push(dataArr);
       }
     }
-    // const url = await page.$$eval(
-    //   'div.question-list-container > ul > li > a',
-    //   (data) =>
-    //     data.map((data) => {
-    //       return data.href;
-    //     }),
-    // );
 
     await page.close();
     await browser.close();
