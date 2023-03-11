@@ -10,6 +10,7 @@ import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway({
   cors: {
+    credentials: true,
     origin: [process.env.CLIENT_HOST],
   },
 })
@@ -32,6 +33,7 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
     client.join(roomname);
     this.server.to(roomname).emit('info', payload.user);
   }
+
   // 채팅방 안에 사람에게 메시지 보내기
   @SubscribeMessage('msgToServer')
   handleMessage(client: Socket, payload): void {

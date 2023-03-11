@@ -6,9 +6,9 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 //Chatroom 페이지에서 유저 정보, 방 번호 받아오기
+
 export default function Chat() {
   <MainHeader>채팅방 💬</MainHeader>;
-  // const socket = io('${process.env.REACT_APP_SERVER_HOST}', { autoConnect: false });
 
   const socket = io(`${process.env.REACT_APP_SERVER_HOST}`, {
     withCredentials: true,
@@ -56,8 +56,6 @@ export default function Chat() {
       outer_div.appendChild(div);
       outer_div.appendChild(timediv);
       container.appendChild(outer_div);
-      // const message = document.querySelector('.message-row--own');
-      // message.append(container);
     });
   }, []);
 

@@ -6,6 +6,7 @@ export class ScrapperService {
     const URL = `https://www.inflearn.com/community/studies`;
 
     const browser = await puppeteer.launch({
+      executablePath: '/usr/bin/google-chrome',
       headless: true,
       executablePath: '/usr/bin/chromium-browser',
       args: [
