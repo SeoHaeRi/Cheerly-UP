@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../static/Chat.css';
 import { io } from 'socket.io-client';
 import { useParams } from 'react-router-dom';
