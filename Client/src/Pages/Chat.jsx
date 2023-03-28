@@ -16,12 +16,10 @@ export default function Chat() {
     autoConnect: false,
   });
 
-  const user_name = '유저네임';
   const msgRef = useRef();
   const noticeRef = useRef();
 
   //info - 사용자 소켓 아이디 가져오기
-  let user_socketID = '';
   const { roomname } = useParams();
   const roomName = roomname;
   const userNickname = useSelector(
@@ -44,9 +42,12 @@ export default function Chat() {
     });
 
     socket.on('msgToClient', (payload) => {
-      console.log(payload);
-
-      const container = document.querySelector('.message-row--own');
+      let container;
+      if (payload.username === userNickname) {
+        container = document.querySelector('.message-row--own');
+      } else {
+        container = document.querySelector('.message-row');
+      }
       const outer_div = document.createElement('div');
       const div = document.createElement('div');
       const timediv = document.createElement('span');
@@ -57,7 +58,7 @@ export default function Chat() {
       outer_div.appendChild(timediv);
       container.appendChild(outer_div);
     });
-  }, []);
+  }, [userNickname]);
 
   //메시지 보내기 버튼 클릭시
   const handleSubmitNewMessage = () => {
@@ -70,9 +71,8 @@ export default function Chat() {
 
     socket.emit('msgToServer', {
       msg: sendMsg,
-      socketID: user_socketID,
       time: new Date().toLocaleTimeString('ko-kr'),
-      username: user_name,
+      username: userNickname,
     });
   };
 

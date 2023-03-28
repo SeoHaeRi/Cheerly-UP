@@ -82,7 +82,6 @@ export default function WriteComment() {
         setComments(data);
       });
   }, []);
-  console.log(comments);
 
   const EditInput = () => {
     return <textarea placeholder="수정할 댓글 내용을 입력해주세요." />;
@@ -113,7 +112,6 @@ export default function WriteComment() {
 
   //댓글 수정
   const onClickEditHandler = (comment) => {
-    console.log(comment.userId, userID);
     const Component = {
       comment_id: comment.comment_id,
       component: <EditInput />,

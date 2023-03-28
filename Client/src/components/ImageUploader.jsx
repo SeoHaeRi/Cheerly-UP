@@ -27,7 +27,6 @@ const ImageUploader = ({ preview_URL, setImage }) => {
     axios
       .post(`${process.env.REACT_APP_SERVER_HOST}/user/verify`)
       .then((res) => {
-        console.log(res.data);
         const data = res.data;
         setImg(data.profile_img);
         setUser(res.data);
@@ -58,9 +57,6 @@ const ImageUploader = ({ preview_URL, setImage }) => {
     ///////
 
     setPickedFile(e.target.files[0]);
-
-    console.log(e.target.files);
-    console.log(pickedFile);
   };
 
   //사진 저장 버튼 누르면
@@ -97,8 +93,6 @@ const ImageUploader = ({ preview_URL, setImage }) => {
       alert('사진을 골라주세요!');
     }
   };
-
-  console.log(route);
 
   //기본 이미지로 변경 PATCH
   const defaultImg = () => {

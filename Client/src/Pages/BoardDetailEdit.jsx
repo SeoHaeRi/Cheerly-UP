@@ -32,7 +32,6 @@ function BoardDetailEdit() {
       .get(`${process.env.REACT_APP_SERVER_HOST}/board/:${param}`)
       .then((res) => {
         setPost(res.data);
-        console.log(res.data);
       });
   }, []);
 

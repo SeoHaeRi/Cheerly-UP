@@ -45,7 +45,7 @@ const TodoHeadBlock = styled.div`
 export default function TodoHead() {
   //useTodoState 사용하기
   const todos = useTodoState();
-  console.log(todos); // 잘출력됨
+
   const undoneTasks = todos.filter((todo) => !todo.done); //남은 할일 보여주기
 
   //날짜 출력 : Date 의 toLocaleString 이라는 함수를 사용

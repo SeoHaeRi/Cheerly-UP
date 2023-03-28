@@ -91,8 +91,6 @@ function BoardDetail2() {
       });
   }, []);
 
-  console.log(post);
-
   const onClickEdit = () => {
     if (post.userId !== userID || !isAuth) {
       alert('본인의 게시글만 수정할 수 있습니다.');

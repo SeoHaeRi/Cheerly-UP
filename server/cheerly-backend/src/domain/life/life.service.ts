@@ -36,7 +36,7 @@ export class LifeService {
       })
       .getMany();
 
-    console.log(lifeDataByUser);
+    // console.log(lifeDataByUser);
     return lifeDataByUser;
   }
 
@@ -60,7 +60,7 @@ export class LifeService {
       })
       .getMany();
 
-    console.log(lifeRecord);
+    // console.log(lifeRecord);
     return lifeRecord;
   }
 

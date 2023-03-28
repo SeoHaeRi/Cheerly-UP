@@ -124,10 +124,9 @@ function MyStudyRecord() {
 
           data.push(postDataArr);
 
-          console.log(postDataArr);
+          // console.log(postDataArr);
         }
 
-        console.log();
         setStudies(data);
       });
   }, []);

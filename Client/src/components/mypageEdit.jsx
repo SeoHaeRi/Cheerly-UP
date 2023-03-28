@@ -39,7 +39,6 @@ export default function MypageEdit() {
   const editInfo = async () => {
     const nicknameInput = String(nicknameRef.current.value);
     const pwInput = String(pwRef.current.value);
-    console.log(nicknameInput, pwInput);
 
     if (nicknameInput === '') {
       alert('닉네임 값을 입력해주세요 ! ');

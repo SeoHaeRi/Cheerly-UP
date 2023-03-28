@@ -131,7 +131,7 @@ function TodoCreateLife() {
     ///////////////
     //소미 추가 코드//
     const inputContent = inputRef.current.value;
-    console.log(inputContent);
+
     axios
       .post(`${process.env.REACT_APP_SERVER_HOST}/life`, {
         user_id: String(userID),
