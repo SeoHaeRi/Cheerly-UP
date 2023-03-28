@@ -27,11 +27,9 @@ export default function TodoListLife() {
         user_id: userID,
       })
       .then((res) => {
-        console.log(res.data);
         setTodoLifeData(res.data);
       });
   }, [userID]);
-  console.log(todoLifeData);
 
   return (
     <>

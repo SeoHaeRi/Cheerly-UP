@@ -159,7 +159,7 @@ export default function Group_page() {
         console.log(err);
       });
     //로딩중
-    console.log(count);
+    // console.log(count);
     // .then((groups) => {
     //   setCount(groups?.length);
     //   setIndexOfLastPost(currentpage * postPerPage);

@@ -73,7 +73,6 @@ function TodoItem({ id, done, text, life_id }) {
     (state) => state.user.user.data.user_nickname,
   );
 
-  // console.log(study_id);
   const dispatch = useTodoDispatch();
   //PATCH - 할일 완료 버튼
   const onToggle = () => {
