@@ -26,6 +26,11 @@ GIF Images
 
 <br>
 
+## ERD
+<p>
+<img width="316" alt="image" src="https://user-images.githubusercontent.com/62414262/229266537-6ea96503-fe18-45a5-913c-3f2a163f85c4.png">
+</p>
+
 ## 구현 기능
 
 - ERD 설계
